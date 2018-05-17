@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
 
 	[Header("Ground variables")]
 	public LayerMask groundMask;
+	public Transform groundCheck;
+	[Range(0.0f, 0.5f)]
+	public float checkRadius;
 	public bool grounded;
 
 	[Header("Which direction are we facing?")]
@@ -78,12 +81,8 @@ public class PlayerMovement : MonoBehaviour
 
 	private void CheckGround()
 	{
-		Vector2 endPos = new Vector2(transform.position.x, transform.position.y - 1.1f);
-
-		Debug.DrawLine(transform.position, endPos, Color.green);
-
 		// check if there is ground beneath the player
-		if (Physics2D.Linecast(transform.position, endPos, groundMask))
+		if (Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundMask))
 		{
 			grounded = true;
 		}

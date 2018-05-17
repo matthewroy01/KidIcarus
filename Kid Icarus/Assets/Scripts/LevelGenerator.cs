@@ -16,9 +16,23 @@ public class LevelGenerator : MonoBehaviour
 	private int offsetX = 0; // the current x offset, used to calculate the width and offset of the box collider
 	private BoxCollider2D currentCollider = null; // the current collider we're changing the width and offset of
 	private int num = 0; // the iterator used for instantiating each map
-	private Transform currentParent;
+	private Transform currentParent; // the current parent is where all blocks will be instantiated to as children
+	private InfiniteGenerator refInfiniteGenerator; // a reference to the infinite generator which holds a list of all the levels
+	private int offsetXDebug = 0; // another X offset used to instantiate each level off screen for debugging purposes
 
 	void Start ()
+	{
+		// find the infinite generator, this is where we will store our level objects for gameplay later
+		refInfiniteGenerator = FindObjectOfType<InfiniteGenerator>();
+
+		// loop through each map
+		LoopMaps();
+
+		// once we're done, tell the infinite generator to start making levels
+		refInfiniteGenerator.BeginGeneration();
+	}
+
+	void LoopMaps()
 	{
 		// generate the level
 		for (num = 0; num < maps.Length; num++)
@@ -29,7 +43,11 @@ public class LevelGenerator : MonoBehaviour
 			GenerateLevel();
 
 			// move the level that was just created over a bit
-			currentParent.position = new Vector2(-17 * num, 0);
+			currentParent.position = new Vector2(offsetXDebug, -50);
+			offsetXDebug += maps[num].width + 1;
+
+			// add the current parent to the infinite generator's list of potential levels
+			refInfiniteGenerator.AddLevel(new Level(currentParent.gameObject, maps[num].height));
 		}
 	}
 
