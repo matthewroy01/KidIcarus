@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
 	public float movSpeed;
 	public float maxSpeed;
 	public float jumpForce;
-	public float gravForce;
 
 	[Header("Ground variables")]
 	public LayerMask groundMask;
@@ -24,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
 	{
 		// rigidbody
 		rb = GetComponent<Rigidbody2D>();
-		rb.gravityScale = 0;
 
 		// sprite renderer
 		sr = GetComponent<SpriteRenderer>();
@@ -36,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
 		CheckGround();
 
 		DoMovement();
-		DoGravity();
 		DoJumping();
 
 		DoTerminalVelocities();
@@ -77,15 +74,6 @@ public class PlayerMovement : MonoBehaviour
 			// add jump force
 			rb.AddForce(jumpVec);
 		}
-	}
-
-	private void DoGravity()
-	{
-		// calculate gravity vector
-		Vector2 gravVec = new Vector2(0.0f, gravForce * -1);
-
-		// add gravity force
-		rb.AddForce(gravVec);
 	}
 
 	private void CheckGround()
