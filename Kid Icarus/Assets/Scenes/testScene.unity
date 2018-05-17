@@ -428,7 +428,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6379b7685b36ce041acb5fbd6150963b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 2800000, guid: bb47a617096ccfe41aa9d5a27f4b9d2b, type: 3}
+  maps:
+  - {fileID: 2800000, guid: bb47a617096ccfe41aa9d5a27f4b9d2b, type: 3}
+  - {fileID: 2800000, guid: 71b79b518c6013642aecf958a00a8bef, type: 3}
+  - {fileID: 2800000, guid: dff070b5711b06e46af0da8013140717, type: 3}
+  defaultName: Map
   colorMappings:
   - color:
       serializedVersion: 2
@@ -438,6 +442,10 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4290799865
     prefab: {fileID: 1686733032737908, guid: 5268585b068d5524f8c65cb7c2d61737, type: 2}
+  - color:
+      serializedVersion: 2
+      rgba: 4289924283
+    prefab: {fileID: 1960480732698576, guid: b7a54a24c0ab60e40be34006b50f7902, type: 2}
 --- !u!4 &1475053168
 Transform:
   m_ObjectHideFlags: 0

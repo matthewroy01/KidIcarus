@@ -6,7 +6,8 @@
 public class LevelGenerator : MonoBehaviour
 {
 	[Header("Texture that represents the level layout")]
-	public Texture2D map;
+	public Texture2D[] maps;
+	public string defaultName;
 	[Header("List of prefabs and their corresponding colors")]
 	public ColorToPrefab[] colorMappings;
 
@@ -14,11 +15,22 @@ public class LevelGenerator : MonoBehaviour
 	private bool makingCollider = false; // if we're making a collider currently
 	private int offsetX = 0; // the current x offset, used to calculate the width and offset of the box collider
 	private BoxCollider2D currentCollider = null; // the current collider we're changing the width and offset of
+	private int num = 0; // the iterator used for instantiating each map
+	private Transform currentParent;
 
 	void Start ()
 	{
 		// generate the level
-		GenerateLevel();
+		for (num = 0; num < maps.Length; num++)
+		{
+			// create a new gameobject that will serve as a parent for all the blocks
+			currentParent = new GameObject(defaultName + num).transform;
+			// read the texture, generate blocks, and generate collision
+			GenerateLevel();
+
+			// move the level that was just created over a bit
+			currentParent.position = new Vector2(-17 * num, 0);
+		}
 	}
 
 	void GenerateLevel()
@@ -26,9 +38,9 @@ public class LevelGenerator : MonoBehaviour
 		int x, y;
 
 		// loop through all pixels in map
-		for (y = 0; y < map.height; ++y)
+		for (y = 0; y < maps[num].height; ++y)
 		{
-			for(x = 0; x < map.width; ++x)
+			for(x = 0; x < maps[num].width; ++x)
 			{
 				// generate the tile
 				GenerateTile(x, y);
@@ -42,7 +54,7 @@ public class LevelGenerator : MonoBehaviour
 
 	void GenerateTile(int x, int y)
 	{
-		Color32 pixelColor = map.GetPixel(x, y);
+		Color32 pixelColor = maps[num].GetPixel(x, y);
 
 		// if the pixel's color is completely transparent
 		if (pixelColor.a == 0)
@@ -62,7 +74,7 @@ public class LevelGenerator : MonoBehaviour
 			{
 				// instantiate the tiel
 				Vector2 position = new Vector2(x,y);
-				tmpPrefab = Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
+				tmpPrefab = Instantiate(colorMapping.prefab, position, Quaternion.identity, currentParent);
 
 				// if we're not already making a collider
 				if (makingCollider == false)

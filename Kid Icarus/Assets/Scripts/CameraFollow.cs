@@ -36,33 +36,7 @@ public class CameraFollow : MonoBehaviour
    // Update is called once per frame
    void FixedUpdate()
     {
-        // when not shaking, lerp camera rotation as normal
-        if (!shouldShake)
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, cameraTarget.transform.rotation, turnSpeed);
-        }
-        // otherwise, rotate a prevRotation so we can add the random shake to it
-        else
-        {
-            shakePrevRotation = Quaternion.Lerp(transform.rotation, cameraTarget.transform.rotation, turnSpeed).eulerAngles;
-            Shake();
-        }
-
-        // if there's a wall in the way, move the camera
-        RaycastHit hit;
-
-        if (Physics.Linecast(cameraTarget.transform.position, player.position, out hit, clip) ||
-			Physics.Linecast(player.position, cameraTarget.transform.position, out hit, clip))
-        {
-            Debug.Log("Camera detected wall.");
-            Vector3 tmp = CalcMidpoint(transform.position, hit.point);
-            transform.position = tmp;
-        }
-        // otherwise lerp the position as normal
-        else
-        {
-            transform.position = Vector3.Lerp(transform.position, cameraTarget.transform.position, currentFollowSpeed);
-        }
+		transform.position = Vector3.Lerp(new Vector3(7.5f, transform.position.y, transform.position.z), new Vector3(7.5f, cameraTarget.transform.position.y + 1, transform.position.z), currentFollowSpeed);
     }
 
     // call this function to begin screen shake
