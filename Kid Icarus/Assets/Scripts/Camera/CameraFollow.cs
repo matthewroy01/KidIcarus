@@ -8,14 +8,11 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
 
-    public GameObject cameraTarget;
+    public Transform cameraTarget;
     [Range(0, 1)]
     public float followSpeed;
     [Range(0, 1)]
     public float turnSpeed;
-
-    //exists so that we can switch between the follow speed and the boost speed
-    private float currentFollowSpeed = 0;
 
     [Header("Camera Shake")]
     public bool shouldShake;
@@ -24,19 +21,17 @@ public class CameraFollow : MonoBehaviour
     public float shakeIntensity;
     public float shakeDuration;
 
-    [Header("WallClip")]
-    public Transform player;
-    public LayerMask clip;
-
-   private void Awake()
-   {
-      currentFollowSpeed = followSpeed;
-   }
-
-   // Update is called once per frame
-   void FixedUpdate()
+    void Start()
     {
-		transform.position = Vector3.Lerp(new Vector3(7.5f, transform.position.y, transform.position.z), new Vector3(7.5f, cameraTarget.transform.position.y + 1, transform.position.z), currentFollowSpeed);
+    	transform.position = new Vector3(7.5f, 7.5f, transform.position.z);
+    }
+
+    void FixedUpdate()
+    {
+    	if (transform.position.y < cameraTarget.transform.position.y)
+    	{
+			transform.position = Vector3.Lerp(new Vector3(7.5f, transform.position.y, transform.position.z), new Vector3(7.5f, cameraTarget.position.y + 1, transform.position.z), followSpeed);
+		}
     }
 
     // call this function to begin screen shake
@@ -70,19 +65,4 @@ public class CameraFollow : MonoBehaviour
         // set new rotation
         transform.rotation = Quaternion.Euler(shakePrevRotation.x + tmpx, shakePrevRotation.y + tmpy, shakePrevRotation.z + tmpz);
     }
-
-    Vector3 CalcMidpoint(Vector3 one, Vector3 two)
-    {
-        float tmpX, tmpY, tmpZ;
-        tmpX = (one.x + two.x) / 2;
-        tmpY = (one.y + two.y) / 2;
-        tmpZ = (one.z + two.z) / 2;
-
-        return new Vector3(tmpX, tmpY, tmpZ);
-    }
-
-   public void EndBoosting()
-   {
-      currentFollowSpeed = followSpeed;
-   }
 }
