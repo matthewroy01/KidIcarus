@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
 	[Header("Crouching")]
 	public bool isCrouching;
 
+	[Header("Particle systems")]
+	public ParticleSystem partsFeathers;
+
 	[Header("QA")]
 	public string QAURL;
 
@@ -33,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
 	private SpriteRenderer sr;
 	private PlayerShoot refPlayerShoot;
 	private PlayerAudio refPlayerAudio;
+
+	private PhysicsMaterial2D refPhysicMaterial;
+	private float defaultFriction;
 
 	void Start ()
 	{
@@ -48,6 +54,10 @@ public class PlayerMovement : MonoBehaviour
 
 		// audio manager
 		refPlayerAudio = GetComponent<PlayerAudio>();
+
+		// physic material
+		refPhysicMaterial = GetComponent<Collider2D>().sharedMaterial;
+		defaultFriction = refPhysicMaterial.friction;
 	}
 
 	void Update()
@@ -60,6 +70,8 @@ public class PlayerMovement : MonoBehaviour
 
 		CheckFlipSprite();
 		ScreenWrapping();
+
+		ChangeFriction();
 
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
@@ -94,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
 		if (refPlayerShoot.lookingUp == false)
 		{
 			// add movement force
-			rb.AddForce(movVec);
+			rb.velocity = new Vector2(movVec.x, rb.velocity.y);
 		}
 	}
 
@@ -116,6 +128,9 @@ public class PlayerMovement : MonoBehaviour
 			{
 				// play the flap sound
 				refPlayerAudio.PlayFlap(currentJumps);
+
+				// play the feather particle effect
+				partsFeathers.Play();
 			}
 			else
 			{
@@ -190,14 +205,26 @@ public class PlayerMovement : MonoBehaviour
 
 	private void ScreenWrapping()
 	{
-		if (transform.position.x > 16f)
+		if (transform.position.x > 15.75f)
 		{
 			transform.position = new Vector2(-0.5f, transform.position.y);
 		}
 
-		if (transform.position.x < -1.0f)
+		if (transform.position.x < -0.75f)
 		{
 			transform.position = new Vector2(15.5f, transform.position.y);
+		}
+	}
+
+	private void ChangeFriction()
+	{
+		if (grounded == true)
+		{
+			refPhysicMaterial.friction = defaultFriction;
+		}
+		else
+		{
+			refPhysicMaterial.friction = 0.0f;
 		}
 	}
 }
