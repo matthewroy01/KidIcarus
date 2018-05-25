@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
 	[Header("Jump variables")]
 	public float jumpForce;
-	public int numberOfJumps;
-	public int currentJumps = 0;
+	public int extraJumps;
+	private int currentJumps = 0;
 
 	[Header("Ground variables")]
 	public LayerMask groundMask;
@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void DoJumping()
 	{
-		if (Input.GetButtonDown("Jump") && currentJumps < numberOfJumps)
+		if (Input.GetButtonDown("Jump") && currentJumps < extraJumps)
 		{
 			// calculate jump vector
 			Vector2 jumpVec = new Vector2(0.0f, jumpForce);
@@ -122,10 +122,10 @@ public class PlayerMovement : MonoBehaviour
 			// add jump force
 			rb.AddForce(jumpVec);
 
-			currentJumps++;
-
 			if (grounded == false)
 			{
+				currentJumps++;
+
 				// play the flap sound
 				refPlayerAudio.PlayFlap(currentJumps);
 

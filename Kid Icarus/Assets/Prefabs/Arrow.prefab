@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114423062663922524}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destructableLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   destroyAfterTime: 0.4
 --- !u!212 &212829018809605300
 SpriteRenderer:

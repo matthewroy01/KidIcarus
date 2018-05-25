@@ -29,6 +29,8 @@ public class EnemyFollowPath : MonoBehaviour
 	private Vector2 scuttleBugHome; // this enemies original position
 	private int target; // the ID of the current target position in the list of points
 	private Rigidbody2D rb;
+	private Enemy refEnemy;
+	private Animator refAnimator;
 
 	void Start()
 	{
@@ -43,6 +45,12 @@ public class EnemyFollowPath : MonoBehaviour
 			rb = gameObject.AddComponent<Rigidbody2D>();
 			rb.gravityScale = 0;
 		}
+
+		// enemy status
+		refEnemy = GetComponent<Enemy>();
+
+		// animation
+		refAnimator = GetComponent<Animator>();
 	}
 
 	void Update ()
@@ -103,32 +111,45 @@ public class EnemyFollowPath : MonoBehaviour
 
 	Vector2 InterpolateVector2(Vector2 from, Vector2 to)
 	{
-		// interpolate between from and to using the specified interpolation type
-		switch((int)interpolationType)
+		// if we're dead, just stay still
+		if (refEnemy.isDead == true)
 		{
-			case 0:
+			// if we were using physics, stop any velocity
+			if (interpolationType == Type.Physics)
 			{
-				// linear interpolation
-				return Vector2.Lerp(from, to, interpolationSpeed);
+				rb.velocity = Vector2.zero;
 			}
-			case 1:
+			return transform.position;
+		}
+		else
+		{
+			// interpolate between from and to using the specified interpolation type
+			switch((int)interpolationType)
 			{
-				// cosine interpolation
-				return new Vector2(CosineInterpolate(from.x, to.x, interpolationSpeed), CosineInterpolate(from.y, to.y, interpolationSpeed));
-			}
-			case 2:
-			{
-				// physics
-				Vector2 tmp = ((scuttleBugHome + points[target]) - (Vector2)transform.position).normalized;
-				rb.AddForce(tmp * physicsAcceleration);
-				rb.velocity = rb.velocity.normalized * physicsSpeed;
-				return transform.position;
-			}
-			default:
-			{
-				// if the interpolation type is somehow invalid
-				Debug.LogError("EnemyFollowPath: " + (int)interpolationType + "is not a valid interpolation type.");
-				return transform.position;
+				case 0:
+				{
+					// linear interpolation
+					return Vector2.Lerp(from, to, interpolationSpeed);
+				}
+				case 1:
+				{
+					// cosine interpolation
+					return new Vector2(CosineInterpolate(from.x, to.x, interpolationSpeed), CosineInterpolate(from.y, to.y, interpolationSpeed));
+				}
+				case 2:
+				{
+					// physics
+					Vector2 tmp = ((scuttleBugHome + points[target]) - (Vector2)transform.position).normalized;
+					rb.AddForce(tmp * physicsAcceleration);
+					rb.velocity = rb.velocity.normalized * physicsSpeed;
+					return transform.position;
+				}
+				default:
+				{
+					// if the interpolation type is somehow invalid
+					Debug.LogError("EnemyFollowPath: " + (int)interpolationType + "is not a valid interpolation type.");
+					return transform.position;
+				}
 			}
 		}
 	}

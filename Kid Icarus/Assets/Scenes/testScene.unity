@@ -233,8 +233,7 @@ MonoBehaviour:
   movSpeed: 7
   maxSpeed: 5
   jumpForce: 1100
-  numberOfJumps: 4
-  currentJumps: 0
+  extraJumps: 1
   groundMask:
     serializedVersion: 2
     m_Bits: 256
@@ -1585,7 +1584,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -1610,8 +1609,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65535
-        atime2: 0
+        atime1: 43686
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
@@ -1619,7 +1618,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 2
+        m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
