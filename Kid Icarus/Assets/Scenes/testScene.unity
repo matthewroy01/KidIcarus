@@ -430,6 +430,9 @@ MonoBehaviour:
   recharge:
     clip: {fileID: 8300000, guid: 52a3e06f128401e4f87ab2c20df190a0, type: 3}
     volume: 0.4
+  heart:
+    clip: {fileID: 8300000, guid: 194c9cf789b62bf4a80038ea551d5478, type: 3}
+    volume: 0.5
 --- !u!1 &778593551
 GameObject:
   m_ObjectHideFlags: 0

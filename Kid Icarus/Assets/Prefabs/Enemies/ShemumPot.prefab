@@ -124,7 +124,8 @@ MonoBehaviour:
   currentHealth: 0
   isDead: 0
   deathTime: 0
-  drops: []
+  drops:
+  - {fileID: 1711906733496614, guid: 0e08660203a9ce54dbb38dd44a28163b, type: 2}
 --- !u!212 &212071548547504626
 SpriteRenderer:
   m_ObjectHideFlags: 1

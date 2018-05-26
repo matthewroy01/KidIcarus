@@ -11,6 +11,7 @@ public class PlayerAudio : MonoBehaviour
 	public Sound shoot;
 	public Sound flap;
 	public Sound recharge;
+	public Sound heart;
 
 	void Start()
 	{
@@ -35,6 +36,11 @@ public class PlayerAudio : MonoBehaviour
 	public void PlayRecharge()
 	{
 		refAudioManager.PlaySound(recharge.clip, recharge.volume, false);
+	}
+
+	public void PlayHeart()
+	{
+		refAudioManager.PlaySound(heart.clip, heart.volume, false);
 	}
 }
 
