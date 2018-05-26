@@ -165,7 +165,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20, y: 1}
+  m_Size: {x: 100, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &556613097
 GameObject:
@@ -267,7 +267,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1.5}
+  m_Size: {x: 0.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!212 &690602497
 SpriteRenderer:
@@ -4037,6 +4037,9 @@ MonoBehaviour:
   - {fileID: 2800000, guid: bb47a617096ccfe41aa9d5a27f4b9d2b, type: 3}
   - {fileID: 2800000, guid: 71b79b518c6013642aecf958a00a8bef, type: 3}
   - {fileID: 2800000, guid: dff070b5711b06e46af0da8013140717, type: 3}
+  - {fileID: 2800000, guid: 2aae959069d060449ae2d9cc79744b9d, type: 3}
+  - {fileID: 2800000, guid: 845fc823118535841a9b155249532c6c, type: 3}
+  - {fileID: 2800000, guid: 1fbbe7a47bd263a479609818b444321a, type: 3}
   defaultName: Map
   colorMappings:
   - color:
@@ -4051,6 +4054,10 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4289924283
     prefab: {fileID: 1960480732698576, guid: b7a54a24c0ab60e40be34006b50f7902, type: 2}
+  - color:
+      serializedVersion: 2
+      rgba: 4288221696
+    prefab: {fileID: 1978357002431008, guid: 2da030a11ae0b39428579b1c4f266eeb, type: 2}
 --- !u!4 &1475053168
 Transform:
   m_ObjectHideFlags: 0
@@ -4076,6 +4083,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels: []
+  enemies:
+  - {fileID: 1194326722190070, guid: e5179478419fddf4e8614436b979f88d, type: 2}
+  - {fileID: 1275306939347786, guid: 2bffa755fb6048244aa265ac4a7dc9cb, type: 2}
+  enemiesToSpawn: 2
+  maxAge: 2
   currentY: 0
   defaultX: 0
 --- !u!82 &1475053170
@@ -4084,7 +4096,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1475053166}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5b69261348f822f408ed80196a47c8ca, type: 3}

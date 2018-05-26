@@ -120,7 +120,7 @@ MonoBehaviour:
   numOfPoints: 4
   points: []
   minRange: 3
-  maxRange: 10
+  maxRange: 6
   checkDistance: 0.5
 --- !u!212 &212199038555573650
 SpriteRenderer:

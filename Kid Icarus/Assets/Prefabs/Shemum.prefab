@@ -145,7 +145,7 @@ MonoBehaviour:
   radius: 0.1
   walkSpeed: 3
   facingRight: 0
-  fallSpeed: 3
+  fallSpeed: 6
 --- !u!212 &212191942087518210
 SpriteRenderer:
   m_ObjectHideFlags: 1

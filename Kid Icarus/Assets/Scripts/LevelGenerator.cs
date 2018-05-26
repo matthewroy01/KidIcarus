@@ -47,7 +47,7 @@ public class LevelGenerator : MonoBehaviour
 			offsetXDebug += maps[num].width + 1;
 
 			// add the current parent to the infinite generator's list of potential levels
-			refInfiniteGenerator.AddLevel(new Level(currentParent.gameObject, maps[num].height));
+			refInfiniteGenerator.AddLevel(new Level(currentParent.gameObject, maps[num].height, maps[num].width));
 		}
 	}
 

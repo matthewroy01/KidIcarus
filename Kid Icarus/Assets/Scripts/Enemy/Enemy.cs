@@ -34,8 +34,12 @@ public class Enemy : MonoBehaviour
 	void Update()
 	{
 		CheckHealth();
+		ScreenWrapping();
 
-		refAnimator.SetBool("isDead", isDead);
+		if (refAnimator != null)
+		{
+			refAnimator.SetBool("isDead", isDead);
+		}
 	}
 
 	private void CheckHealth()
@@ -67,12 +71,31 @@ public class Enemy : MonoBehaviour
 		Destroy(gameObject);
 	}
 
+	private void ScreenWrapping()
+	{
+		if (transform.position.x > 15.75f)
+		{
+			transform.position = new Vector2(-0.5f, transform.position.y);
+		}
+
+		if (transform.position.x < -0.75f)
+		{
+			transform.position = new Vector2(15.5f, transform.position.y);
+		}
+	}
+
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		// when colliding with an arrow, decrease the health
 		if (other.CompareTag("Arrow") == true)
 		{
 			currentHealth--;
+		}
+
+		// when colliding with the death floor, destroy the object
+		if (other.CompareTag("InstantDeath") == true)
+		{
+			Destroy(gameObject);
 		}
 	}
 }
