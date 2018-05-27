@@ -122,6 +122,9 @@ MonoBehaviour:
   currentHealth: 0
   isDead: 0
   deathTime: 0.5
+  death:
+    clip: {fileID: 8300000, guid: b56a85d825d731c43b916354e5101743, type: 3}
+    volume: 0.5
   drops:
   - {fileID: 1650531386953710, guid: 060c8e9a9ed2bc34aad8d9656af609e5, type: 2}
 --- !u!114 &114917790221865988

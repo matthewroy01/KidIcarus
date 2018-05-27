@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
 	[Header("Death values")]
 	public bool isDead;
 	public float deathTime;
+	public Sound death;
 
 	[Header("List of dropables")]
 	public GameObject[] drops;
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour
 	// collider to turn off
 	private Collider2D refCollider;
 	private Animator refAnimator;
+	private UtilityAudioManager refAudioManager;
 
 	void Start ()
 	{
@@ -29,6 +31,9 @@ public class Enemy : MonoBehaviour
 
 		// get the animator
 		refAnimator = GetComponent<Animator>();
+
+		// get the audio manager
+		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
 	}
 
 	void Update()
@@ -65,6 +70,7 @@ public class Enemy : MonoBehaviour
 		// drop something from the list of drops
 		if (drops.Length != 0)
 		{
+			refAudioManager.PlaySound(death.clip, death.volume);
 			Instantiate(drops[Random.Range(0, drops.Length)], transform.position, Quaternion.identity);
 		}
 
