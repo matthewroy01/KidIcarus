@@ -88,6 +88,9 @@ public class EnemyFollowPath : MonoBehaviour
 				Mathf.Clamp(tmp.y, minRange * -1, maxRange * -1);
 			}
 
+			// convert to int
+			tmp = new Vector2((int)tmp.x, (int)tmp.y);
+
 			// add the point to the list
 			points.Add(tmp);
 		}

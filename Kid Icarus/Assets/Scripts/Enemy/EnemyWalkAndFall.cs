@@ -48,6 +48,12 @@ public class EnemyWalkAndFall : MonoBehaviour
 
 		// sprite renderer
 		sr = GetComponent<SpriteRenderer>();
+
+		// if the object spawns in a wall, destroy it
+		if (Physics2D.OverlapCircle(transform.position, 0.1f, groundLayer))
+		{
+			Destroy(gameObject);
+		}
 	}
 
 	void Update ()

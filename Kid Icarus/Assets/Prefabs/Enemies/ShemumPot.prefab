@@ -120,10 +120,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7cd68136ad68d4c90e323848b01b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 10
   currentHealth: 0
   isDead: 0
   deathTime: 0
+  death:
+    clip: {fileID: 0}
+    volume: 0
   drops:
   - {fileID: 1711906733496614, guid: 0e08660203a9ce54dbb38dd44a28163b, type: 2}
 --- !u!212 &212071548547504626
