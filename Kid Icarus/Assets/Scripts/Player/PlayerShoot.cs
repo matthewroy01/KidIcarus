@@ -6,24 +6,35 @@ public class PlayerShoot : MonoBehaviour
 {
 	private PlayerMovement refPlayerMovement;
 	private PlayerAudio refPlayerAudio;
+	private PlayerCollision refPlayerCollision;
 
 	[Header("Shooting arrows")]
 	public float arrowProjectileSpeed;
 	public GameObject arrowObject;
 	public bool lookingUp;
 
+	[Header("Melee attack")]
+	public float meleeDuration;
+
 	void Start ()
 	{
 		refPlayerMovement = GetComponent<PlayerMovement>();
 		refPlayerAudio = GetComponent<PlayerAudio>();
+		refPlayerCollision = GetComponent<PlayerCollision>();
 	}
 
 	void Update ()
 	{
-		Shoot();
+		// only allow shooting if we're alive
+		if (refPlayerCollision.isDead == false)
+		{
+			CheckLookingUp();
+			Shoot();
+			Melee();
+		}
 	}
 
-	void Shoot()
+	void CheckLookingUp()
 	{
 		if (Input.GetKey("w"))
 		{
@@ -33,7 +44,10 @@ public class PlayerShoot : MonoBehaviour
 		{
 			lookingUp = false;
 		}
+	}
 
+	void Shoot()
+	{
 		if (Input.GetMouseButtonDown(0))
 		{
 			Vector2 shootDir;
@@ -69,6 +83,14 @@ public class PlayerShoot : MonoBehaviour
 				// play the shoot sound
 				refPlayerAudio.PlayShoot();
 			}
+		}
+	}
+
+	void Melee()
+	{
+		if (Input.GetMouseButtonDown(1))
+		{
+			
 		}
 	}
 }

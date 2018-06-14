@@ -12,6 +12,7 @@ public class PlayerCollision : MonoBehaviour
 	[Header("Health")]
 	public int maxHealth;
 	public int currentHealth;
+	public bool isDead;
 	public float invincibilityTime;
 	private bool canGetHit = true;
 
@@ -20,10 +21,12 @@ public class PlayerCollision : MonoBehaviour
 	public Slider sliderHealth;
 
 	private PlayerAudio refPlayerAudio;
+	private PlayerMovement refPlayerMovement;
 
 	void Start()
 	{
 		refPlayerAudio = GetComponent<PlayerAudio>();
+		refPlayerMovement = GetComponent<PlayerMovement>();
 
 		currentHealth = maxHealth;
 	}
@@ -99,7 +102,26 @@ public class PlayerCollision : MonoBehaviour
 
 	private void Death()
 	{
-		Debug.Log("I'm finished!");
+		if (isDead == false)
+		{
+			Debug.Log("I'm finished!");
+			isDead = true;
+			refPlayerAudio.PlayDead();
+
+			// do a little jump
+			refPlayerMovement.Jump();
+
+			// disable collision
+			refPlayerMovement.defaultCollider.enabled = false;
+			refPlayerMovement.crouchedCollider.enabled = false;
+
+			// reload the scene
+			Invoke("ReloadScene", 3.5f);
+		}
+	}
+
+	private void ReloadScene()
+	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }

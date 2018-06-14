@@ -109,6 +109,8 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 256
+  destroyPrefab: {fileID: 1167111922738626, guid: 1011232962dc6594598dff209ff08fe3,
+    type: 2}
 --- !u!114 &114793303078850698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,13 +122,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7cd68136ad68d4c90e323848b01b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 1
   currentHealth: 0
+  hit:
+    clip: {fileID: 0}
+    volume: 0
   isDead: 0
   deathTime: 0
   death:
-    clip: {fileID: 0}
-    volume: 0
+    clip: {fileID: 8300000, guid: 0f8714630b043ee49b52fae084ca7e18, type: 3}
+    volume: 0.1
   drops:
   - {fileID: 1711906733496614, guid: 0e08660203a9ce54dbb38dd44a28163b, type: 2}
 --- !u!212 &212071548547504626
@@ -142,6 +147,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

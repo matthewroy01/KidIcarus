@@ -13,6 +13,7 @@ public class PlayerAudio : MonoBehaviour
 	public Sound recharge;
 	public Sound heart;
 	public Sound hurt;
+	public Sound death;
 
 	void Start()
 	{
@@ -47,6 +48,11 @@ public class PlayerAudio : MonoBehaviour
 	public void PlayHurt()
 	{
 		refAudioManager.PlaySound(hurt.clip, hurt.volume, true);
+	}
+
+	public void PlayDead()
+	{
+		refAudioManager.PlaySound(death.clip, death.volume, false);
 	}
 }
 

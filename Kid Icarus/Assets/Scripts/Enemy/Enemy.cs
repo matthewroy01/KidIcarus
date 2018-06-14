@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
 	[Header("Health values")]
 	public int maxHealth;
 	public int currentHealth;
+	public Sound hit;
+	public GameObject ouch;
 
 	[Header("Death values")]
 	public bool isDead;
@@ -20,6 +22,7 @@ public class Enemy : MonoBehaviour
 	private Collider2D refCollider;
 	private Animator refAnimator;
 	private UtilityAudioManager refAudioManager;
+	private SpriteRenderer refSpriteRenderer;
 
 	void Start ()
 	{
@@ -34,6 +37,9 @@ public class Enemy : MonoBehaviour
 
 		// get the audio manager
 		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
+
+		// get the sprite renderer
+		refSpriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
 	void Update()
@@ -95,7 +101,13 @@ public class Enemy : MonoBehaviour
 		// when colliding with an arrow, decrease the health
 		if (other.CompareTag("Arrow") == true)
 		{
+			refAudioManager.PlaySound(hit.clip, hit.volume);
 			currentHealth--;
+
+			if (ouch != null)
+			{
+				Instantiate(ouch, other.transform.position, Quaternion.identity);
+			}
 		}
 
 		// when colliding with the death floor, destroy the object

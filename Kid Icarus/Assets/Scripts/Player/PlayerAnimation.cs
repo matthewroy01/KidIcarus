@@ -11,6 +11,7 @@ public class PlayerAnimation : MonoBehaviour
 	private PlayerMovement refPlayerMovement;
 	private PlayerShoot refPlayerShoot;
 	private Rigidbody2D rb;
+	private PlayerCollision refPlayerCollision;
 
 	[Header("Current animation state")]
 	public PlayerState animationState;
@@ -26,6 +27,7 @@ public class PlayerAnimation : MonoBehaviour
 		refPlayerMovement = GetComponent<PlayerMovement>();
 		refPlayerShoot = GetComponent<PlayerShoot>();
 		rb = GetComponent<Rigidbody2D>();
+		refPlayerCollision = GetComponent<PlayerCollision>();
 	}
 
 	void Update ()
@@ -38,35 +40,42 @@ public class PlayerAnimation : MonoBehaviour
 
 	private void CheckPlayer()
 	{
-		if (refPlayerMovement.grounded == false && rb.velocity.y > velocityThresholdVertical)
+		if (refPlayerCollision.isDead == true)
 		{
-			animationState = PlayerState.Jump;
+			refAnimator.SetBool("isDead", true);
 		}
-
-		if (refPlayerMovement.grounded == false && rb.velocity.y < -1 * velocityThresholdVertical)
+		else
 		{
-			animationState = PlayerState.Fall;
-		}
+			if (refPlayerMovement.grounded == false && rb.velocity.y > velocityThresholdVertical)
+			{
+				animationState = PlayerState.Jump;
+			}
 
-		if (refPlayerMovement.grounded == true && (rb.velocity.x > velocityThresholdHorizontal || rb.velocity.x < -1 * velocityThresholdHorizontal))
-		{
-			if (animationState != PlayerState.Walk)
-				animationState = PlayerState.Walk;
-		}
+			if (refPlayerMovement.grounded == false && rb.velocity.y < -1 * velocityThresholdVertical)
+			{
+				animationState = PlayerState.Fall;
+			}
 
-		if (refPlayerMovement.grounded == true && (rb.velocity.x < velocityThresholdHorizontal && rb.velocity.x > -1 * velocityThresholdHorizontal))
-		{
-			animationState = PlayerState.Idle;
-		}
+			if (refPlayerMovement.grounded == true && (rb.velocity.x > velocityThresholdHorizontal || rb.velocity.x < -1 * velocityThresholdHorizontal))
+			{
+				if (animationState != PlayerState.Walk)
+					animationState = PlayerState.Walk;
+			}
 
-		if (refPlayerShoot.lookingUp == true)
-		{
-			animationState = PlayerState.LookUp;
-		}
+			if (refPlayerMovement.grounded == true && (rb.velocity.x < velocityThresholdHorizontal && rb.velocity.x > -1 * velocityThresholdHorizontal))
+			{
+				animationState = PlayerState.Idle;
+			}
 
-		if (refPlayerMovement.isCrouching == true)
-		{
-			animationState = PlayerState.Crouch;
+			if (refPlayerShoot.lookingUp == true)
+			{
+				animationState = PlayerState.LookUp;
+			}
+
+			if (refPlayerMovement.isCrouching == true)
+			{
+				animationState = PlayerState.Crouch;
+			}
 		}
 	}
 }

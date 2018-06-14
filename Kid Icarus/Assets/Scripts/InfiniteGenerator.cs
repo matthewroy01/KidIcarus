@@ -48,6 +48,7 @@ public class InfiniteGenerator : MonoBehaviour
 
 			// instantiate one of the levels that was chosen
 			int randomChoice = candidates[Random.Range(0, candidates.Count)];
+
 			Instantiate(levels[randomChoice].obj, new Vector2(defaultX, currentY), Quaternion.identity);
 
 			// spawn enemies in this part of the level

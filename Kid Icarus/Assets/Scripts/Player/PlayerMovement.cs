@@ -24,7 +24,10 @@ public class PlayerMovement : MonoBehaviour
 	public bool facingRight;
 
 	[Header("Crouching")]
+	public Transform headCheck;
 	public bool isCrouching;
+	public Collider2D defaultCollider;
+	public Collider2D crouchedCollider;
 
 	[Header("Particle systems")]
 	public ParticleSystem partsFeathers;
@@ -36,9 +39,7 @@ public class PlayerMovement : MonoBehaviour
 	private SpriteRenderer sr;
 	private PlayerShoot refPlayerShoot;
 	private PlayerAudio refPlayerAudio;
-
-	private PhysicsMaterial2D refPhysicMaterial;
-	private float defaultFriction;
+	private PlayerCollision refPlayerCollision;
 
 	void Start ()
 	{
@@ -52,26 +53,31 @@ public class PlayerMovement : MonoBehaviour
 		// player shoot script
 		refPlayerShoot = GetComponent<PlayerShoot>();
 
+		// player collision script
+		refPlayerCollision = GetComponent<PlayerCollision>();
+
 		// audio manager
 		refPlayerAudio = GetComponent<PlayerAudio>();
 
-		// physic material
-		refPhysicMaterial = GetComponent<Collider2D>().sharedMaterial;
-		defaultFriction = refPhysicMaterial.friction;
+		// 2D colliders
+		defaultCollider.enabled = true;
+		crouchedCollider.enabled = false;
 	}
 
 	void Update()
 	{
-		CheckGround();
+		// only allow movement if we're alive
+		if (refPlayerCollision.isDead == false)
+		{
+			CheckGround();
 
-		DoJumping();
-		DoCrouching();
-		DoTerminalVelocities();
+			DoJumping();
+			DoCrouching();
+			DoTerminalVelocities();
 
-		CheckFlipSprite();
-		ScreenWrapping();
-
-		ChangeFriction();
+			CheckFlipSprite();
+			ScreenWrapping();
+		}
 
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
@@ -82,7 +88,11 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		DoMovement();
+		// only allow movement if we're alive
+		if (refPlayerCollision.isDead == false)
+		{
+			DoMovement();
+		}
 	}
 
 	private void DoMovement()
@@ -114,13 +124,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Jump") && currentJumps < extraJumps)
 		{
-			// calculate jump vector
-			Vector2 jumpVec = new Vector2(0.0f, jumpForce);
-
-			// reset y velocity to 0
-			rb.velocity = new Vector2(rb.velocity.x, 0.0f);
-			// add jump force
-			rb.AddForce(jumpVec);
+			Jump();
 
 			if (grounded == false)
 			{
@@ -140,15 +144,37 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
+	public void Jump()
+	{
+		// calculate jump vector
+		Vector2 jumpVec = new Vector2(0.0f, jumpForce);
+
+		// reset y velocity to 0
+		rb.velocity = new Vector2(rb.velocity.x, 0.0f);
+		// add jump force
+		rb.AddForce(jumpVec);
+	}
+
 	private void DoCrouching()
 	{
 		if (Input.GetKey("s"))
 		{
 			isCrouching = true;
 		}
-		else
+		else if (!Physics2D.OverlapCircle(headCheck.position, checkRadius, groundMask))
 		{
 			isCrouching = false;
+		}
+
+		if (isCrouching == true)
+		{
+			defaultCollider.enabled = false;
+			crouchedCollider.enabled = true;
+		}
+		else
+		{
+			defaultCollider.enabled = true;
+			crouchedCollider.enabled = false;
 		}
 	}
 
@@ -213,18 +239,6 @@ public class PlayerMovement : MonoBehaviour
 		if (transform.position.x < -0.75f)
 		{
 			transform.position = new Vector2(15.5f, transform.position.y);
-		}
-	}
-
-	private void ChangeFriction()
-	{
-		if (grounded == true)
-		{
-			refPhysicMaterial.friction = defaultFriction;
-		}
-		else
-		{
-			refPhysicMaterial.friction = 0.0f;
 		}
 	}
 }
