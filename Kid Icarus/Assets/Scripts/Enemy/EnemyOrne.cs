@@ -12,6 +12,9 @@ public class EnemyOrne : MonoBehaviour
 
 	[Header("Movement")]
 	public float movSpeed;
+	private float defaultMovSpeed;
+	public float increaseMovSpeedBy;
+	public int everyThisAmountOfMeters;
 	public bool inRange;
 	public bool playMusic;
 
@@ -19,18 +22,25 @@ public class EnemyOrne : MonoBehaviour
 	public AudioSource orneTheme;
 	public AudioSource mainTheme;
 
+	private CameraFollow refCamFollow;
+
 	private Transform refPlayer;
 	private Rigidbody2D rb;
 	private Animator refAnimator;
+	private PlayerCollision refPlayerCollision;
 
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody2D>();
-		refPlayer = GameObject.Find("Player").transform;
+		refPlayer = GameObject.FindGameObjectWithTag("Player").transform;
+		refPlayerCollision = refPlayer.GetComponent<PlayerCollision>();
 		refAnimator = GetComponent<Animator>();
+		refCamFollow = GameObject.Find("Camera").GetComponent<CameraFollow>();
 		partsFire.Play();
 		partsSkulls.Stop();
 		orneTheme.volume = 0.0f;
+
+		defaultMovSpeed = movSpeed;
 	}
 
 	void Update ()
@@ -39,6 +49,8 @@ public class EnemyOrne : MonoBehaviour
 		SkullParticles();
 		OrneMusic();
 		SeekToPlayer();
+		CameraShake();
+		IncreaseMovSpeed();
 	}
 
 	private void CheckRange()
@@ -63,6 +75,22 @@ public class EnemyOrne : MonoBehaviour
 
 
 		refAnimator.SetBool("inRange", inRange);
+	}
+
+	private void CameraShake()
+	{
+		if (inRange == true)
+		{
+			refCamFollow.shakeIntensity = Mathf.Lerp(refCamFollow.shakeIntensity, 0.5f, 0.01f);
+		}
+		else if (playMusic == true)
+		{
+			refCamFollow.shakeIntensity = Mathf.Lerp(refCamFollow.shakeIntensity, 0.2f, 0.01f);
+		}
+		else
+		{
+			refCamFollow.shakeIntensity = Mathf.Lerp(refCamFollow.shakeIntensity, 0.0f, 0.1f);
+		}
 	}
 
 	private void SkullParticles()
@@ -94,5 +122,10 @@ public class EnemyOrne : MonoBehaviour
 	private void SeekToPlayer()
 	{
 		rb.velocity = (refPlayer.position - transform.position).normalized * movSpeed;
+	}
+
+	private void IncreaseMovSpeed()
+	{
+		movSpeed = defaultMovSpeed + (int)(refPlayerCollision.getCurrentMeters() / everyThisAmountOfMeters) * increaseMovSpeedBy;
 	}
 }

@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
 	[Header("List of dropables")]
 	public GameObject[] drops;
 
+	[Header("Screen wrapping")]
+	public bool shouldWrap;
+
 	// collider to turn off
 	private Collider2D refCollider;
 	private Animator refAnimator;
@@ -45,7 +48,11 @@ public class Enemy : MonoBehaviour
 	void Update()
 	{
 		CheckHealth();
-		ScreenWrapping();
+
+		if (shouldWrap)
+		{
+			ScreenWrapping();
+		}
 
 		if (refAnimator != null)
 		{

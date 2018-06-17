@@ -7,9 +7,10 @@ public class InfiniteGenerator : MonoBehaviour
 	[Header("List of possible levels")]
 	public List<Level> levels;
 	private List<int> candidates;
+	public bool randomFlipEnabled;
 
 	[Header("List of enemies")]
-	public GameObject[] enemies;
+	public EnemyToSpawn[] enemies;
 	public int enemiesToSpawn;
 
 	[Header("Maximum value for keeping track of priority")]
@@ -49,7 +50,16 @@ public class InfiniteGenerator : MonoBehaviour
 			// instantiate one of the levels that was chosen
 			int randomChoice = candidates[Random.Range(0, candidates.Count)];
 
-			Instantiate(levels[randomChoice].obj, new Vector2(defaultX, currentY), Quaternion.identity);
+			GameObject tmp = Instantiate(levels[randomChoice].obj, new Vector2(defaultX, currentY), Quaternion.identity);
+
+			// add this component so the levels will destroy themselves after reaching a certain point below the player
+			tmp.AddComponent<MiscDestroyBelowThreshold>();
+
+			if (randomFlipEnabled && Random.Range(0, 2) == 1)
+			{
+				tmp.transform.rotation = Quaternion.Euler(0, 180, 0);
+				tmp.transform.position = new Vector2(15, currentY);
+			}
 
 			// spawn enemies in this part of the level
 			SpawnEnemies(levels[randomChoice].height, levels[randomChoice].width);
@@ -96,7 +106,14 @@ public class InfiniteGenerator : MonoBehaviour
 		{
 			for (int i = 0; i < enemiesToSpawn; ++i)
 			{
-				Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector2(randX, randY), Quaternion.identity);
+				int tmp = Random.Range(0, enemies.Length);
+				Instantiate(enemies[tmp].obj, new Vector2(randX, randY), Quaternion.identity);
+	
+				// if spawns are limited, stop
+				if (enemies[tmp].limitSpawns == true)
+				{
+					return;
+				}
 			}
 		}
 	}
@@ -116,4 +133,11 @@ public class Level
 	public GameObject obj;
 	public int age;
 	public int height, width;
+}
+
+[System.Serializable]
+public class EnemyToSpawn
+{
+	public GameObject obj;
+	public bool limitSpawns;
 }

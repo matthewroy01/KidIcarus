@@ -32,6 +32,13 @@ public class CameraFollow : MonoBehaviour
     	{
 			transform.position = Vector3.Lerp(new Vector3(7.5f, transform.position.y, transform.position.z), new Vector3(7.5f, cameraTarget.position.y + 1, transform.position.z), followSpeed);
 		}
+
+		transform.rotation = Quaternion.Lerp(transform.rotation, cameraTarget.transform.rotation, turnSpeed);
+
+		if (shouldShake)
+		{
+			Shake();
+		}
     }
 
     // call this function to begin screen shake

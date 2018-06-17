@@ -111,6 +111,7 @@ MonoBehaviour:
     volume: 0.5
   drops:
   - {fileID: 1716224392259714, guid: 3afa8cf07586000408054aed253ab23d, type: 2}
+  shouldWrap: 1
 --- !u!114 &114495070214767030
 MonoBehaviour:
   m_ObjectHideFlags: 1

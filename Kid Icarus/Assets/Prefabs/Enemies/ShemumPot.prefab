@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatToSpawn: {fileID: 1734664284482482, guid: 6496c7852ade5c541a2c9a7e97e7187a,
     type: 2}
-  maxSpawns: 4
+  maxSpawns: 3
   spawnRate: 0.75
   spawnCooldown: 5
   minYDistanceToPlayer: 20
@@ -127,13 +127,16 @@ MonoBehaviour:
   hit:
     clip: {fileID: 0}
     volume: 0
+  ouch: {fileID: 0}
   isDead: 0
   deathTime: 0
   death:
     clip: {fileID: 8300000, guid: 0f8714630b043ee49b52fae084ca7e18, type: 3}
     volume: 0.1
   drops:
-  - {fileID: 1711906733496614, guid: 0e08660203a9ce54dbb38dd44a28163b, type: 2}
+  - {fileID: 1455843981834066, guid: cbe211c3fcfd842439f9578367486eb9, type: 2}
+  - {fileID: 1734664284482482, guid: 6496c7852ade5c541a2c9a7e97e7187a, type: 2}
+  shouldWrap: 0
 --- !u!212 &212071548547504626
 SpriteRenderer:
   m_ObjectHideFlags: 1

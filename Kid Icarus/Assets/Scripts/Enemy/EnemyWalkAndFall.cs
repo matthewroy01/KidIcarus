@@ -38,7 +38,7 @@ public class EnemyWalkAndFall : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 
 		// find the player
-		refPlayer = GameObject.Find("Player").transform;
+		refPlayer = GameObject.FindGameObjectWithTag("Player").transform;
 
 		// find the enemy status
 		refEnemy = GetComponent<Enemy>();

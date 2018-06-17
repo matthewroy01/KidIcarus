@@ -14,6 +14,7 @@ public class PlayerAudio : MonoBehaviour
 	public Sound heart;
 	public Sound hurt;
 	public Sound death;
+	public Sound getHealth;
 
 	void Start()
 	{
@@ -53,6 +54,11 @@ public class PlayerAudio : MonoBehaviour
 	public void PlayDead()
 	{
 		refAudioManager.PlaySound(death.clip, death.volume, false);
+	}
+
+	public void PlayGetHealth()
+	{
+		refAudioManager.PlaySound(getHealth.clip, getHealth.volume, false);
 	}
 }
 

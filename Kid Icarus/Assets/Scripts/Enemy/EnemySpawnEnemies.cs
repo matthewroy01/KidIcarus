@@ -30,7 +30,7 @@ public class EnemySpawnEnemies : MonoBehaviour
 		refEnemy = GetComponent<Enemy>();
 
 		// the player
-		refPlayer = GameObject.Find("Player").transform;
+		refPlayer = GameObject.FindGameObjectWithTag("Player").transform;
 
 		// if the object spawns in a wall, destroy it
 		if (Physics2D.OverlapCircle(transform.position, 0.2f, wallLayer))
