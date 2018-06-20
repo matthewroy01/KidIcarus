@@ -15,6 +15,7 @@ public class PlayerCollision : MonoBehaviour
 	public bool isDead;
 	public float invincibilityTime;
 	private bool canGetHit = true;
+	public bool inSafeZone = false;
 
 	[Header("Drink of the Gods")]
 	public int smallDrinkAmount;
@@ -31,11 +32,16 @@ public class PlayerCollision : MonoBehaviour
 
 	private PlayerAudio refPlayerAudio;
 	private PlayerMovement refPlayerMovement;
+	private ShopInfo refShopInfo;
+	private UtilityMusicManager refMusicManager;
 
 	void Start()
 	{
 		refPlayerAudio = GetComponent<PlayerAudio>();
 		refPlayerMovement = GetComponent<PlayerMovement>();
+
+		refShopInfo = GameObject.FindObjectOfType<ShopInfo>();
+		refMusicManager = GameObject.FindObjectOfType<UtilityMusicManager>();
 
 		currentHealth = maxHealth;
 	}
@@ -66,33 +72,68 @@ public class PlayerCollision : MonoBehaviour
 
 		if (other.CompareTag("Pickup"))
 		{
+			// normal items
 			if (other.name == "Heart1(Clone)")
 			{
 				refPlayerAudio.PlayHeart();
 				hearts += 1;
+				Destroy(other.gameObject);
 			}
 			else if (other.name == "Heart5(Clone)")
 			{
 				refPlayerAudio.PlayHeart();
 				hearts += 5;
+				Destroy(other.gameObject);
 			}
 			else if (other.name == "Heart10(Clone)")
 			{
 				refPlayerAudio.PlayHeart();
 				hearts += 10;
+				Destroy(other.gameObject);
 			}
 			else if (other.name == "DrinkSmall(Clone)")
 			{
 				healthToRestore += smallDrinkAmount;
 				StartCoroutine("RestoreHealth");
+				Destroy(other.gameObject);
 			}
 			else if (other.name == "DrinkLarge(Clone)")
 			{
 				healthToRestore += largeDrinkAmount;
 				StartCoroutine("RestoreHealth");
+				Destroy(other.gameObject);
 			}
+			else
+			{
+				// shop items
+				ShopItem tmp = refShopInfo.getItem(other.name);
 
-			Destroy(other.gameObject);
+				if (tmp.cost < hearts)
+				{
+					if (tmp.name == "Small Drink")
+					{
+						hearts -= tmp.cost;
+						healthToRestore += smallDrinkAmount;
+						StartCoroutine("RestoreHealth");
+						Destroy(other.gameObject);
+					}
+
+					if (tmp.name == "Large Drink")
+					{
+						hearts -= tmp.cost;
+						healthToRestore += largeDrinkAmount;
+						StartCoroutine("RestoreHealth");
+						Destroy(other.gameObject);
+					}
+
+					if (tmp.name == "Roc's Feather")
+					{
+						hearts -= tmp.cost;
+						refPlayerMovement.extraJumps++;
+						Destroy(other.gameObject);
+					}
+				}
+			}
 		}
 	}
 
@@ -104,6 +145,21 @@ public class PlayerCollision : MonoBehaviour
 			currentHealth--;
 			canGetHit = false;
 			Invoke("StopInvincibility", invincibilityTime);
+		}
+
+		if (other.CompareTag("SafeZone"))
+		{
+			refMusicManager.SetMusicStatus(MusicStatus.shopTheme);
+			inSafeZone = true;
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.CompareTag("SafeZone"))
+		{
+			refMusicManager.SetMusicStatus(MusicStatus.mainTheme);
+			inSafeZone = false;
 		}
 	}
 
@@ -141,7 +197,7 @@ public class PlayerCollision : MonoBehaviour
 		{
 			Debug.Log("I'm finished!");
 			isDead = true;
-			refPlayerAudio.PlayDead();
+			refMusicManager.SetMusicStatus(MusicStatus.death);
 
 			// do a little jump
 			refPlayerMovement.Jump();

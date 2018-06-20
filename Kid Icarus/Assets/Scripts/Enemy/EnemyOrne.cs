@@ -18,16 +18,13 @@ public class EnemyOrne : MonoBehaviour
 	public bool inRange;
 	public bool playMusic;
 
-	[Header("Sound")]
-	public AudioSource orneTheme;
-	public AudioSource mainTheme;
-
 	private CameraFollow refCamFollow;
 
 	private Transform refPlayer;
 	private Rigidbody2D rb;
 	private Animator refAnimator;
 	private PlayerCollision refPlayerCollision;
+	private UtilityMusicManager refMusicManager;
 
 	void Start ()
 	{
@@ -36,21 +33,39 @@ public class EnemyOrne : MonoBehaviour
 		refPlayerCollision = refPlayer.GetComponent<PlayerCollision>();
 		refAnimator = GetComponent<Animator>();
 		refCamFollow = GameObject.Find("Camera").GetComponent<CameraFollow>();
+		refMusicManager = GameObject.FindObjectOfType<UtilityMusicManager>();
 		partsFire.Play();
 		partsSkulls.Stop();
-		orneTheme.volume = 0.0f;
 
 		defaultMovSpeed = movSpeed;
 	}
 
 	void Update ()
 	{
+		// don't move if the player is in a safe zone
+		if (refPlayerCollision.inSafeZone == false)
+		{
+			if (refPlayerCollision.getCurrentMeters() > 20)
+			{
+				SeekToPlayer();
+			}
+		}
+		// move away if we're in range and the player is in a safe zone
+		else if (playMusic)
+		{
+			FleeFromPlayer();
+		}
+		// stop moving once we're far enough away
+		else
+		{
+			rb.velocity = Vector2.zero;
+		}
+
 		CheckRange();
+		IncreaseMovSpeed();
+		CameraShake();
 		SkullParticles();
 		OrneMusic();
-		SeekToPlayer();
-		CameraShake();
-		IncreaseMovSpeed();
 	}
 
 	private void CheckRange()
@@ -109,19 +124,22 @@ public class EnemyOrne : MonoBehaviour
 	{
 		if (playMusic)
 		{
-			orneTheme.volume = Mathf.Lerp(orneTheme.volume, 1.0f, 0.1f);
-			mainTheme.volume = Mathf.Lerp(mainTheme.volume, 0.0f, 0.1f);
+			refMusicManager.SetMusicStatus(MusicStatus.orneTheme);
 		}
-		else
+		else if (refMusicManager.GetMusicStatus() == MusicStatus.orneTheme)
 		{
-			orneTheme.volume = Mathf.Lerp(orneTheme.volume, 0.0f, 0.1f);
-			mainTheme.volume = Mathf.Lerp(mainTheme.volume, 1.0f, 0.1f);
+			refMusicManager.SetMusicStatus(MusicStatus.mainTheme);
 		}
 	}
 
 	private void SeekToPlayer()
 	{
 		rb.velocity = (refPlayer.position - transform.position).normalized * movSpeed;
+	}
+
+	private void FleeFromPlayer()
+	{
+		rb.velocity = (refPlayer.position - transform.position).normalized * movSpeed * -1;
 	}
 
 	private void IncreaseMovSpeed()

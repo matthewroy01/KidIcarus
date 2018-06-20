@@ -1,0 +1,99 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ShopCreator : MonoBehaviour
+{
+	private ShopInfo refShopInfo;
+
+	[Header("List of items we can spawn")]
+	public ShopItem[] possibleItems;
+	private List<int> alreadyUsed;
+
+	[Header("Length of this array determines the number of items to spawn in the shop")]
+	public Vector2[] spawnLocations;
+	private int spawnCounter = 0;
+
+	[Header("Price tag prefab")]
+	public TextMesh priceTag;
+	public Vector2 priceTagOffset;
+	
+	void Start ()
+	{
+		// find the shop info
+		refShopInfo = GameObject.FindObjectOfType<ShopInfo>();
+
+		possibleItems = refShopInfo.shopItems;
+
+		// initialize the list of already used numbers
+		alreadyUsed = new List<int>();
+
+		Invoke("RemoveCollider", 0.5f);
+
+		// spawn items in the shop
+		SpawnItems();
+	}
+
+	void SpawnItems()
+	{
+		for (int i = 0; i < spawnLocations.Length; ++i)
+		{
+			int toSpawn;
+
+			do
+			{
+				// if the lengths are equal, then there are no new items to spawn
+				if (alreadyUsed.Count == possibleItems.Length)
+				{
+					Debug.LogWarning("Number of items to spawn in the shop was greater than the number of possible items.");
+					return;
+				}
+
+				// randomly select a number
+				toSpawn = Random.Range(0, possibleItems.Length);
+			}
+			// try again if the number selected was already spawned
+			while(CheckIfAlreadyUsed(toSpawn));
+
+			// instantiate the item
+			GameObject tmp = Instantiate(possibleItems[toSpawn].obj, (Vector2)transform.position + spawnLocations[spawnCounter], transform.rotation);
+			spawnCounter++;
+
+			// instantiate a price tag over the item
+			TextMesh tmpTM = Instantiate(priceTag, (Vector2)tmp.transform.position + priceTagOffset, transform.rotation);
+			// display the cost
+			tmpTM.text = possibleItems[toSpawn].cost.ToString();
+			// set the price tag as a child of the item
+			tmpTM.transform.parent = tmp.transform;
+
+			// change the name to differentiate it between items that can be picked up and bought
+			tmp.name = possibleItems[toSpawn].name;
+
+			// keep track of the items already used
+			alreadyUsed.Add(toSpawn);
+		}
+	}
+
+	bool CheckIfAlreadyUsed(int toCheck)
+	{
+		for (int i = 0; i < alreadyUsed.Count; ++i)
+		{
+			// if we've already used this item, return true
+			if (toCheck == alreadyUsed[i])
+			{
+				return true;
+			}
+		}
+		// otherwise we're good
+		return false;
+	}
+
+	void RemoveCollider()
+	{
+		if (GetComponent<Collider2D>() != null)
+		{
+			// remove the collider from the level generator...
+			GetComponent<Collider2D>().enabled = false;
+		}
+	}
+}

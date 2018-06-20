@@ -8,6 +8,7 @@ TagManager:
   - Arrow
   - Enemy
   - Pickup
+  - SafeZone
   layers:
   - Default
   - TransparentFX

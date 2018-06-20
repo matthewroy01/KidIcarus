@@ -9,45 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1346342929855376}
+  m_RootGameObject: {fileID: 1281153778484098}
   m_IsPrefabParent: 1
---- !u!1 &1346342929855376
+--- !u!1 &1281153778484098
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4999695157877500}
-  - component: {fileID: 212037188584010976}
-  - component: {fileID: 61761088077508486}
-  - component: {fileID: 114301870088748148}
+  - component: {fileID: 4523140043820072}
+  - component: {fileID: 212563891955327534}
+  - component: {fileID: 61103280953812080}
+  - component: {fileID: 114582874287561914}
   m_Layer: 0
-  m_Name: DrinkLarge
+  m_Name: RocFeather
   m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4999695157877500
+--- !u!4 &4523140043820072
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1346342929855376}
+  m_GameObject: {fileID: 1281153778484098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 108.70443, y: -39.865913, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61761088077508486
+--- !u!61 &61103280953812080
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1346342929855376}
+  m_GameObject: {fileID: 1281153778484098}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -58,7 +58,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.625, y: 1}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.875, y: 0.875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -67,12 +67,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &114301870088748148
+--- !u!114 &114582874287561914
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1346342929855376}
+  m_GameObject: {fileID: 1281153778484098}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 214fc5fefac048746b56ad14bdd97e42, type: 3}
@@ -82,12 +82,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   destroyAfterTime: -1
---- !u!212 &212037188584010976
+--- !u!212 &212563891955327534
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1346342929855376}
+  m_GameObject: {fileID: 1281153778484098}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -117,7 +117,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: 3928baeb365c27243a5ca6e6ee3b01b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3b7eaaf8ff5a213419c24e4737e25e73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

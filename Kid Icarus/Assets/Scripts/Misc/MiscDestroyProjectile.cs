@@ -10,7 +10,10 @@ public class MiscDestroyProjectile : MonoBehaviour
 
 	void Start ()
 	{
-		Invoke("Dest", destroyAfterTime);
+		if (destroyAfterTime >= 0)
+		{
+			Invoke("Dest", destroyAfterTime);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
