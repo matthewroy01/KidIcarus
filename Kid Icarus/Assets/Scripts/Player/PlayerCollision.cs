@@ -145,6 +145,14 @@ public class PlayerCollision : MonoBehaviour
 						Instantiate(centurionPrefab, other.transform.position, transform.rotation);
 						Destroy(other.gameObject);
 					}
+
+					if (tmp.name == "Divine Ward")
+					{
+						hearts -= tmp.cost;
+						GameObject tmpOrne = GameObject.Find("Orne");
+						tmpOrne.transform.position = new Vector2(tmpOrne.transform.position.x, tmpOrne.transform.position.y - 50.0f);
+						Destroy(other.gameObject);
+					}
 				}
 			}
 		}

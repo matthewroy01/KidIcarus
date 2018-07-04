@@ -814,6 +814,10 @@ MonoBehaviour:
     name: Centurion Assist
     description: Summons a Centurion to fight for you. Falls in one hit.
     cost: 80
+  - obj: {fileID: 1218507675737982, guid: f7b63cb9716a2a5408bb1c5fc3dfb35f, type: 2}
+    name: Divine Ward
+    description: Sends the Orne down 50 meters.
+    cost: 100
 --- !u!1 &821015831
 GameObject:
   m_ObjectHideFlags: 0
@@ -6273,6 +6277,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 2aae959069d060449ae2d9cc79744b9d, type: 3}
   - {fileID: 2800000, guid: 845fc823118535841a9b155249532c6c, type: 3}
   - {fileID: 2800000, guid: 1fbbe7a47bd263a479609818b444321a, type: 3}
+  - {fileID: 2800000, guid: 87f795d0b0f1afb4fb8fcd3de40b1f7a, type: 3}
+  - {fileID: 2800000, guid: b951c8bf77c72ac46b6ed120f0834271, type: 3}
   defaultName: Map
   shopMaps:
   - {fileID: 2800000, guid: 8af853bf26d459247a88853399055083, type: 3}
