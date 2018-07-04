@@ -15,6 +15,9 @@ public class Enemy : MonoBehaviour
 	public float deathTime;
 	public Sound death;
 
+	[Header("Spawn this on destroy")]
+	public GameObject spawnOnDeath;
+
 	[Header("List of dropables")]
 	public GameObject[] drops;
 
@@ -25,7 +28,6 @@ public class Enemy : MonoBehaviour
 	private Collider2D refCollider;
 	private Animator refAnimator;
 	private UtilityAudioManager refAudioManager;
-	private SpriteRenderer refSpriteRenderer;
 
 	void Start ()
 	{
@@ -40,9 +42,6 @@ public class Enemy : MonoBehaviour
 
 		// get the audio manager
 		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
-
-		// get the sprite renderer
-		refSpriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
 	void Update()
@@ -85,6 +84,11 @@ public class Enemy : MonoBehaviour
 		{
 			refAudioManager.PlaySound(death.clip, death.volume);
 			Instantiate(drops[Random.Range(0, drops.Length)], transform.position, Quaternion.identity);
+		}
+
+		if (spawnOnDeath != null)
+		{
+			Instantiate(spawnOnDeath, transform.position, Quaternion.identity);
 		}
 
 		Destroy(gameObject);

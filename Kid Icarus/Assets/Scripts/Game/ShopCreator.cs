@@ -17,6 +17,10 @@ public class ShopCreator : MonoBehaviour
 	[Header("Price tag prefab")]
 	public TextMesh priceTag;
 	public Vector2 priceTagOffset;
+
+	[Header("Text area prefab")]
+	public TextArea textArea;
+	public Vector2 textAreaOffset;
 	
 	void Start ()
 	{
@@ -59,12 +63,23 @@ public class ShopCreator : MonoBehaviour
 			GameObject tmp = Instantiate(possibleItems[toSpawn].obj, (Vector2)transform.position + spawnLocations[spawnCounter], transform.rotation);
 			spawnCounter++;
 
-			// instantiate a price tag over the item
-			TextMesh tmpTM = Instantiate(priceTag, (Vector2)tmp.transform.position + priceTagOffset, transform.rotation);
-			// display the cost
-			tmpTM.text = possibleItems[toSpawn].cost.ToString();
-			// set the price tag as a child of the item
-			tmpTM.transform.parent = tmp.transform;
+			{
+				// instantiate a price tag over the item
+				TextMesh tmpTM = Instantiate(priceTag, (Vector2)tmp.transform.position + priceTagOffset, transform.rotation);
+				// display the cost
+				tmpTM.text = possibleItems[toSpawn].cost.ToString();
+				// set the price tag as a child of the item
+				tmpTM.transform.parent = tmp.transform;
+			}
+
+			{
+				// instantiate a text area under the item
+				TextArea tmpTA = Instantiate(textArea, (Vector2)tmp.transform.position + textAreaOffset, transform.rotation);
+				// set the text area's text
+				tmpTA.text = possibleItems[toSpawn].name + "\n" + possibleItems[toSpawn].description;
+				// set the text area as a child of the item
+				tmpTA.transform.parent = tmp.transform;
+			}
 
 			// change the name to differentiate it between items that can be picked up and bought
 			tmp.name = possibleItems[toSpawn].name;

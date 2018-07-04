@@ -16,9 +16,6 @@ public class EnemySpawnEnemies : MonoBehaviour
 	[Header("If we're stuck in a wall")]
 	public LayerMask wallLayer;
 
-	[Header("Spawn this on destroy")]
-	public GameObject destroyPrefab;
-
 	private Enemy refEnemy;
 	private Transform refPlayer;
 
@@ -81,10 +78,5 @@ public class EnemySpawnEnemies : MonoBehaviour
 				spawns.Remove(spawns[i]);
 			}
 		}
-	}
-
-	void OnDestroy()
-	{
-		Instantiate(destroyPrefab, transform.position, Quaternion.identity);
 	}
 }

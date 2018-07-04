@@ -30,7 +30,6 @@ public class EnemyFollowPath : MonoBehaviour
 	private int target; // the ID of the current target position in the list of points
 	private Rigidbody2D rb;
 	private Enemy refEnemy;
-	private Animator refAnimator;
 
 	void Start()
 	{
@@ -48,9 +47,6 @@ public class EnemyFollowPath : MonoBehaviour
 
 		// enemy status
 		refEnemy = GetComponent<Enemy>();
-
-		// animation
-		refAnimator = GetComponent<Animator>();
 	}
 
 	void Update ()

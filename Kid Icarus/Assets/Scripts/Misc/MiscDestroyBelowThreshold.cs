@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class MiscDestroyBelowThreshold : MonoBehaviour
 {
-	private Vector2 playerPos;
+	public Transform playerTransform;
 	private float threshold = 32;
 
 	void Start ()
 	{
-		playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+		playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
 	void Update ()
 	{
 		// if we're below the player and we're far enough away
-		if (transform.position.y < playerPos.y && transform.position.y - playerPos.y > threshold)
+		if (transform.position.y < playerTransform.position.y)
 		{
-			Destroy(gameObject);
+			if (Vector2.Distance(transform.position, playerTransform.position) > threshold)
+			{
+				Destroy(gameObject);
+			}
 		}
 	}
 }

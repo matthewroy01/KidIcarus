@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Pickup
   - SafeZone
+  - TextArea
   layers:
   - Default
   - TransparentFX

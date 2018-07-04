@@ -23,12 +23,17 @@ public class PlayerCollision : MonoBehaviour
 	public float healthRestoreInterval;
 	private int healthToRestore;
 
+	[Header("Centurion")]
+	public GameObject centurionPrefab;
+	public bool hasCenturion = false;
+
 	[Header("UI")]
 	public Text textHearts;
 	public Text textMeters;
 	private int currentMeters = 0;
 	public int startingMeterOffset;
 	public Slider sliderHealth;
+	public Text textMessages;
 
 	private PlayerAudio refPlayerAudio;
 	private PlayerMovement refPlayerMovement;
@@ -132,6 +137,14 @@ public class PlayerCollision : MonoBehaviour
 						refPlayerMovement.extraJumps++;
 						Destroy(other.gameObject);
 					}
+
+					if (tmp.name == "Centurion Assist" && hasCenturion == false)
+					{
+						hearts -= tmp.cost;
+						hasCenturion = true;
+						Instantiate(centurionPrefab, other.transform.position, transform.rotation);
+						Destroy(other.gameObject);
+					}
 				}
 			}
 		}
@@ -151,6 +164,15 @@ public class PlayerCollision : MonoBehaviour
 		{
 			refMusicManager.SetMusicStatus(MusicStatus.shopTheme);
 			inSafeZone = true;
+		}
+
+		if (other.CompareTag("TextArea"))
+		{
+			textMessages.text = other.gameObject.GetComponent<TextArea>().text;
+		}
+		else
+		{
+			textMessages.text = "";
 		}
 	}
 

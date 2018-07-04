@@ -109,8 +109,6 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 256
-  destroyPrefab: {fileID: 1167111922738626, guid: 1011232962dc6594598dff209ff08fe3,
-    type: 2}
 --- !u!114 &114793303078850698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,8 +131,10 @@ MonoBehaviour:
   death:
     clip: {fileID: 8300000, guid: 0f8714630b043ee49b52fae084ca7e18, type: 3}
     volume: 0.1
+  spawnOnDeath: {fileID: 1167111922738626, guid: 1011232962dc6594598dff209ff08fe3,
+    type: 2}
   drops:
-  - {fileID: 1455843981834066, guid: cbe211c3fcfd842439f9578367486eb9, type: 2}
+  - {fileID: 1711906733496614, guid: 0e08660203a9ce54dbb38dd44a28163b, type: 2}
   - {fileID: 1734664284482482, guid: 6496c7852ade5c541a2c9a7e97e7187a, type: 2}
   shouldWrap: 0
 --- !u!212 &212071548547504626
