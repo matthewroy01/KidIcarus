@@ -123,7 +123,7 @@ MonoBehaviour:
   currentlyChasing: {fileID: 0}
   chaseDistance: 30
   isChasing: 0
-  movSpeed: 10
+  movSpeed: 8
 --- !u!114 &114296963764307656
 MonoBehaviour:
   m_ObjectHideFlags: 1

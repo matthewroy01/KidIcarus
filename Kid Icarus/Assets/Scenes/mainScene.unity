@@ -1075,7 +1075,7 @@ Prefab:
     - target: {fileID: 114183189091063714, guid: c2f21cf57f72bc846bd31f8bb0a1f6fd,
         type: 2}
       propertyPath: movSpeed
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 82185001708480092, guid: c2f21cf57f72bc846bd31f8bb0a1f6fd,
         type: 2}
@@ -6272,13 +6272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maps:
   - {fileID: 2800000, guid: bb47a617096ccfe41aa9d5a27f4b9d2b, type: 3}
-  - {fileID: 2800000, guid: 71b79b518c6013642aecf958a00a8bef, type: 3}
-  - {fileID: 2800000, guid: dff070b5711b06e46af0da8013140717, type: 3}
   - {fileID: 2800000, guid: 2aae959069d060449ae2d9cc79744b9d, type: 3}
-  - {fileID: 2800000, guid: 845fc823118535841a9b155249532c6c, type: 3}
-  - {fileID: 2800000, guid: 1fbbe7a47bd263a479609818b444321a, type: 3}
-  - {fileID: 2800000, guid: 87f795d0b0f1afb4fb8fcd3de40b1f7a, type: 3}
-  - {fileID: 2800000, guid: b951c8bf77c72ac46b6ed120f0834271, type: 3}
   defaultName: Map
   shopMaps:
   - {fileID: 2800000, guid: 8af853bf26d459247a88853399055083, type: 3}
