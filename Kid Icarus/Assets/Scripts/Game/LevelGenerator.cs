@@ -15,6 +15,8 @@ public class LevelGenerator : MonoBehaviour
 	public ColorToPrefab[] colorMappings;
 	[Header("Safe zone prefab")]
 	public GameObject safeZone;
+	[Header("Invisible wall prefab")]
+	public GameObject invisibleWall;
 
 	// private variables
 	private bool makingCollider = false; // if we're making a collider currently
@@ -118,9 +120,20 @@ public class LevelGenerator : MonoBehaviour
 			// if the color is equal to the pixel's color
 			if (colorMapping.color.Equals(pixelColor))
 			{
-				// instantiate the tiel
+				// instantiate the tile
 				Vector2 position = new Vector2(x,y);
 				tmpPrefab = Instantiate(colorMapping.prefab, position, Quaternion.identity, currentParent);
+
+				// if we're at either end, spawn an invisible wall opposite to it
+				if (x == 0)
+				{
+					Instantiate(invisibleWall, new Vector2(16, position.y), Quaternion.identity, currentParent);
+				}
+
+				if (x == 15)
+				{
+					Instantiate(invisibleWall, new Vector2(-1, position.y), Quaternion.identity, currentParent);
+				}
 
 				// if we're not already making a collider
 				if (makingCollider == false)
