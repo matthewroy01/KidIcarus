@@ -113,7 +113,7 @@ public class PlayerCollision : MonoBehaviour
 				// shop items
 				ShopItem tmp = refShopInfo.getItem(other.name);
 
-				if (tmp.cost < hearts)
+				if (tmp.cost <= hearts)
 				{
 					if (tmp.name == "Small Drink")
 					{

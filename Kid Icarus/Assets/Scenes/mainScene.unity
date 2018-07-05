@@ -6279,9 +6279,9 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 1fbbe7a47bd263a479609818b444321a, type: 3}
   - {fileID: 2800000, guid: 87f795d0b0f1afb4fb8fcd3de40b1f7a, type: 3}
   - {fileID: 2800000, guid: b951c8bf77c72ac46b6ed120f0834271, type: 3}
+  - {fileID: 2800000, guid: a21dbb009a951054da3bbb2df926fdcd, type: 3}
   defaultName: Map
   shopMaps:
-  - {fileID: 2800000, guid: 8af853bf26d459247a88853399055083, type: 3}
   - {fileID: 2800000, guid: 8af853bf26d459247a88853399055083, type: 3}
   defaultShopName: Shop
   colorMappings:
@@ -6317,6 +6317,10 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281899260
     prefab: {fileID: 1413767279396766, guid: c7e67340e5e16354fa11ee4c7ef19585, type: 2}
+  - color:
+      serializedVersion: 2
+      rgba: 4278192252
+    prefab: {fileID: 1409980312618770, guid: 800058d8624e5a54daa4396f948fdecf, type: 2}
   safeZone: {fileID: 1859968276344474, guid: 1dc7ad01403e5c349991a32efb450612, type: 2}
   invisibleWall: {fileID: 1100759860602982, guid: e82da72947bdb5348acae097c43646d2,
     type: 2}
@@ -6362,7 +6366,7 @@ MonoBehaviour:
   currentY: 0
   defaultX: 0
   roomCount: 0
-  spawnShopEvery: 8
+  spawnShopEvery: 7
 --- !u!1 &1514478750
 GameObject:
   m_ObjectHideFlags: 0

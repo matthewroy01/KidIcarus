@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212037188584010976}
   - component: {fileID: 61761088077508486}
   - component: {fileID: 114301870088748148}
+  - component: {fileID: 114453434353226048}
   m_Layer: 0
   m_Name: DrinkLarge
   m_TagString: Pickup
@@ -82,6 +83,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   destroyAfterTime: -1
+--- !u!114 &114453434353226048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346342929855376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf990dd1548a14740b6852cc7d82fc67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
 --- !u!212 &212037188584010976
 SpriteRenderer:
   m_ObjectHideFlags: 1

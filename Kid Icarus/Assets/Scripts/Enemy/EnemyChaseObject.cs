@@ -15,15 +15,23 @@ public class EnemyChaseObject : MonoBehaviour
 	[Header("Movement")]
 	public float movSpeed;
 
+	[Header("Sound")]
+	public Sound flight;
+	public float flightSoundInterval;
+
 	private Enemy refEnemy;
 	private Rigidbody2D rb;
 	private Animator refAnimator;
+	private UtilityAudioManager refAudioManager;
 
 	void Start()
 	{
 		refEnemy = GetComponent<Enemy>();
 		rb = GetComponent<Rigidbody2D>();
 		refAnimator = GetComponent<Animator>();
+		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
+
+		StartCoroutine("PlayFlightSound");
 	}
 
 	void Update()
@@ -61,6 +69,19 @@ public class EnemyChaseObject : MonoBehaviour
 			{
 				currentlyChasing = GameObject.FindGameObjectWithTag(tagName);
 			}
+		}
+	}
+
+	private IEnumerator PlayFlightSound()
+	{
+		while (refEnemy.isDead == false)
+		{
+			if (isChasing == true)
+			{
+				refAudioManager.PlaySound(flight.clip, flight.volume, true);
+			}
+
+			yield return new WaitForSeconds(flightSoundInterval);
 		}
 	}
 

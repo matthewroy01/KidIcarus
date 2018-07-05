@@ -124,6 +124,10 @@ MonoBehaviour:
   chaseDistance: 30
   isChasing: 0
   movSpeed: 8
+  flight:
+    clip: {fileID: 8300000, guid: 05093293327e5fd46af2a1ac99575327, type: 3}
+    volume: 0.75
+  flightSoundInterval: 0.25
 --- !u!114 &114296963764307656
 MonoBehaviour:
   m_ObjectHideFlags: 1

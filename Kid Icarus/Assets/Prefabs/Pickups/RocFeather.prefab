@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212563891955327534}
   - component: {fileID: 61103280953812080}
   - component: {fileID: 114582874287561914}
+  - component: {fileID: 114001069888971542}
   m_Layer: 0
   m_Name: RocFeather
   m_TagString: Pickup
@@ -67,6 +68,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &114001069888971542
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1281153778484098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf990dd1548a14740b6852cc7d82fc67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
 --- !u!114 &114582874287561914
 MonoBehaviour:
   m_ObjectHideFlags: 1
