@@ -28,6 +28,10 @@ public class PlayerCollision : MonoBehaviour
 	public GameObject centurionPrefab;
 	public bool hasCenturion = false;
 
+	[Header("Eggplant Curse")]
+	public bool cursed;
+	public bool hasFirstAidKit;
+
 	[Header("UI")]
 	public Text textHearts;
 	public Text textMeters;
@@ -132,6 +136,11 @@ public class PlayerCollision : MonoBehaviour
 				tmpOrne.transform.position = new Vector2(tmpOrne.transform.position.x, tmpOrne.transform.position.y - 50.0f);
 				Destroy(other.gameObject);
 			}
+			else if (other.name == "FirstAidKit(Clone)" && !hasFirstAidKit)
+			{
+				hasFirstAidKit = true;
+				Destroy(other.gameObject);
+			}
 			else
 			{
 				// shop items
@@ -175,6 +184,13 @@ public class PlayerCollision : MonoBehaviour
 						hearts -= tmp.cost;
 						GameObject tmpOrne = GameObject.Find("Orne");
 						tmpOrne.transform.position = new Vector2(tmpOrne.transform.position.x, tmpOrne.transform.position.y - 50.0f);
+						Destroy(other.gameObject);
+					}
+
+					if (tmp.name == "First Aid Kit" && !hasFirstAidKit)
+					{
+						hearts -= tmp.cost;
+						hasFirstAidKit = true;
 						Destroy(other.gameObject);
 					}
 				}
