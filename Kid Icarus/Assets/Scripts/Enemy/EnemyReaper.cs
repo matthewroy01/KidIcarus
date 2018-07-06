@@ -14,6 +14,9 @@ public class EnemyReaper : MonoBehaviour
 	public bool facingRight;
 	public float movSpeed;
 
+	[Header("Patrolling")]
+	public int turnRate;
+
 	private Enemy refEnemy;
 	private Rigidbody2D rb;
 	private SpriteRenderer sr;
@@ -89,6 +92,16 @@ public class EnemyReaper : MonoBehaviour
 
 			CheckForWalls();
 			CheckForGaps();
+
+			if (Random.Range(0, turnRate) == turnRate - 1)
+			{
+				facingRight = !facingRight;
+				FlipSprite();
+				rb.velocity = new Vector2(0.0f, 0.0f);
+				yield return new WaitForSeconds(1.5f);
+				facingRight = !facingRight;
+			}
+
 			FlipSprite();
 
 			if (facingRight == true)

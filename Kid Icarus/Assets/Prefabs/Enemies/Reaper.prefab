@@ -138,6 +138,7 @@ MonoBehaviour:
   grounded: 0
   facingRight: 0
   movSpeed: 1
+  turnRate: 300
 --- !u!212 &212514827109206058
 SpriteRenderer:
   m_ObjectHideFlags: 1
