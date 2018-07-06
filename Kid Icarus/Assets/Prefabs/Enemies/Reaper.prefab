@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 4168197725761018}
   - component: {fileID: 212514827109206058}
   - component: {fileID: 61298242474903574}
-  - component: {fileID: 95022688762878708}
+  - component: {fileID: 50560724808960958}
   - component: {fileID: 114220449667667256}
+  - component: {fileID: 114792352864025980}
   m_Layer: 9
   m_Name: Reaper
   m_TagString: Enemy
@@ -43,6 +44,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50560724808960958
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713951788145516}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61298242474903574
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -68,24 +89,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 1.3}
   m_EdgeRadius: 0
---- !u!95 &95022688762878708
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1713951788145516}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e7dd67b009e695446b3b8272d397a554, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114220449667667256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,8 +113,31 @@ MonoBehaviour:
     volume: 0.5
   spawnOnDeath: {fileID: 0}
   drops:
-  - {fileID: 1716224392259714, guid: 3afa8cf07586000408054aed253ab23d, type: 2}
+  - {fileID: 1281153778484098, guid: ffbe1ede72f841e44951deef5d922d32, type: 2}
+  - {fileID: 1346342929855376, guid: 1a6e99669db91784daa030f53a986e66, type: 2}
+  - {fileID: 1455843981834066, guid: cbe211c3fcfd842439f9578367486eb9, type: 2}
+  - {fileID: 1218507675737982, guid: f7b63cb9716a2a5408bb1c5fc3dfb35f, type: 2}
+  - {fileID: 1077621230560480, guid: 3bb1cb9dc3638e4408982ab524594bf3, type: 2}
   shouldWrap: 1
+--- !u!114 &114792352864025980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713951788145516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad3509d678e744d498642aed47718925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  below: {x: 0, y: -0.55}
+  inFront: {x: 0.5, y: -0.75}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 256
+  grounded: 0
+  facingRight: 0
+  movSpeed: 1
 --- !u!212 &212514827109206058
 SpriteRenderer:
   m_ObjectHideFlags: 1
