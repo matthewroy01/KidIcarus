@@ -81,7 +81,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.4375}
+    oldSize: {x: 1, y: 1.5625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3509d678e744d498642aed47718925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  below: {x: 0, y: -0.55}
-  inFront: {x: 0.5, y: -0.75}
+  below: {x: 0, y: -0.65}
+  inFront: {x: 0.4, y: -0.75}
   groundMask:
     serializedVersion: 2
     m_Bits: 256
@@ -165,9 +165,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   isPanicked: 0
-  panicSpeed: 3
+  panicTime: 5
+  panicSpeed: 5
   reapettePrefab: {fileID: 1103745992974636, guid: 9478427652ce3d84c9d9b5b2ced0a635,
     type: 2}
+  spawnedReapettes: 0
+  cry:
+    clip: {fileID: 8300000, guid: f3c55519ef6688a49810fb103c076fe6, type: 3}
+    volume: 0.5
+  cryInterval: 0.5
 --- !u!212 &212514827109206058
 SpriteRenderer:
   m_ObjectHideFlags: 1

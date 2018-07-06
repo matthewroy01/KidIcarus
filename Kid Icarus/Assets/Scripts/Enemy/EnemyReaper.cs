@@ -23,8 +23,16 @@ public class EnemyReaper : MonoBehaviour
 	public float sightDistance;
 	public LayerMask playerMask;
 	public bool isPanicked;
+	public float panicTime;
 	public float panicSpeed;
+
+	[Header("Reapettes")]
 	public GameObject reapettePrefab;
+	public bool spawnedReapettes = false;
+
+	[Header("Sound")]
+	public Sound cry;
+	public float cryInterval;
 
 	private Enemy refEnemy;
 	private Rigidbody2D rb;
@@ -32,6 +40,7 @@ public class EnemyReaper : MonoBehaviour
 	private Animator refAnimator;
 	private GameObject refPlayer;
 	private UtilityMusicManager refMusicManager;
+	private UtilityAudioManager refAudioManager;
 
 	void Start ()
 	{
@@ -43,6 +52,7 @@ public class EnemyReaper : MonoBehaviour
 		refAnimator = GetComponent<Animator>();
 		refPlayer = GameObject.Find("Pit");
 		refMusicManager = GameObject.FindObjectOfType<UtilityMusicManager>();
+		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
 
 		if (Physics2D.OverlapCircle((Vector2)transform.position, 0.5f, groundMask) == true)
 		{
@@ -170,6 +180,8 @@ public class EnemyReaper : MonoBehaviour
 		// only move if there's nothing in the way
 		if (CheckForGaps() == false && CheckForWalls() == false)
 		{
+			refAnimator.SetBool("inPlace", false);
+
 			// move
 			if (facingRight == true)
 			{
@@ -182,6 +194,7 @@ public class EnemyReaper : MonoBehaviour
 		}
 		else
 		{
+			refAnimator.SetBool("inPlace", true);
 			rb.velocity = Vector2.zero;
 		}
 	}
@@ -202,9 +215,18 @@ public class EnemyReaper : MonoBehaviour
 				isPanicked = true;
 				waiting = false;
 
+				StartCoroutine("ReaperCry");
+
 				refMusicManager.SetMusicStatus(MusicStatus.reaperTheme);
 
-				Instantiate(reapettePrefab, Vector2.zero, Quaternion.identity);
+				if (spawnedReapettes == false)
+				{
+					Instantiate(reapettePrefab, Vector2.zero, Quaternion.identity);
+				}
+
+				spawnedReapettes = true;
+
+				Invoke("StopPanicking", panicTime);
 			}
 		}
 	}
@@ -212,5 +234,24 @@ public class EnemyReaper : MonoBehaviour
 	void OnDestroy()
 	{
 		refMusicManager.SetMusicStatus(MusicStatus.mainTheme);
+	}
+
+	private IEnumerator ReaperCry()
+	{
+		while (isPanicked == true)
+		{
+			refAudioManager.PlaySound(cry.clip, cry.volume, true);
+
+			yield return new WaitForSeconds(cryInterval);
+		}
+	}
+
+	private void StopPanicking()
+	{
+		isPanicked = false;
+		StopCoroutine("ReaperCry");
+		refAnimator.SetTrigger("stopPanicking");
+		refAnimator.SetBool("inPlace", false);
+		refAnimator.SetBool("isPanicked", false);
 	}
 }
