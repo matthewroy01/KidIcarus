@@ -18,6 +18,7 @@ public class PlayerCollision : MonoBehaviour
 	public bool inSafeZone = false;
 
 	[Header("Drink of the Gods")]
+	public int kiddieDrinkAmount;
 	public int smallDrinkAmount;
 	public int largeDrinkAmount;
 	public float healthRestoreInterval;
@@ -105,6 +106,12 @@ public class PlayerCollision : MonoBehaviour
 			else if (other.name == "DrinkLarge(Clone)")
 			{
 				healthToRestore += largeDrinkAmount;
+				StartCoroutine("RestoreHealth");
+				Destroy(other.gameObject);
+			}
+			else if (other.name == "DrinkKiddie(Clone)")
+			{
+				healthToRestore += kiddieDrinkAmount;
 				StartCoroutine("RestoreHealth");
 				Destroy(other.gameObject);
 			}
