@@ -9,6 +9,7 @@ public class UtilityMusicManager : MonoBehaviour
 	public AudioSource main;
 	public AudioSource shop;
 	public AudioSource death;
+	public AudioSource reap;
 
 	[Header("Status")]
 	[SerializeField]
@@ -23,12 +24,14 @@ public class UtilityMusicManager : MonoBehaviour
 		orne.Play();
 		main.Play();
 		shop.Play();
+		reap.Play();
 
 		death.Stop();
 
 		// set volumes to 0
 		orne.volume = 0.0f;
 		shop.volume = 0.0f;
+		reap.volume = 0.0f;
 	}
 
 	void Update ()
@@ -46,6 +49,7 @@ public class UtilityMusicManager : MonoBehaviour
 				orne.volume = Mathf.Lerp(orne.volume, 1.0f, 0.1f);
 				main.volume = Mathf.Lerp(main.volume, 0.0f, 0.1f);
 				shop.volume = Mathf.Lerp(shop.volume, 0.0f, 0.1f);
+				reap.volume = Mathf.Lerp(reap.volume, 0.0f, 0.1f);
 				break;
 			}
 			case MusicStatus.mainTheme:
@@ -53,6 +57,7 @@ public class UtilityMusicManager : MonoBehaviour
 				orne.volume = Mathf.Lerp(orne.volume, 0.0f, 0.1f);
 				main.volume = Mathf.Lerp(main.volume, 1.0f, 0.1f);
 				shop.volume = Mathf.Lerp(shop.volume, 0.0f, 0.1f);
+				reap.volume = Mathf.Lerp(reap.volume, 0.0f, 0.1f);
 				break;
 			}
 			case MusicStatus.shopTheme:
@@ -60,6 +65,15 @@ public class UtilityMusicManager : MonoBehaviour
 				orne.volume = Mathf.Lerp(orne.volume, 0.0f, 0.1f);
 				main.volume = Mathf.Lerp(main.volume, 0.0f, 0.1f);
 				shop.volume = Mathf.Lerp(shop.volume, 0.8f, 0.1f);
+				reap.volume = Mathf.Lerp(reap.volume, 0.0f, 0.1f);
+				break;
+			}
+			case MusicStatus.reaperTheme:
+			{
+				orne.volume = Mathf.Lerp(orne.volume, 0.0f, 0.1f);
+				main.volume = Mathf.Lerp(main.volume, 0.0f, 0.1f);
+				shop.volume = Mathf.Lerp(shop.volume, 0.0f, 0.1f);
+				reap.volume = Mathf.Lerp(reap.volume, 1.0f, 0.1f);
 				break;
 			}
 			case MusicStatus.death:
@@ -71,6 +85,7 @@ public class UtilityMusicManager : MonoBehaviour
 				orne.volume = Mathf.Lerp(orne.volume, 0.0f, 0.1f);
 				main.volume = Mathf.Lerp(main.volume, 0.0f, 0.1f);
 				shop.volume = Mathf.Lerp(shop.volume, 0.0f, 0.1f);
+				reap.volume = Mathf.Lerp(reap.volume, 0.0f, 0.1f);
 				break;
 			}
 		}
@@ -95,4 +110,4 @@ public class UtilityMusicManager : MonoBehaviour
 	}
 }
 
-public enum MusicStatus { orneTheme, mainTheme, shopTheme, death};
+public enum MusicStatus { orneTheme, mainTheme, shopTheme, reaperTheme, death};

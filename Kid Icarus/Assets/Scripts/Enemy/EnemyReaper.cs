@@ -16,10 +16,22 @@ public class EnemyReaper : MonoBehaviour
 
 	[Header("Patrolling")]
 	public int turnRate;
+	public bool waiting = false;
+	public float waitTime;
+
+	[Header("Panic mode")]
+	public float sightDistance;
+	public LayerMask playerMask;
+	public bool isPanicked;
+	public float panicSpeed;
+	public GameObject reapettePrefab;
 
 	private Enemy refEnemy;
 	private Rigidbody2D rb;
 	private SpriteRenderer sr;
+	private Animator refAnimator;
+	private GameObject refPlayer;
+	private UtilityMusicManager refMusicManager;
 
 	void Start ()
 	{
@@ -28,31 +40,72 @@ public class EnemyReaper : MonoBehaviour
 		refEnemy = GetComponent<Enemy>();
 		rb = GetComponent<Rigidbody2D>();
 		sr = GetComponent<SpriteRenderer>();
+		refAnimator = GetComponent<Animator>();
+		refPlayer = GameObject.Find("Pit");
+		refMusicManager = GameObject.FindObjectOfType<UtilityMusicManager>();
 
 		if (Physics2D.OverlapCircle((Vector2)transform.position, 0.5f, groundMask) == true)
 		{
 			Destroy(gameObject);
 		}
-
-		StartCoroutine("Falling");
 	}
 
-	private void CheckForWalls()
+	void FixedUpdate()
 	{
+		if (refEnemy.isDead == false)
+		{
+			if (grounded == false)
+			{
+				Falling();
+			}
+			else
+			{
+				if (isPanicked == false)
+				{
+					Patrol();
+					LineOfSight();
+					if (CheckForWalls() == true || CheckForGaps() == true)
+					{
+						facingRight = !facingRight;
+					}
+				}
+				else
+				{
+					Chase();
+				}
+
+				FlipSprite();
+			}
+		}
+		else
+		{
+			rb.velocity = Vector2.zero;
+		}
+
+		refAnimator.SetBool("isPanicked", isPanicked);
+		refAnimator.SetBool("isDead", refEnemy.isDead);
+	}
+
+	private bool CheckForWalls()
+	{
+		// look for walls in front of us and switch directions if there is one
 		if ((facingRight == true && Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(inFront.x, 0.0f), 0.2f, groundMask) == true) ||
 			(facingRight == false && Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(inFront.x * -1, 0.0f), 0.2f, groundMask) == true))
 		{
-			facingRight = !facingRight;
+			return true;
 		}
+		return false;
 	}
 
-	private void CheckForGaps()
+	private bool CheckForGaps()
 	{
-		if ((facingRight == true && Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(inFront.x, 0.0f), 0.2f, groundMask) == true) ||
-			(facingRight == false && Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(inFront.x * -1, 0.0f), 0.2f, groundMask) == true))
+		// look for gaps in front of us and switch directions if there is one
+		if ((facingRight == true && Physics2D.OverlapCircle((Vector2)transform.position + inFront, 0.2f, groundMask) == false) ||
+			(facingRight == false && Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(inFront.x * -1, inFront.y), 0.2f, groundMask) == false))
 		{
-			facingRight = !facingRight;
+			return true;
 		}
+		return false;
 	}
 
 	private void FlipSprite()
@@ -60,50 +113,36 @@ public class EnemyReaper : MonoBehaviour
 		sr.flipX = !facingRight;
 	}
 
-	private IEnumerator Falling()
+	private void Falling()
 	{
-		while (grounded == false)
+		// if there's nothing below us, fall
+		if (Physics2D.OverlapCircle((Vector2)transform.position + below, 0.2f, groundMask) == false)
 		{
-			if (Physics2D.OverlapCircle((Vector2)transform.position + below, 0.2f, groundMask) == false)
-			{
-				rb.velocity = Vector2.down * 5;
-			}
-			else
-			{
-				rb.velocity = new Vector2(rb.velocity.x, 0.0f);
-				grounded = true;
-			}
-
-			yield return new WaitForSeconds(0.0f);
+			rb.velocity = Vector2.down * 5;
 		}
-
-		StartCoroutine("Patrol");
+		else
+		{
+			// stop falling and set grounded to true
+			rb.velocity = new Vector2(rb.velocity.x, 0.0f);
+			grounded = true;
+		}
 	}
 
-	private IEnumerator Patrol()
+	private void Patrol()
 	{
-		while (grounded == true)
+		Debug.Log("Patrolling");
+		// randomly decide to wait
+		if (waiting == false && Random.Range(0, turnRate) == turnRate - 1)
 		{
-			if ((facingRight == true && Physics2D.OverlapCircle((Vector2)transform.position + inFront, 0.2f, groundMask) == false) ||
-				(facingRight == false && Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(inFront.x * -1, inFront.y), 0.2f, groundMask) == false))
-			{
-				facingRight = !facingRight;
-			}
+			waiting = true;
+			rb.velocity = new Vector2(0.0f, 0.0f);
+			facingRight = !facingRight;
+			Invoke("StopWaiting", waitTime);
+		}
 
-			CheckForWalls();
-			CheckForGaps();
-
-			if (Random.Range(0, turnRate) == turnRate - 1)
-			{
-				facingRight = !facingRight;
-				FlipSprite();
-				rb.velocity = new Vector2(0.0f, 0.0f);
-				yield return new WaitForSeconds(1.5f);
-				facingRight = !facingRight;
-			}
-
-			FlipSprite();
-
+		if (waiting == false)
+		{
+			// move
 			if (facingRight == true)
 			{
 				rb.velocity = new Vector2(movSpeed, 0.0f);
@@ -112,8 +151,66 @@ public class EnemyReaper : MonoBehaviour
 			{
 				rb.velocity = new Vector2(movSpeed * -1, 0.0f);
 			}
-
-			yield return new WaitForSeconds(0.0f);
 		}
+	}
+
+	private void Chase()
+	{
+		Debug.Log("Chasing");
+		// change direction based on where the player is
+		if (transform.position.x <= refPlayer.transform.position.x)
+		{
+			facingRight = true;
+		}
+		else
+		{
+			facingRight = false;
+		}
+
+		// only move if there's nothing in the way
+		if (CheckForGaps() == false && CheckForWalls() == false)
+		{
+			// move
+			if (facingRight == true)
+			{
+				rb.velocity = new Vector2(panicSpeed, 0.0f);
+			}
+			else
+			{
+				rb.velocity = new Vector2(panicSpeed * -1, 0.0f);
+			}
+		}
+		else
+		{
+			rb.velocity = Vector2.zero;
+		}
+	}
+
+	private void StopWaiting()
+	{
+		waiting = false;
+		facingRight = !facingRight;
+	}
+
+	private void LineOfSight()
+	{
+		if ((facingRight == true && Physics2D.Linecast(transform.position, new Vector2(transform.position.x + sightDistance, transform.position.y), playerMask)) ||
+			(facingRight == false && Physics2D.Linecast(transform.position, new Vector2(transform.position.x - sightDistance, transform.position.y), playerMask)))
+		{
+			if (isPanicked == false)
+			{
+				isPanicked = true;
+				waiting = false;
+
+				refMusicManager.SetMusicStatus(MusicStatus.reaperTheme);
+
+				Instantiate(reapettePrefab, Vector2.zero, Quaternion.identity);
+			}
+		}
+	}
+
+	void OnDestroy()
+	{
+		refMusicManager.SetMusicStatus(MusicStatus.mainTheme);
 	}
 }

@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 690602502}
   - component: {fileID: 690602503}
   - component: {fileID: 690602504}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pit
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1076,7 +1076,7 @@ Prefab:
     - target: {fileID: 114183189091063714, guid: c2f21cf57f72bc846bd31f8bb0a1f6fd,
         type: 2}
       propertyPath: movSpeed
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 82185001708480092, guid: c2f21cf57f72bc846bd31f8bb0a1f6fd,
         type: 2}
@@ -1141,6 +1141,7 @@ GameObject:
   - component: {fileID: 1177960289}
   - component: {fileID: 1177960288}
   - component: {fileID: 1177960287}
+  - component: {fileID: 1177960291}
   - component: {fileID: 1177960286}
   m_Layer: 0
   m_Name: MusicManager
@@ -1358,7 +1359,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1177960284}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ab1640c11eefef343aaca8e738f0dd02, type: 3}
@@ -1557,7 +1558,103 @@ MonoBehaviour:
   main: {fileID: 1177960288}
   shop: {fileID: 1177960287}
   death: {fileID: 1177960286}
+  reap: {fileID: 1177960291}
   musicStatus: 1
+--- !u!82 &1177960291
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1177960284}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bed8fda8bff28e743a0863509fafe51a, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1234493924
 GameObject:
   m_ObjectHideFlags: 0
@@ -6278,9 +6375,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 2aae959069d060449ae2d9cc79744b9d, type: 3}
   - {fileID: 2800000, guid: 845fc823118535841a9b155249532c6c, type: 3}
   - {fileID: 2800000, guid: 1fbbe7a47bd263a479609818b444321a, type: 3}
-  - {fileID: 2800000, guid: 87f795d0b0f1afb4fb8fcd3de40b1f7a, type: 3}
   - {fileID: 2800000, guid: b951c8bf77c72ac46b6ed120f0834271, type: 3}
-  - {fileID: 2800000, guid: a21dbb009a951054da3bbb2df926fdcd, type: 3}
   defaultName: Map
   shopMaps:
   - {fileID: 2800000, guid: 8af853bf26d459247a88853399055083, type: 3}
@@ -6354,14 +6449,14 @@ MonoBehaviour:
   shops: []
   waitToSpawnEnemies: 1
   enemies:
-  - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 2}
+  - obj: {fileID: 1194326722190070, guid: e5179478419fddf4e8614436b979f88d, type: 2}
     limitSpawns: 1
-  - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 2}
+  - obj: {fileID: 1275306939347786, guid: 2bffa755fb6048244aa265ac4a7dc9cb, type: 2}
+    limitSpawns: 0
+  - obj: {fileID: 1040655999123246, guid: 49bb6c8ddccecf74b9c07601a342c6d0, type: 2}
     limitSpawns: 1
-  - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 2}
-    limitSpawns: 1
-  - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 2}
-    limitSpawns: 1
+  - obj: {fileID: 1784919452603194, guid: 2265cdade982b69419f547e7b291baca, type: 2}
+    limitSpawns: 0
   - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 2}
     limitSpawns: 1
   enemiesToSpawn: 3

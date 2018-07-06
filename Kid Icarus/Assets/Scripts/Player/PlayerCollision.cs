@@ -115,6 +115,23 @@ public class PlayerCollision : MonoBehaviour
 				StartCoroutine("RestoreHealth");
 				Destroy(other.gameObject);
 			}
+			else if (other.name == "RocFeather(Clone)")
+			{
+				refPlayerMovement.extraJumps++;
+				Destroy(other.gameObject);
+			}
+			else if (other.name == "CenturionAssist(Clone)" && hasCenturion == false)
+			{
+				hasCenturion = true;
+				Instantiate(centurionPrefab, other.transform.position, transform.rotation);
+				Destroy(other.gameObject);
+			}
+			else if (other.name == "DivineWard(Clone)")
+			{
+				GameObject tmpOrne = GameObject.Find("Orne");
+				tmpOrne.transform.position = new Vector2(tmpOrne.transform.position.x, tmpOrne.transform.position.y - 50.0f);
+				Destroy(other.gameObject);
+			}
 			else
 			{
 				// shop items
