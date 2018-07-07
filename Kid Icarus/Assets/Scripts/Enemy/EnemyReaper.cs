@@ -207,8 +207,18 @@ public class EnemyReaper : MonoBehaviour
 
 	private void LineOfSight()
 	{
-		if ((facingRight == true && Physics2D.Linecast(transform.position, new Vector2(transform.position.x + sightDistance, transform.position.y), playerMask)) ||
-			(facingRight == false && Physics2D.Linecast(transform.position, new Vector2(transform.position.x - sightDistance, transform.position.y), playerMask)))
+		RaycastHit2D tmp;
+
+		if (facingRight == true)
+		{
+			tmp = Physics2D.Linecast(transform.position, new Vector2(transform.position.x + sightDistance, transform.position.y), playerMask);
+		}
+		else
+		{
+			tmp = Physics2D.Linecast(transform.position, new Vector2(transform.position.x - sightDistance, transform.position.y), playerMask);
+		}
+
+		if (tmp == true && tmp.collider.tag == "Player")
 		{
 			if (isPanicked == false)
 			{

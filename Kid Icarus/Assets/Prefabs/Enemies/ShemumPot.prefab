@@ -105,7 +105,7 @@ MonoBehaviour:
   maxSpawns: 3
   spawnRate: 0.75
   spawnCooldown: 5
-  minYDistanceToPlayer: 20
+  minYDistanceToPlayer: 15
   wallLayer:
     serializedVersion: 2
     m_Bits: 256

@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 	[Range(0.0f, 0.5f)]
 	public float checkRadius;
 	public bool grounded;
+	[Range(0.0f, 0.2f)]
+	public float groundLeeway;
 
 	[Header("Which direction are we facing?")]
 	public bool facingRight;
@@ -140,6 +142,9 @@ public class PlayerMovement : MonoBehaviour
 			{
 				// play the jump sound
 				refPlayerAudio.PlayJump();
+
+				// set grounded to false to avoid potential super jumps from leeway
+				grounded = false;
 			}
 		}
 	}
@@ -195,12 +200,19 @@ public class PlayerMovement : MonoBehaviour
 
 			// we are grounded
 			grounded = true;
+
+			CancelInvoke("NotGrounded");
 		}
 		else
 		{
 			// we are not grounded
-			grounded = false;
+			Invoke("NotGrounded", groundLeeway);
 		}
+	}
+
+	private void NotGrounded()
+	{
+		grounded = false;
 	}
 
 	private void DoTerminalVelocities()

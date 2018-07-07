@@ -155,20 +155,50 @@ public class InfiniteGenerator : MonoBehaviour
 		randX = Random.Range(defaultX, defaultX + width);
 		randY = Random.Range(currentY, currentY + height);
 
+		List<int> limitedSpawn;
+		limitedSpawn = new List<int>();
+
+		int tmp;
+
 		if (enemiesToSpawn != 0 && enemies.Length != 0)
 		{
 			for (int i = 0; i < enemiesToSpawn; ++i)
 			{
-				int tmp = Random.Range(0, enemies.Length);
+				// keep checking until there are no repeats
+				do
+				{
+					tmp = Random.Range(0, enemies.Length);
+				}
+				while(CheckForRepeats(tmp, limitedSpawn) == true);
+
 				Instantiate(enemies[tmp].obj, new Vector2(randX, randY), Quaternion.identity);
 	
-				// if spawns are limited, stop
+				// if spawns are limited, add it to the list so we don't spawn more
 				if (enemies[tmp].limitSpawns == true)
 				{
-					return;
+					limitedSpawn.Add(tmp);
 				}
 			}
 		}
+	}
+
+	private bool CheckForRepeats(int rand, List<int> list)
+	{
+		// if for some reason, all enemies have been used, just return false
+		if (list.Count == enemies.Length)
+		{
+			return false;
+		}
+
+		// check the list to see if our random number has already been used
+		for (int i = 0; i < list.Count; ++i)
+		{
+			if (list[i] == rand)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }
 
