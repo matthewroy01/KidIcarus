@@ -11513,6 +11513,8 @@ MonoBehaviour:
     limitSpawns: 0
   - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 2}
     limitSpawns: 1
+  - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 2}
+    limitSpawns: 1
   enemiesToSpawn: 2
   maxAge: 2
   currentY: 0

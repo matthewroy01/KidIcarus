@@ -7,12 +7,21 @@ public class MiscDestroyProjectile : MonoBehaviour
 	[Header("How should this object be destroyed?")]
 	public LayerMask destructableLayer;
 	public float destroyAfterTime;
+	public bool doScreenWrapping;
 
 	void Start ()
 	{
 		if (destroyAfterTime >= 0)
 		{
 			Invoke("Dest", destroyAfterTime);
+		}
+	}
+
+	void Update()
+	{
+		if (doScreenWrapping)
+		{
+			ScreenWrapping();
 		}
 	}
 

@@ -243,24 +243,6 @@ public class PlayerMovement : MonoBehaviour
 
 	private void ScreenWrapping()
 	{
-		/*if (transform.position.x > 15f)
-		{
-			CheckWrapCollision(0.0f);
-			{
-				PushAway(true);
-				return;
-			}
-		}
-
-		if (transform.position.x < 0.0f)
-		{
-			if (CheckWrapCollision(15.0f) == true)
-			{
-				PushAway(false);
-				return;
-			}
-		}*/
-
 		// if we're too far off the right side
 		if (transform.position.x > 15.75f)
 		{
@@ -269,30 +251,11 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		// if we're too far off the left side
-		if (transform.position.x < -0.75f && !CheckWrapCollision(0))
+		if (transform.position.x < -0.75f)
 		{
 			// check for walls on the opposite side
 			transform.position = new Vector2(15.5f, transform.position.y);
 		}
-	}
-
-	private bool CheckWrapCollision(float xPos)
-	{
-		/*if (isCrouching == true)
-		{
-			if (Physics2D.OverlapBox(new Vector2(xPos, transform.position.y) + (Vector2)crouchedCollider.bounds.center, crouchedCollider.bounds.extents * 0.0f, 0, groundMask))
-			{
-				return true;
-			}
-		}
-		else
-		{
-			if (Physics2D.OverlapBox(new Vector2(xPos, transform.position.y) + (Vector2)defaultCollider.bounds.center, defaultCollider.bounds.extents * 0.75f, 0, groundMask))
-			{
-				return true;
-			}
-		}*/
-		return false;
 	}
 
 	private void PushAway(bool fromRightSide)
