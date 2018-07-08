@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 	public bool grounded;
 	[Range(0.0f, 0.2f)]
 	public float groundLeeway;
+	public ParticleSystem landingParts;
 
 	[Header("Which direction are we facing?")]
 	public bool facingRight;
@@ -193,6 +194,12 @@ public class PlayerMovement : MonoBehaviour
 			{
 				// play the recharge sound
 				refPlayerAudio.PlayRecharge();
+			}
+
+			if (grounded == false)
+			{
+				//dust particles
+				landingParts.Play();
 			}
 
 			// reset the number of jumps
