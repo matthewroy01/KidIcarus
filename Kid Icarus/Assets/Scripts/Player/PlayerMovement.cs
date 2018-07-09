@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 	public bool grounded;
 	[Range(0.0f, 0.2f)]
 	public float groundLeeway;
-	public ParticleSystem landingParts;
+	public GameObject partsLanding;
 
 	[Header("Which direction are we facing?")]
 	public bool facingRight;
@@ -187,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
 	private void CheckGround()
 	{
 		// check if there is ground beneath the player
-		if (Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundMask))
+		if (Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundMask) && rb.velocity.y <= 0.0f)
 		{
 			// if we've used some jumps and we were in the air
 			if (grounded == false && currentJumps > 1)
@@ -199,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
 			if (grounded == false)
 			{
 				//dust particles
-				landingParts.Play();
+				Instantiate(partsLanding, groundCheck.position, transform.rotation);
 			}
 
 			// reset the number of jumps
