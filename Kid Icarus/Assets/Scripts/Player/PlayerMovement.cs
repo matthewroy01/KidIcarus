@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpForce;
 	public int extraJumps;
 	private int currentJumps = 0;
+	public int extraJumpsMax;
 
 	[Header("Ground variables")]
 	public LayerMask groundMask;

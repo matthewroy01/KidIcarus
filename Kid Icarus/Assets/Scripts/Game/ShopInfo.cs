@@ -36,6 +36,19 @@ public class ShopInfo : MonoBehaviour
 		Debug.LogError("Item of name " + name + " does not exist. Returning the first item in the array instead.");
 		return shopItems[0];
 	}
+
+	public void SetAvailability(bool available, string name)
+	{
+		for (int i = 0; i < shopItems.Length; ++i)
+		{
+			// look for the item with the matching name
+			if (shopItems[i].name == name)
+			{
+				// set its availabilty accordingly
+				shopItems[i].isAvailable = available;
+			}
+		}
+	}
 }
 
 [System.Serializable]
@@ -46,4 +59,5 @@ public struct ShopItem
 	[TextArea(3, 10)]
 	public string description;
 	public int cost;
+	public bool isAvailable;
 }

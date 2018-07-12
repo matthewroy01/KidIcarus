@@ -60,6 +60,7 @@ public class PlayerCollision : MonoBehaviour
 	{
 		UpdateMeters();
 		UpdateUI();
+		CommunicateWithShop();
 
 		if (currentHealth <= 0)
 		{
@@ -119,7 +120,7 @@ public class PlayerCollision : MonoBehaviour
 				StartCoroutine("RestoreHealth");
 				Destroy(other.gameObject);
 			}
-			else if (other.name == "RocFeather(Clone)")
+			else if (other.name == "RocFeather(Clone)" && refPlayerMovement.extraJumps != refPlayerMovement.extraJumpsMax)
 			{
 				refPlayerMovement.extraJumps++;
 				Destroy(other.gameObject);
@@ -148,7 +149,7 @@ public class PlayerCollision : MonoBehaviour
 
 				if (tmp.cost <= hearts)
 				{
-					if (tmp.name == "Small Drink")
+					if (tmp.name == "Small Drink" && currentHealth != maxHealth)
 					{
 						hearts -= tmp.cost;
 						healthToRestore += smallDrinkAmount;
@@ -156,7 +157,7 @@ public class PlayerCollision : MonoBehaviour
 						Destroy(other.gameObject);
 					}
 
-					if (tmp.name == "Large Drink")
+					if (tmp.name == "Large Drink" && currentHealth != maxHealth)
 					{
 						hearts -= tmp.cost;
 						healthToRestore += largeDrinkAmount;
@@ -164,7 +165,7 @@ public class PlayerCollision : MonoBehaviour
 						Destroy(other.gameObject);
 					}
 
-					if (tmp.name == "Roc's Feather")
+					if (tmp.name == "Roc's Feather" && refPlayerMovement.extraJumps != refPlayerMovement.extraJumpsMax)
 					{
 						hearts -= tmp.cost;
 						refPlayerMovement.extraJumps++;
@@ -239,6 +240,23 @@ public class PlayerCollision : MonoBehaviour
 		if (transform.position.y > currentMeters)
 		{
 			currentMeters = (int)transform.position.y;
+		}
+	}
+
+	private void CommunicateWithShop()
+	{
+		if (hasFirstAidKit == true)
+		{
+			refShopInfo.SetAvailability(false, "First Aid Kit");
+		}
+		else
+		{
+			refShopInfo.SetAvailability(true, "First Aid Kit");
+		}
+
+		if (refPlayerMovement.extraJumps >= refPlayerMovement.extraJumpsMax)
+		{
+			refShopInfo.SetAvailability(false, "Roc's Feather");
 		}
 	}
 

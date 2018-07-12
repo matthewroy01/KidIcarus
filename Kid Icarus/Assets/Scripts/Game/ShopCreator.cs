@@ -63,6 +63,7 @@ public class ShopCreator : MonoBehaviour
 			GameObject tmp = Instantiate(possibleItems[toSpawn].obj, (Vector2)transform.position + spawnLocations[spawnCounter], transform.rotation);
 			spawnCounter++;
 
+			// price tag
 			{
 				// instantiate a price tag over the item
 				TextMesh tmpTM = Instantiate(priceTag, (Vector2)tmp.transform.position + priceTagOffset, transform.rotation);
@@ -72,6 +73,7 @@ public class ShopCreator : MonoBehaviour
 				tmpTM.transform.parent = tmp.transform;
 			}
 
+			// text area
 			{
 				// instantiate a text area under the item
 				TextArea tmpTA = Instantiate(textArea, (Vector2)tmp.transform.position + textAreaOffset, transform.rotation);
@@ -94,7 +96,7 @@ public class ShopCreator : MonoBehaviour
 		for (int i = 0; i < alreadyUsed.Count; ++i)
 		{
 			// if we've already used this item, return true
-			if (toCheck == alreadyUsed[i])
+			if (toCheck == alreadyUsed[i] || refShopInfo.shopItems[toCheck].isAvailable == false)
 			{
 				return true;
 			}
