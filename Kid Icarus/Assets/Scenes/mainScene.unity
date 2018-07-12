@@ -5238,7 +5238,7 @@ Transform:
   - {fileID: 1301129771}
   - {fileID: 2022330208}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &690602500
 MonoBehaviour:
@@ -5883,52 +5883,6 @@ MonoBehaviour:
   shakePrevRotation: {x: 0, y: 0, z: 0}
   shakeIntensity: 0
   shakeDuration: 0
---- !u!1001 &1016146555
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4154687067354534, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 8.522653
-      objectReference: {fileID: 0}
-    - target: {fileID: 4154687067354534, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 7.8266783
-      objectReference: {fileID: 0}
-    - target: {fileID: 4154687067354534, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4154687067354534, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4154687067354534, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4154687067354534, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4154687067354534, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4154687067354534, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1309213865734988, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
-      propertyPath: m_Name
-      value: FirstAidKit(Clone)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1049197375
 GameObject:
   m_ObjectHideFlags: 0
@@ -16536,7 +16490,7 @@ Transform:
   - {fileID: 807967576}
   - {fileID: 1689172961}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1861488120
 GameObject:
