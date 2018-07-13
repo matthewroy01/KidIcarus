@@ -5674,22 +5674,12 @@ MonoBehaviour:
   - name: First Aid Kit
     obj: {fileID: 1309213865734988, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
     description: Removes the Eggplant Curse. Can be stored for later.
-    cost: 0
+    cost: 20
     isAvailable: 1
   - name: Kiddie Size Drink
     obj: {fileID: 1370745428962280, guid: af23a75a027c65b4396f267705b2bfed, type: 2}
     description: For those guilty moments. Restores 1 unit of life.
     cost: 15
-    isAvailable: 1
-  - name: Icon of Light
-    obj: {fileID: 1487862482214924, guid: 8947380d66b586e47ba9078df47ce479, type: 2}
-    description: Icon of the Goddess of Light. May grant luck.
-    cost: 80
-    isAvailable: 1
-  - name: Icon of Nature
-    obj: {fileID: 1952731473859810, guid: 7f1184e1b318cf54186847763e4dcd98, type: 2}
-    description: Icon of the Goddess of Nature. May bring you closer to nature.
-    cost: 80
     isAvailable: 1
   emptyItem:
     name: Empty
@@ -11533,19 +11523,19 @@ MonoBehaviour:
   shops: []
   waitToSpawnEnemies: 1
   enemies:
-  - obj: {fileID: 1194326722190070, guid: e5179478419fddf4e8614436b979f88d, type: 2}
-    limitSpawns: 1
   - obj: {fileID: 1040655999123246, guid: 49bb6c8ddccecf74b9c07601a342c6d0, type: 2}
     limitSpawns: 1
-  - obj: {fileID: 1275306939347786, guid: 2bffa755fb6048244aa265ac4a7dc9cb, type: 2}
-    limitSpawns: 0
+  - obj: {fileID: 1194326722190070, guid: e5179478419fddf4e8614436b979f88d, type: 2}
+    limitSpawns: 1
   - obj: {fileID: 1784919452603194, guid: 2265cdade982b69419f547e7b291baca, type: 2}
     limitSpawns: 0
+  - obj: {fileID: 1275306939347786, guid: 2bffa755fb6048244aa265ac4a7dc9cb, type: 2}
+    limitSpawns: 0
   - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 2}
     limitSpawns: 1
-  - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 2}
+  - obj: {fileID: 1141117070903062, guid: 18019a28288d92c4bae661d0a6e0248d, type: 2}
     limitSpawns: 1
-  enemiesToSpawn: 2
+  enemiesToSpawn: 1
   maxAge: 2
   currentY: 0
   defaultX: 0

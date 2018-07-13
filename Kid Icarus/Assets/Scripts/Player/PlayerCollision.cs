@@ -68,6 +68,12 @@ public class PlayerCollision : MonoBehaviour
 			Death();
 		}
 
+		if (hasFirstAidKit == true && cursed == true)
+		{
+			hasFirstAidKit = false;
+			cursed = false;
+		}
+
 		if (healthToRestore == 0)
 		{
 			StopCoroutine("RestoreHealth");
@@ -79,6 +85,11 @@ public class PlayerCollision : MonoBehaviour
 		if (other.CompareTag("InstantDeath"))
 		{
 			Death();
+		}
+
+		if (other.CompareTag("Eggplant"))
+		{
+			cursed = true;
 		}
 
 		if (other.CompareTag("Pickup"))
