@@ -162,7 +162,7 @@ MonoBehaviour:
   spawnLocation: {x: 0, y: -0.5}
   inhale:
     clip: {fileID: 8300000, guid: f6f6b42709727064a903b2f59c0bfac3, type: 3}
-    volume: 0.25
+    volume: 0.5
   sneeze:
     clip: {fileID: 8300000, guid: 8d7239c4ecd90584e91b005aec6ee79d, type: 3}
     volume: 0.75

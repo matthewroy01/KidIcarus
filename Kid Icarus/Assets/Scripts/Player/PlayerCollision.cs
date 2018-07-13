@@ -8,6 +8,7 @@ public class PlayerCollision : MonoBehaviour
 {
 	[Header("Score")]
 	public int hearts;
+	public int sale = 1;
 
 	[Header("Health")]
 	public int maxHealth;
@@ -16,13 +17,14 @@ public class PlayerCollision : MonoBehaviour
 	public float invincibilityTime;
 	private bool canGetHit = true;
 	public bool inSafeZone = false;
+	public bool constantHealthRegen = false;
 
 	[Header("Drink of the Gods")]
 	public int kiddieDrinkAmount;
 	public int smallDrinkAmount;
 	public int largeDrinkAmount;
 	public float healthRestoreInterval;
-	private int healthToRestore;
+	public int healthToRestore;
 
 	[Header("Centurion")]
 	public GameObject centurionPrefab;
@@ -31,6 +33,9 @@ public class PlayerCollision : MonoBehaviour
 	[Header("Eggplant Curse")]
 	public bool cursed;
 	public bool hasFirstAidKit;
+
+	[Header("Icons")]
+	public GameObject iconOfLightPrefab;
 
 	[Header("UI")]
 	public Text textHearts;
@@ -62,18 +67,23 @@ public class PlayerCollision : MonoBehaviour
 		UpdateUI();
 		CommunicateWithShop();
 
+		// death
 		if (currentHealth <= 0)
 		{
 			currentHealth = 0;
+			SetConstantHealthRegen(false, 0);
+			healthToRestore = 0;
 			Death();
 		}
 
+		// curse and first aid
 		if (hasFirstAidKit == true && cursed == true)
 		{
 			hasFirstAidKit = false;
 			cursed = false;
 		}
 
+		// stopping the health restoration coroutine
 		if (healthToRestore == 0)
 		{
 			StopCoroutine("RestoreHealth");
@@ -158,11 +168,12 @@ public class PlayerCollision : MonoBehaviour
 				// shop items
 				ShopItem tmp = refShopInfo.getItem(other.name);
 
-				if (tmp.cost <= hearts)
+				if (tmp.cost / sale <= hearts)
 				{
 					if (tmp.name == "Small Drink" && currentHealth != maxHealth)
 					{
-						hearts -= tmp.cost;
+						hearts -= tmp.cost / sale;
+						sale = 1;
 						healthToRestore += smallDrinkAmount;
 						StartCoroutine("RestoreHealth");
 						Destroy(other.gameObject);
@@ -170,7 +181,8 @@ public class PlayerCollision : MonoBehaviour
 
 					if (tmp.name == "Large Drink" && currentHealth != maxHealth)
 					{
-						hearts -= tmp.cost;
+						hearts -= tmp.cost / sale;
+						sale = 1;
 						healthToRestore += largeDrinkAmount;
 						StartCoroutine("RestoreHealth");
 						Destroy(other.gameObject);
@@ -178,7 +190,8 @@ public class PlayerCollision : MonoBehaviour
 
 					if (tmp.name == "Kiddie Size Drink" && currentHealth != maxHealth)
 					{
-						hearts -= tmp.cost;
+						hearts -= tmp.cost / sale;
+						sale = 1;
 						healthToRestore += kiddieDrinkAmount;
 						StartCoroutine("RestoreHealth");
 						Destroy(other.gameObject);
@@ -186,14 +199,16 @@ public class PlayerCollision : MonoBehaviour
 
 					if (tmp.name == "Roc's Feather" && refPlayerMovement.extraJumps != refPlayerMovement.extraJumpsMax)
 					{
-						hearts -= tmp.cost;
+						hearts -= tmp.cost / sale;
+						sale = 1;
 						refPlayerMovement.extraJumps++;
 						Destroy(other.gameObject);
 					}
 
 					if (tmp.name == "Centurion Assist" && hasCenturion == false)
 					{
-						hearts -= tmp.cost;
+						hearts -= tmp.cost / sale;
+						sale = 1;
 						hasCenturion = true;
 						Instantiate(centurionPrefab, other.transform.position, transform.rotation);
 						Destroy(other.gameObject);
@@ -201,7 +216,8 @@ public class PlayerCollision : MonoBehaviour
 
 					if (tmp.name == "Divine Ward")
 					{
-						hearts -= tmp.cost;
+						hearts -= tmp.cost / sale;
+						sale = 1;
 						GameObject tmpOrne = GameObject.Find("Orne");
 						tmpOrne.transform.position = new Vector2(tmpOrne.transform.position.x, tmpOrne.transform.position.y - 50.0f);
 						Destroy(other.gameObject);
@@ -209,20 +225,25 @@ public class PlayerCollision : MonoBehaviour
 
 					if (tmp.name == "First Aid Kit" && !hasFirstAidKit)
 					{
-						hearts -= tmp.cost;
+						hearts -= tmp.cost / sale;
+						sale = 1;
 						hasFirstAidKit = true;
 						Destroy(other.gameObject);
 					}
 
 					if (tmp.name == "Icon of Light")
 					{
-						hearts -= tmp.cost;
+						hearts -= tmp.cost / sale;
+						sale = 1;
+						GameObject tmpIcon = Instantiate(iconOfLightPrefab, transform.position, transform.rotation);
+						tmpIcon.transform.parent = gameObject.transform;
 						Destroy(other.gameObject);
 					}
 
 					if (tmp.name == "Icon of Nature")
 					{
-						hearts -= tmp.cost;
+						hearts -= tmp.cost / sale;
+						sale = 1;
 						Destroy(other.gameObject);
 					}
 				}
@@ -354,14 +375,23 @@ public class PlayerCollision : MonoBehaviour
 			if (currentHealth < maxHealth && currentHealth > 0)
 			{
 				currentHealth++;
-				healthToRestore--;
+
+				if (constantHealthRegen == false)
+				{
+					healthToRestore--;
+				}
 				refPlayerAudio.PlayGetHealth();
 
 				yield return new WaitForSeconds(healthRestoreInterval);
 			}
 			else
 			{
-				healthToRestore = 0;
+				if (constantHealthRegen == false)
+				{
+					healthToRestore = 0;
+				}
+
+				yield return new WaitForSeconds(healthRestoreInterval);
 			}
 		}
 	}
@@ -369,5 +399,18 @@ public class PlayerCollision : MonoBehaviour
 	public int getCurrentMeters()
 	{
 		return currentMeters;
+	}
+
+	public void SetConstantHealthRegen(bool regen, int duration)
+	{
+		constantHealthRegen = regen;
+		healthToRestore++;
+		StartCoroutine("RestoreHealth");
+		Invoke("StopConstantHealthRegen", duration);
+	}
+
+	public void StopConstantHealthRegen()
+	{
+		constantHealthRegen = false;	
 	}
 }

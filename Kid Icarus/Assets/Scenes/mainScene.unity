@@ -5301,20 +5301,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hearts: 0
+  sale: 1
   maxHealth: 8
   currentHealth: 0
   isDead: 0
   invincibilityTime: 1
   inSafeZone: 0
+  constantHealthRegen: 0
   kiddieDrinkAmount: 1
   smallDrinkAmount: 2
   largeDrinkAmount: 4
-  healthRestoreInterval: 0.2
+  healthRestoreInterval: 0.3
+  healthToRestore: 0
   centurionPrefab: {fileID: 1313922069599002, guid: fb021aee81b488b44990ae684cf3cb3e,
     type: 2}
   hasCenturion: 0
   cursed: 0
   hasFirstAidKit: 0
+  iconOfLightPrefab: {fileID: 1283462600318328, guid: f69f54daaae1bfc4fbde5f7216696959,
+    type: 2}
   textHearts: {fileID: 1861488122}
   textMeters: {fileID: 2015839446}
   startingMeterOffset: -4
@@ -5680,6 +5685,11 @@ MonoBehaviour:
     obj: {fileID: 1370745428962280, guid: af23a75a027c65b4396f267705b2bfed, type: 2}
     description: For those guilty moments. Restores 1 unit of life.
     cost: 15
+    isAvailable: 1
+  - name: Icon of Light
+    obj: {fileID: 1487862482214924, guid: 8947380d66b586e47ba9078df47ce479, type: 2}
+    description: An icon of the Goddess of Light. May grant luck.
+    cost: 50
     isAvailable: 1
   emptyItem:
     name: Empty
@@ -6621,7 +6631,7 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 2022330208}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11535,7 +11545,7 @@ MonoBehaviour:
     limitSpawns: 1
   - obj: {fileID: 1141117070903062, guid: 18019a28288d92c4bae661d0a6e0248d, type: 2}
     limitSpawns: 1
-  enemiesToSpawn: 1
+  enemiesToSpawn: 2
   maxAge: 2
   currentY: 0
   defaultX: 0
@@ -11634,7 +11644,7 @@ Transform:
   - {fileID: 1811826561}
   - {fileID: 325408053}
   m_Father: {fileID: 2022330208}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574327852
 GameObject:
@@ -16592,6 +16602,95 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0.7372549, a: 1}
   m_EffectDistance: {x: 10, y: 10}
   m_UseGraphicAlpha: 1
+--- !u!1 &1929404135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1929404136}
+  - component: {fileID: 1929404139}
+  - component: {fileID: 1929404138}
+  - component: {fileID: 1929404137}
+  m_Layer: 5
+  m_Name: textGoddess
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1929404136
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1929404135}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.49996877, y: 0.49996877, z: 1.0000147}
+  m_Children: []
+  m_Father: {fileID: 2022330208}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.00000023841858, y: -294.9}
+  m_SizeDelta: {x: 2608.2, y: 331.4}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1929404137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1929404135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
+--- !u!114 &1929404138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1929404135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.34509805, g: 0.8470589, b: 0.32941177, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 336888b719a94c34faa2d459a2e96df3, type: 3}
+    m_FontSize: 150
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 150
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1929404139
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1929404135}
 --- !u!1 &2015839443
 GameObject:
   m_ObjectHideFlags: 0
@@ -16714,6 +16813,7 @@ RectTransform:
   - {fileID: 1234493925}
   - {fileID: 1797996021}
   - {fileID: 786031045}
+  - {fileID: 1929404136}
   - {fileID: 1214328501}
   - {fileID: 1520897579}
   m_Father: {fileID: 690602499}

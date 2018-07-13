@@ -146,4 +146,14 @@ public class EnemyOrne : MonoBehaviour
 	{
 		movSpeed = defaultMovSpeed + (int)(refPlayerCollision.getCurrentMeters() / everyThisAmountOfMeters) * increaseMovSpeedBy;
 	}
+
+	public float GetDefaultMovSpeed()
+	{
+		return defaultMovSpeed;
+	}
+
+	public void SetDefaultMovSpeed(float newValue)
+	{
+		defaultMovSpeed = newValue;
+	}
 }
