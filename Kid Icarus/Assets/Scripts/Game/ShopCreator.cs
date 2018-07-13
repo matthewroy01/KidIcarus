@@ -8,7 +8,7 @@ public class ShopCreator : MonoBehaviour
 
 	[Header("List of items we can spawn")]
 	public ShopItem[] possibleItems;
-	private List<int> alreadyUsed;
+	public List<int> alreadyUsed;
 
 	[Header("Length of this array determines the number of items to spawn in the shop")]
 	public Vector2[] spawnLocations;
@@ -43,6 +43,9 @@ public class ShopCreator : MonoBehaviour
 		for (int i = 0; i < spawnLocations.Length; ++i)
 		{
 			int toSpawn;
+
+			// prematurely add unavailable items to the "already used" list
+			RemoveUnavailableItems();
 
 			do
 			{
@@ -96,13 +99,25 @@ public class ShopCreator : MonoBehaviour
 		for (int i = 0; i < alreadyUsed.Count; ++i)
 		{
 			// if we've already used this item, return true
-			if (toCheck == alreadyUsed[i] || refShopInfo.shopItems[toCheck].isAvailable == false)
+			if (toCheck == alreadyUsed[i])
 			{
 				return true;
 			}
 		}
 		// otherwise we're good
 		return false;
+	}
+
+	private void RemoveUnavailableItems()
+	{
+		for (int i = 0; i < possibleItems.Length; ++i)
+		{
+			// if the item isn't available, prematurely add it to the "alreadyUsed" list
+			if (possibleItems[i].isAvailable == false)
+			{
+				alreadyUsed.Add(i);
+			}
+		}
 	}
 
 	void RemoveCollider()

@@ -165,6 +165,14 @@ public class PlayerCollision : MonoBehaviour
 						Destroy(other.gameObject);
 					}
 
+					if (tmp.name == "Kiddie Size Drink" && currentHealth != maxHealth)
+					{
+						hearts -= tmp.cost;
+						healthToRestore += kiddieDrinkAmount;
+						StartCoroutine("RestoreHealth");
+						Destroy(other.gameObject);
+					}
+
 					if (tmp.name == "Roc's Feather" && refPlayerMovement.extraJumps != refPlayerMovement.extraJumpsMax)
 					{
 						hearts -= tmp.cost;
@@ -192,6 +200,18 @@ public class PlayerCollision : MonoBehaviour
 					{
 						hearts -= tmp.cost;
 						hasFirstAidKit = true;
+						Destroy(other.gameObject);
+					}
+
+					if (tmp.name == "Icon of Light")
+					{
+						hearts -= tmp.cost;
+						Destroy(other.gameObject);
+					}
+
+					if (tmp.name == "Icon of Nature")
+					{
+						hearts -= tmp.cost;
 						Destroy(other.gameObject);
 					}
 				}
@@ -245,6 +265,7 @@ public class PlayerCollision : MonoBehaviour
 
 	private void CommunicateWithShop()
 	{
+		// first aid kit availability
 		if (hasFirstAidKit == true)
 		{
 			refShopInfo.SetAvailability(false, "First Aid Kit");
@@ -254,9 +275,20 @@ public class PlayerCollision : MonoBehaviour
 			refShopInfo.SetAvailability(true, "First Aid Kit");
 		}
 
+		// roc's feather availability
 		if (refPlayerMovement.extraJumps >= refPlayerMovement.extraJumpsMax)
 		{
 			refShopInfo.SetAvailability(false, "Roc's Feather");
+		}
+
+		// centurion availability
+		if (hasCenturion == true)
+		{
+			refShopInfo.SetAvailability(false, "Centurion Assist");
+		}
+		else
+		{
+			refShopInfo.SetAvailability(true, "Centurion Assist");
 		}
 	}
 

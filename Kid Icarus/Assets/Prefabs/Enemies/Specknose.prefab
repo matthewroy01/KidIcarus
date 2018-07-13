@@ -153,13 +153,19 @@ MonoBehaviour:
   detectionDistance: 5
   meleeDistance: 1
   canAttack: 1
-  timeUntilAttack: 0.2
-  attackDuration: 0.1
+  timeUntilAttack: 0.4
+  attackDuration: 0.2
   attackCooldown: 0.5
   isAttacking: 0
   meleeHitbox: {fileID: 1766588535338040, guid: 31147e2f00d97e04e844b932cbab7ed6,
     type: 2}
   spawnLocation: {x: 0, y: -0.5}
+  inhale:
+    clip: {fileID: 8300000, guid: f6f6b42709727064a903b2f59c0bfac3, type: 3}
+    volume: 0.25
+  sneeze:
+    clip: {fileID: 8300000, guid: 8d7239c4ecd90584e91b005aec6ee79d, type: 3}
+    volume: 0.75
 --- !u!212 &212199038555573650
 SpriteRenderer:
   m_ObjectHideFlags: 1

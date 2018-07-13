@@ -28,15 +28,23 @@ public class EnemyHomeAndMelee : MonoBehaviour
 	public GameObject meleeHitbox;
 	public Vector2 spawnLocation;
 
+	[Header("Sound")]
+	public Sound inhale;
+	public Sound sneeze;
+
 	private Enemy refEnemy;
 	private GameObject refPlayer;
 	private Rigidbody2D rb;
+	private Animator refAnimator;
+	private UtilityAudioManager refAudioManager;
 
 	void Start ()
 	{
 		refEnemy = GetComponent<Enemy>();
 		refPlayer = GameObject.FindGameObjectWithTag("Player");
 		rb = GetComponent<Rigidbody2D>();
+		refAnimator = GetComponent<Animator>();
+		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
 
 		StartCoroutine("ChangeDirection");
 	}
@@ -119,28 +127,47 @@ public class EnemyHomeAndMelee : MonoBehaviour
 
 	private void Melee()
 	{
+		refAnimator.SetTrigger("Sneeze");
+
+		refAudioManager.PlaySound(inhale.clip, inhale.volume, true);
+
 		Invoke("MeleeSpawn", timeUntilAttack);
 	}
 
 	private void MeleeSpawn()
 	{
-		// spawn the attack hitbox
-		Instantiate(meleeHitbox, (Vector2)transform.position + spawnLocation, transform.rotation);
-		Invoke("MeleeStop", attackDuration);
+		if(refEnemy.isDead == false)
+		{
+			refAnimator.SetTrigger("Sneeze");
+
+			refAudioManager.PlaySound(sneeze.clip, sneeze.volume, true);
+
+			// spawn the attack hitbox
+			Instantiate(meleeHitbox, (Vector2)transform.position + spawnLocation, transform.rotation);
+			Invoke("MeleeStop", attackDuration);
+		}
 	}
 
 	private void MeleeStop()
 	{
-		// stop attacking
-		isAttacking = false;
-		// change targets
-		currentTarget = refPlayer.transform.position;
+		if(refEnemy.isDead == false)
+		{
+			refAnimator.SetTrigger("Sneeze");
 
-		Invoke("MeleeCooldown", attackCooldown);
+			// stop attacking
+			isAttacking = false;
+			// change targets
+			currentTarget = refPlayer.transform.position;
+
+			Invoke("MeleeCooldown", attackCooldown);
+		}
 	}
 
 	private void MeleeCooldown()
 	{
-		canAttack = true;
+		if(refEnemy.isDead == false)
+		{
+			canAttack = true;
+		}
 	}
 }

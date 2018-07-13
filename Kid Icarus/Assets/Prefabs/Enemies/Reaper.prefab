@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7cd68136ad68d4c90e323848b01b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 12
   currentHealth: 0
   hit:
     clip: {fileID: 8300000, guid: 84765fd95692fa4439fa6659e3a4b937, type: 3}
@@ -197,9 +197,6 @@ MonoBehaviour:
   projectileInterval: 0.1
   projectileSpeed: 10
   projectilePos: {fileID: 4778585898130570}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 1280
   isPanicked: 0
   panicTime: 5
   panicSpeed: 3
