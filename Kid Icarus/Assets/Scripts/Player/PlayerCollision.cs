@@ -81,6 +81,7 @@ public class PlayerCollision : MonoBehaviour
 		{
 			hasFirstAidKit = false;
 			cursed = false;
+			refPlayerAudio.PlayCursed(1.25f);
 		}
 
 		// stopping the health restoration coroutine
@@ -100,7 +101,7 @@ public class PlayerCollision : MonoBehaviour
 		if (other.CompareTag("Eggplant"))
 		{
 			cursed = true;
-			refPlayerAudio.PlayCursed();
+			refPlayerAudio.PlayCursed(0.9f);
 		}
 
 		if (other.CompareTag("Pickup"))

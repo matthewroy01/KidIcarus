@@ -56,9 +56,9 @@ public class PlayerAudio : MonoBehaviour
 		refAudioManager.PlaySound(getHealth.clip, getHealth.volume, false);
 	}
 
-	public void PlayCursed()
+	public void PlayCursed(float pitch)
 	{
-		refAudioManager.PlaySound(cursed.clip, cursed.volume, false);
+		refAudioManager.PlaySound(cursed.clip, cursed.volume, pitch);
 	}
 }
 
