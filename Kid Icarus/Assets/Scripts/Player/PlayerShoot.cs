@@ -4,23 +4,32 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-	private PlayerMovement refPlayerMovement;
-	private PlayerAudio refPlayerAudio;
-	private PlayerCollision refPlayerCollision;
-
 	[Header("Shooting arrows")]
 	public float arrowProjectileSpeed;
 	public GameObject arrowObject;
 	public bool lookingUp;
 
+	[Header("Shooting eggplants")]
+	public float eggplantProjecilteSpeed;
+	public GameObject eggplantObject;
+	public int eggplantNum;
+	public float eggplantCooldown;
+	public bool canFireEggplant = true;
+
 	[Header("Melee attack")]
 	public float meleeDuration;
+
+	private PlayerMovement refPlayerMovement;
+	private PlayerAudio refPlayerAudio;
+	private PlayerCollision refPlayerCollision;
+	private Rigidbody2D rb;
 
 	void Start ()
 	{
 		refPlayerMovement = GetComponent<PlayerMovement>();
 		refPlayerAudio = GetComponent<PlayerAudio>();
 		refPlayerCollision = GetComponent<PlayerCollision>();
+		rb = GetComponent<Rigidbody2D>();
 	}
 
 	void Update ()
@@ -29,8 +38,16 @@ public class PlayerShoot : MonoBehaviour
 		if (refPlayerCollision.isDead == false)
 		{
 			CheckLookingUp();
-			Shoot();
-			Melee();
+
+			if (refPlayerCollision.cursed == false)
+			{
+				Shoot();
+				Melee();
+			}
+			else
+			{
+				ShootEggplant();
+			}
 		}
 	}
 
@@ -84,6 +101,29 @@ public class PlayerShoot : MonoBehaviour
 				refPlayerAudio.PlayShoot();
 			}
 		}
+	}
+
+	void ShootEggplant()
+	{
+		int tmpEggplantNum = eggplantNum - Random.Range(0, 1);
+
+		if (Input.GetMouseButtonDown(0) && canFireEggplant)
+		{
+			for (int i = 0; i < tmpEggplantNum; ++i)
+			{
+				Rigidbody2D tmp = Instantiate(eggplantObject, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
+				tmp.velocity = rb.velocity * 0.5f;
+				tmp.AddForce(new Vector2(Random.Range(-1.0f, 1.0f), 1.0f) * eggplantProjecilteSpeed);
+				canFireEggplant = false;
+
+				Invoke("RechargeEggplant", eggplantCooldown);
+			}
+		}
+	}
+
+	void RechargeEggplant()
+	{
+		canFireEggplant = true;
 	}
 
 	void Melee()

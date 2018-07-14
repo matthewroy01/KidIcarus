@@ -14,6 +14,11 @@ public class ShopCreator : MonoBehaviour
 	public Vector2[] spawnLocations;
 	private int spawnCounter = 0;
 
+	[Header("Must spawn this when cursed")]
+	public int curseID;
+	private PlayerCollision refPlayerCollision;
+	private bool alreadySpawned = false;
+
 	[Header("Price tag prefab")]
 	public TextMesh priceTag;
 	public Vector2 priceTagOffset;
@@ -26,6 +31,8 @@ public class ShopCreator : MonoBehaviour
 	{
 		// find the shop info
 		refShopInfo = GameObject.FindObjectOfType<ShopInfo>();
+
+		refPlayerCollision = GameObject.FindObjectOfType<PlayerCollision>();
 
 		possibleItems = refShopInfo.shopItems;
 
@@ -44,23 +51,33 @@ public class ShopCreator : MonoBehaviour
 		{
 			int toSpawn;
 
-			// prematurely add unavailable items to the "already used" list
-			RemoveUnavailableItems();
-
-			do
+			// if cursed, spawn only the first aid hit
+			if (refPlayerCollision.cursed == true && alreadySpawned == false)
 			{
-				// if the lengths are equal, then there are no new items to spawn
-				if (alreadyUsed.Count == possibleItems.Length)
-				{
-					Debug.LogWarning("Number of items to spawn in the shop was greater than the number of possible items.");
-					return;
-				}
-
-				// randomly select a number
-				toSpawn = Random.Range(0, possibleItems.Length);
+				toSpawn = curseID;
+				alreadySpawned = true;
 			}
-			// try again if the number selected was already spawned
-			while(CheckIfAlreadyUsed(toSpawn));
+			// otherwise, work as normal
+			else
+			{
+				// prematurely add unavailable items to the "already used" list
+				RemoveUnavailableItems();
+
+				do
+				{
+					// if the lengths are equal, then there are no new items to spawn
+					if (alreadyUsed.Count == possibleItems.Length)
+					{
+						Debug.LogWarning("Number of items to spawn in the shop was greater than the number of possible items.");
+						return;
+					}
+
+					// randomly select a number
+					toSpawn = Random.Range(0, possibleItems.Length);
+				}
+				// try again if the number selected was already spawned
+				while(CheckIfAlreadyUsed(toSpawn));
+			}
 
 			// instantiate the item
 			GameObject tmp = Instantiate(possibleItems[toSpawn].obj, (Vector2)transform.position + spawnLocations[spawnCounter], transform.rotation);

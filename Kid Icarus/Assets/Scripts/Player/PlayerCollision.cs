@@ -100,6 +100,7 @@ public class PlayerCollision : MonoBehaviour
 		if (other.CompareTag("Eggplant"))
 		{
 			cursed = true;
+			refPlayerAudio.PlayCursed();
 		}
 
 		if (other.CompareTag("Pickup"))
@@ -161,6 +162,12 @@ public class PlayerCollision : MonoBehaviour
 			else if (other.name == "FirstAidKit(Clone)" && !hasFirstAidKit)
 			{
 				hasFirstAidKit = true;
+				Destroy(other.gameObject);
+			}
+			else if (other.name == "IconOfLight(Clone)")
+			{
+				GameObject tmpIcon = Instantiate(iconOfLightPrefab, transform.position, transform.rotation);
+				tmpIcon.transform.parent = gameObject.transform;
 				Destroy(other.gameObject);
 			}
 			else

@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneInThis: 1
   startingM: 0
-  increaseMBy: 10
+  increaseMBy: 150
   targetM: 0
   destroyAfterTime: 10
   goddessText: {fileID: 0}

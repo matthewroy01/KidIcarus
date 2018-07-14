@@ -13,6 +13,7 @@ public class GranterOfLuck : MonoBehaviour
 	public float destroyAfterTime;
 
 	private bool alreadyDecided = false;
+	private bool fadeOut = false;
 
 	[Header("Message")]
 	public Text goddessText;
@@ -34,9 +35,20 @@ public class GranterOfLuck : MonoBehaviour
 		{
 			if (Random.Range(0, oneInThis) == 0)
 			{
+				goddessText.canvasRenderer.SetAlpha(0);//= new Color(goddessText.color.r, goddessText.color.g, goddessText.color.b, 0);
 				alreadyDecided = true;
 				DoRandomEffect();
 			}
+		}
+
+		if (alreadyDecided == true && fadeOut == false)
+		{
+			goddessText.CrossFadeAlpha(1, 1.0f, false);
+		}
+
+		if (fadeOut == true)
+		{
+			goddessText.CrossFadeAlpha(0, 1.0f, false);
 		}
 	}
 
@@ -72,7 +84,13 @@ public class GranterOfLuck : MonoBehaviour
 			}
 		}
 
+		Invoke("FadeOut", destroyAfterTime - 1.5f);
 		Invoke("Dest", destroyAfterTime);
+	}
+
+	private void FadeOut()
+	{
+		fadeOut = true;
 	}
 
 	private void Dest()

@@ -5255,6 +5255,12 @@ MonoBehaviour:
   arrowObject: {fileID: 1198780200618238, guid: ff7d31cf652bbac4eae88ab57b251b70,
     type: 2}
   lookingUp: 0
+  eggplantProjecilteSpeed: 300
+  eggplantObject: {fileID: 1198780200618238, guid: 8616dbb6c1a11054284e6122453c946a,
+    type: 2}
+  eggplantNum: 3
+  eggplantCooldown: 0.25
+  canFireEggplant: 1
   meleeDuration: 0
 --- !u!95 &690602501
 Animator:
@@ -5357,6 +5363,9 @@ MonoBehaviour:
   getHealth:
     clip: {fileID: 8300000, guid: acbffab10eae7ee4e91a904514a9a903, type: 3}
     volume: 1
+  cursed:
+    clip: {fileID: 8300000, guid: 92dbd27783234a347af372b5f3a365b8, type: 3}
+    volume: 0.75
 --- !u!70 &690602505
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -6216,7 +6225,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c41aef9897ee6eb4cb3d897f35e609eb, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -6406,7 +6415,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e1ddd72f18b30e7428fd64c0ce6a1368, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

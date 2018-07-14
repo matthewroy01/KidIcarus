@@ -107,13 +107,16 @@ public class PlayerMovement : MonoBehaviour
 		Vector2 movVec = new Vector2(tmpAxis * movSpeed, 0.0f);
 
 		// check the axis to see which direction we should be facing
-		if (tmpAxis > 0)
+		if (!Input.GetKey(KeyCode.LeftShift))
 		{
-			facingRight = true;
-		}
-		if (tmpAxis < 0)
-		{
-			facingRight = false;
+			if (tmpAxis > 0)
+			{
+				facingRight = true;
+			}
+			if (tmpAxis < 0)
+			{
+				facingRight = false;
+			}
 		}
 
 		// movement is not allowed if you're looking up
