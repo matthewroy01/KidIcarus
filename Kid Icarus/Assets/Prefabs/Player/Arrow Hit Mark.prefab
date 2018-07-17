@@ -75,6 +75,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   destroyAfterTime: 0.2
+  doScreenWrapping: 0
 --- !u!212 &212953515470319220
 SpriteRenderer:
   m_ObjectHideFlags: 1

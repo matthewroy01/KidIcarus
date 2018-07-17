@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 		Vector2 movVec = new Vector2(tmpAxis * movSpeed, 0.0f);
 
 		// check the axis to see which direction we should be facing
-		if (!Input.GetKey(KeyCode.LeftShift))
+		if (!Input.GetKey(KeyCode.LeftShift) && refPlayerShoot.isSwinging == false)
 		{
 			if (tmpAxis > 0)
 			{

@@ -15,6 +15,8 @@ public class PlayerAudio : MonoBehaviour
 	public Sound hurt;
 	public Sound getHealth;
 	public Sound cursed;
+	public Sound hammerSwing;
+	public Sound hammerHit;
 
 	void Start()
 	{
@@ -59,6 +61,16 @@ public class PlayerAudio : MonoBehaviour
 	public void PlayCursed(float pitch)
 	{
 		refAudioManager.PlaySound(cursed.clip, cursed.volume, pitch);
+	}
+
+	public void PlayHammerSwing()
+	{
+		refAudioManager.PlaySound(hammerSwing.clip, hammerSwing.volume, true);
+	}
+
+	public void PlayHammerHit()
+	{
+		refAudioManager.PlaySound(hammerHit.clip, hammerHit.volume, true);
 	}
 }
 

@@ -11,6 +11,7 @@ TagManager:
   - SafeZone
   - TextArea
   - Eggplant
+  - Hammer
   layers:
   - Default
   - TransparentFX

@@ -17,7 +17,13 @@ public class PlayerShoot : MonoBehaviour
 	public bool canFireEggplant = true;
 
 	[Header("Melee attack")]
+	public float meleeStartup;
 	public float meleeDuration;
+	public Collider2D hammer;
+	public float meleeCooldown;
+	public bool isSwinging = false;
+	private bool canHammer = true;
+	public ParticleSystem partsHammer;
 
 	private PlayerMovement refPlayerMovement;
 	private PlayerAudio refPlayerAudio;
@@ -30,6 +36,10 @@ public class PlayerShoot : MonoBehaviour
 		refPlayerAudio = GetComponent<PlayerAudio>();
 		refPlayerCollision = GetComponent<PlayerCollision>();
 		rb = GetComponent<Rigidbody2D>();
+
+		// set the hammer to inactive by default
+		hammer.enabled = false;
+		hammer.gameObject.SetActive(false);
 	}
 
 	void Update ()
@@ -42,6 +52,7 @@ public class PlayerShoot : MonoBehaviour
 			if (refPlayerCollision.cursed == false)
 			{
 				Shoot();
+				UpdateHammerPosition();
 				Melee();
 			}
 			else
@@ -126,11 +137,79 @@ public class PlayerShoot : MonoBehaviour
 		canFireEggplant = true;
 	}
 
+	private void UpdateHammerPosition()
+	{
+		if (refPlayerMovement.facingRight)
+		{
+			hammer.transform.position = (Vector2)transform.position + new Vector2(0.375f, 0.0f);
+		}
+		else
+		{
+			hammer.transform.position = (Vector2)transform.position + new Vector2(-0.375f, 0.0f);
+		}
+	}
+
 	void Melee()
 	{
-		if (Input.GetMouseButtonDown(1))
+		if (Input.GetMouseButtonDown(1) && canHammer)
 		{
-			
+			hammer.enabled = false;
+			hammer.gameObject.SetActive(true);
+
+			canHammer = false;
+			isSwinging = true;
+
+			refPlayerAudio.PlayHammerSwing();
+
+			if (refPlayerMovement.facingRight)
+			{
+				hammer.transform.rotation = Quaternion.Euler(Vector3.zero);
+				Invoke("SwingRight", meleeStartup);
+			}
+			else
+			{
+				hammer.transform.rotation = Quaternion.Euler(Vector3.zero);
+				Invoke("SwingLeft", meleeStartup);
+			}
 		}
+	}
+
+	void SwingRight()
+	{
+		hammer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90f));
+		hammer.enabled = true;
+
+		refPlayerAudio.PlayHammerHit();
+
+		partsHammer.Play();
+
+		Invoke("StopSwinging", meleeDuration);
+	}
+
+	void SwingLeft()
+	{
+		hammer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90f));
+		hammer.enabled = true;
+
+		refPlayerAudio.PlayHammerHit();
+
+		partsHammer.Play();
+
+		Invoke("StopSwinging", meleeDuration);
+	}
+
+	void StopSwinging()
+	{
+		hammer.enabled = false;
+		hammer.gameObject.SetActive(false);
+
+		isSwinging = false;
+
+		Invoke("RechargeHammer", meleeCooldown);
+	}
+
+	void RechargeHammer()
+	{
+		canHammer = true;
 	}
 }

@@ -121,6 +121,18 @@ public class Enemy : MonoBehaviour
 			}
 		}
 
+		// when colliding with a hammer, decrease the health
+		if (other.CompareTag("Hammer") == true)
+		{
+			refAudioManager.PlaySound(hit.clip, hit.volume);
+			currentHealth -= 3;
+
+			if (ouch != null)
+			{
+				Instantiate(ouch, transform.position, Quaternion.identity);
+			}
+		}
+
 		// when colliding with the death floor, destroy the object
 		if (other.CompareTag("InstantDeath") == true)
 		{
