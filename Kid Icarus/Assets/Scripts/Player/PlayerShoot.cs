@@ -25,6 +25,12 @@ public class PlayerShoot : MonoBehaviour
 	private bool canHammer = true;
 	public ParticleSystem partsHammer;
 
+	[Header("Melee charge")]
+	public int meleeUsesTotal;
+	public int meleeUsesCurrent;
+	public int meleeChargeTotal;
+	public int meleeChargeCurrent;
+
 	private PlayerMovement refPlayerMovement;
 	private PlayerAudio refPlayerAudio;
 	private PlayerCollision refPlayerCollision;
@@ -40,6 +46,9 @@ public class PlayerShoot : MonoBehaviour
 		// set the hammer to inactive by default
 		hammer.enabled = false;
 		hammer.gameObject.SetActive(false);
+
+		// set hammer charge values
+		meleeUsesCurrent = meleeUsesTotal;
 	}
 
 	void Update ()
@@ -151,8 +160,10 @@ public class PlayerShoot : MonoBehaviour
 
 	void Melee()
 	{
-		if (Input.GetMouseButtonDown(1) && canHammer)
+		if (Input.GetMouseButtonDown(1) && canHammer && meleeUsesCurrent > 0)
 		{
+			meleeUsesCurrent--;
+
 			hammer.enabled = false;
 			hammer.gameObject.SetActive(true);
 
@@ -211,5 +222,27 @@ public class PlayerShoot : MonoBehaviour
 	void RechargeHammer()
 	{
 		canHammer = true;
+	}
+
+	public void IncreaseMeleeCharge(int increaseBy)
+	{
+		if (meleeUsesCurrent < meleeUsesTotal)
+		{
+			// increase charge
+			if (meleeChargeCurrent < meleeChargeTotal)
+			{
+				meleeChargeCurrent += increaseBy;
+			}
+
+			// add a use
+			if (meleeChargeCurrent >= meleeChargeTotal)
+			{
+				meleeChargeCurrent = 0;
+				if (meleeUsesCurrent < meleeUsesTotal)
+				{
+					meleeUsesCurrent++;
+				}
+			}
+		}
 	}
 }

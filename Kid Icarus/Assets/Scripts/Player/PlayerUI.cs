@@ -13,17 +13,26 @@ public class PlayerUI : MonoBehaviour
 
 	private PlayerMovement refMovement;
 	private PlayerCollision refCollision;
+	private PlayerShoot refShoot;
+
+	[Header("Hammer dipslay")]
+	public Text textHammer;
+	public Slider sliderHammer;
 
 	void Start ()
 	{
 		refMovement = GetComponent<PlayerMovement>();
 		refCollision = GetComponent<PlayerCollision>();
+		refShoot = GetComponent<PlayerShoot>();
 
 		// set feathers to inactive at first
 		for (int i = 1; i < feathers.Length; ++i)
 		{
 			feathers[i].SetActive(false);
 		}
+
+		// update the size of the hammer slider for convenience
+		sliderHammer.maxValue = refShoot.meleeChargeTotal;
 	}
 
 	void Update ()
@@ -31,6 +40,16 @@ public class PlayerUI : MonoBehaviour
 		DisplayFeathers();
 		DisplayFirstAidKit();
 
+		DisplayHammerValues();
+	}
+
+	private void DisplayHammerValues()
+	{
+		// hammer durability
+		textHammer.text = refShoot.meleeUsesCurrent.ToString();
+
+		// hammer recharge meter
+		sliderHammer.value = refShoot.meleeChargeCurrent;
 	}
 
 	private void DisplayFeathers()

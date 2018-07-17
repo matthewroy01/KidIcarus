@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212953515470319220}
   - component: {fileID: 95117128174125556}
   - component: {fileID: 114961717228107228}
+  - component: {fileID: 114572405095647678}
   m_Layer: 0
   m_Name: Arrow Hit Mark
   m_TagString: Untagged
@@ -60,6 +61,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114572405095647678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1793277941987778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e1fec107da37e94f82700e0fecd09ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IncreaseChargeBy: 1
 --- !u!114 &114961717228107228
 MonoBehaviour:
   m_ObjectHideFlags: 1
