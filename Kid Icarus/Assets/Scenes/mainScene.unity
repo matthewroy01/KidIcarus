@@ -5329,7 +5329,7 @@ MonoBehaviour:
   eggplantNum: 3
   eggplantCooldown: 0.25
   canFireEggplant: 1
-  meleeStartup: 0.2
+  meleeStartup: 0.15
   meleeDuration: 0.2
   hammer: {fileID: 2009602876}
   meleeCooldown: 0.5
