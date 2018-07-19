@@ -5329,7 +5329,7 @@ MonoBehaviour:
   eggplantNum: 3
   eggplantCooldown: 0.25
   canFireEggplant: 1
-  meleeStartup: 0.15
+  meleeStartup: 0.1
   meleeDuration: 0.2
   hammer: {fileID: 2009602876}
   meleeCooldown: 0.5
@@ -5403,10 +5403,6 @@ MonoBehaviour:
   hasFirstAidKit: 0
   iconOfLightPrefab: {fileID: 1283462600318328, guid: f69f54daaae1bfc4fbde5f7216696959,
     type: 2}
-  textHearts: {fileID: 1861488122}
-  textMeters: {fileID: 2015839446}
-  startingMeterOffset: -4
-  sliderHealth: {fileID: 1797996022}
   textMessages: {fileID: 786031046}
 --- !u!114 &690602504
 MonoBehaviour:
@@ -5475,6 +5471,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44bf119f2dd8464429598f75c8f5bd6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sliderHealth: {fileID: 1797996022}
+  textHeart: {fileID: 1861488122}
+  textHammer: {fileID: 2032505398}
+  sliderHammer: {fileID: 1431605220}
   feathers:
   - {fileID: 22691373}
   - {fileID: 264956269}
@@ -5483,8 +5483,8 @@ MonoBehaviour:
   - {fileID: 1811826560}
   - {fileID: 325408052}
   firstAidKit: {fileID: 1214328500}
-  textHammer: {fileID: 2032505398}
-  sliderHammer: {fileID: 1431605220}
+  textMeters: {fileID: 2015839446}
+  startingMeterOffset: -4
 --- !u!1 &747931975
 GameObject:
   m_ObjectHideFlags: 0
@@ -5939,7 +5939,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 958dae42a811cd14fbbf0a41443d044a, type: 2}
+  - {fileID: 2100000, guid: 93f9d62adacd14f439793e7448ad6ed0, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -5986,7 +5986,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 866030633}
   serializedVersion: 5
-  lengthInSec: 0.1
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 0
   looping: 0
@@ -6111,7 +6111,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -6227,7 +6227,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.15
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6549,7 +6549,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2

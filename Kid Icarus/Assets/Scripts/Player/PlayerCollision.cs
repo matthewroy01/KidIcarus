@@ -38,11 +38,7 @@ public class PlayerCollision : MonoBehaviour
 	public GameObject iconOfLightPrefab;
 
 	[Header("UI")]
-	public Text textHearts;
-	public Text textMeters;
 	private int currentMeters = 0;
-	public int startingMeterOffset;
-	public Slider sliderHealth;
 	public Text textMessages;
 
 	private PlayerAudio refPlayerAudio;
@@ -64,7 +60,6 @@ public class PlayerCollision : MonoBehaviour
 	void Update()
 	{
 		UpdateMeters();
-		UpdateUI();
 		CommunicateWithShop();
 
 		// death
@@ -329,20 +324,6 @@ public class PlayerCollision : MonoBehaviour
 		else
 		{
 			refShopInfo.SetAvailability(true, "Centurion Assist");
-		}
-	}
-
-	private void UpdateUI()
-	{
-		textHearts.text = hearts.ToString();
-		textMeters.text = (currentMeters + startingMeterOffset).ToString() + "m";
-		if (currentHealth != 0)
-		{
-			sliderHealth.value = (float)currentHealth / (float)maxHealth;
-		}
-		else
-		{
-			sliderHealth.value = 0;
 		}
 	}
 

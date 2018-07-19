@@ -29,7 +29,6 @@ public class EnemyEggplant : MonoBehaviour
 	private SpriteRenderer sr;
 	private Animator refAnimator;
 	private GameObject refPlayer;
-	private UtilityMusicManager refMusicManager;
 	private UtilityAudioManager refAudioManager;
 
 	void Start ()
@@ -41,7 +40,6 @@ public class EnemyEggplant : MonoBehaviour
 		sr = GetComponent<SpriteRenderer>();
 		refAnimator = GetComponent<Animator>();
 		refPlayer = GameObject.Find("Pit");
-		refMusicManager = GameObject.FindObjectOfType<UtilityMusicManager>();
 		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
 
 		// if we spawn inside a wall, destroy

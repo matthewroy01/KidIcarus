@@ -5,19 +5,29 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
+	[Header("Health display")]
+	public Slider sliderHealth;
+
+	[Header("Heart display")]
+	public Text textHeart;
+
+	[Header("Hammer dipslay")]
+	public Text textHammer;
+	public Slider sliderHammer;
+
 	[Header("Feather display")]
 	public GameObject[] feathers;
 
 	[Header("First Aid Kit display")]
 	public GameObject firstAidKit;
 
+	[Header("Meters display")]
+	public Text textMeters;
+	public int startingMeterOffset;
+
 	private PlayerMovement refMovement;
 	private PlayerCollision refCollision;
 	private PlayerShoot refShoot;
-
-	[Header("Hammer dipslay")]
-	public Text textHammer;
-	public Slider sliderHammer;
 
 	void Start ()
 	{
@@ -37,10 +47,12 @@ public class PlayerUI : MonoBehaviour
 
 	void Update ()
 	{
+		DisplayHealth();
+		DisplayHearts();
+		DisplayHammerValues();
 		DisplayFeathers();
 		DisplayFirstAidKit();
-
-		DisplayHammerValues();
+		DisplayMeters();
 	}
 
 	private void DisplayHammerValues()
@@ -71,5 +83,32 @@ public class PlayerUI : MonoBehaviour
 		{
 			firstAidKit.SetActive(false);
 		}
+	}
+
+	private void DisplayHealth()
+	{
+		// get values from collision script
+		float tmpCurrentHealth = (float)refCollision.currentHealth;
+		float tmpMaxHealth =  (float)refCollision.maxHealth;
+
+		// set values of the slider
+		if (tmpCurrentHealth != 0)
+		{
+			sliderHealth.value = tmpCurrentHealth / tmpMaxHealth;
+		}
+		else
+		{
+			sliderHealth.value = 0;
+		}
+	}
+
+	private void DisplayHearts()
+	{
+		textHeart.text = refCollision.hearts.ToString();
+	}
+
+	private void DisplayMeters()
+	{
+		textMeters.text = (refCollision.getCurrentMeters() + startingMeterOffset).ToString() + "m";
 	}
 }
