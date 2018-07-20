@@ -101,7 +101,7 @@ public class UtilityMusicManager : MonoBehaviour
 
 		// update the status
 		musicStatus = newStatus;
-		Debug.Log("Changing sound to " + newStatus);
+		// Debug.Log("Changing sound to " + newStatus);
 	}
 
 	public MusicStatus GetMusicStatus()

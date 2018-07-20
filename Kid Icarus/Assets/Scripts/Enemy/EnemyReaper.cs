@@ -154,7 +154,7 @@ public class EnemyReaper : MonoBehaviour
 
 	private void Patrol()
 	{
-		Debug.Log("Patrolling");
+		// Debug.Log("Patrolling");
 
 		if (doRandomWait == true)
 		{
@@ -184,7 +184,7 @@ public class EnemyReaper : MonoBehaviour
 
 	private void Chase()
 	{
-		Debug.Log("Chasing");
+		// Debug.Log("Chasing");
 		// change direction based on where the player is
 		facingRight = CheckForOptimalDirection();
 

@@ -15,8 +15,8 @@ public class InfiniteGenerator : MonoBehaviour
 	private int waitToSpawnEnemiesCount = 0;
 
 	[Header("List of enemies")]
-	public EnemyToSpawn[] enemies;
 	public int enemiesToSpawn;
+	public EnemyToSpawn[] enemies;
 
 	[Header("Maximum value for keeping track of priority")]
 	public int maxAge;
@@ -172,6 +172,13 @@ public class InfiniteGenerator : MonoBehaviour
 				while(CheckForRepeats(tmp, limitedSpawn) == true);
 
 				Instantiate(enemies[tmp].obj, new Vector2(randX, randY), Quaternion.identity);
+
+				// if the enemy that was spawned is linked to something else, prevent that thing from spawning
+				if (enemies[tmp].linkedTo >= 0)
+				{
+					// Debug.Log("Enemy at " + tmp + " prevent enemy at " + enemies[tmp].linkedTo + " from spawning.");
+					limitedSpawn.Add(enemies[tmp].linkedTo);
+				}
 	
 				// if spawns are limited, add it to the list so we don't spawn more
 				if (enemies[tmp].limitSpawns == true)
@@ -223,4 +230,5 @@ public class EnemyToSpawn
 {
 	public GameObject obj;
 	public bool limitSpawns;
+	public int linkedTo = -1;
 }
