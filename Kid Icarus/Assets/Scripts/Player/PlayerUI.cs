@@ -21,6 +21,9 @@ public class PlayerUI : MonoBehaviour
 	[Header("First Aid Kit display")]
 	public GameObject firstAidKit;
 
+   [Header("Centurions display")]
+   public Text textCenturions;
+
 	[Header("Meters display")]
 	public Text textMeters;
 	public int startingMeterOffset;
@@ -52,6 +55,7 @@ public class PlayerUI : MonoBehaviour
 		DisplayHammerValues();
 		DisplayFeathers();
 		DisplayFirstAidKit();
+      DisplayCenturions();
 		DisplayMeters();
 	}
 
@@ -106,6 +110,11 @@ public class PlayerUI : MonoBehaviour
 	{
 		textHeart.text = refCollision.hearts.ToString();
 	}
+
+   private void DisplayCenturions()
+   {
+      textCenturions.text = refShoot.centurionsStored.ToString();
+   }
 
 	private void DisplayMeters()
 	{

@@ -24,6 +24,7 @@ public class PlayerShoot : MonoBehaviour
 	public bool isSwinging = false;
 	private bool canHammer = true;
 	public ParticleSystem partsHammer;
+   private CameraFollow refCameraFollow;
 
 	[Header("Melee charge")]
 	public int meleeUsesTotal;
@@ -31,7 +32,12 @@ public class PlayerShoot : MonoBehaviour
 	public int meleeChargeTotal;
 	public int meleeChargeCurrent;
 
-	private PlayerMovement refPlayerMovement;
+   [Header("Centurions")]
+   public bool hasCenturion = false;
+   public int centurionsStored = 0;
+   public GameObject centurionPrefab;
+
+   private PlayerMovement refPlayerMovement;
 	private PlayerAudio refPlayerAudio;
 	private PlayerCollision refPlayerCollision;
 	private Rigidbody2D rb;
@@ -42,6 +48,7 @@ public class PlayerShoot : MonoBehaviour
 		refPlayerAudio = GetComponent<PlayerAudio>();
 		refPlayerCollision = GetComponent<PlayerCollision>();
 		rb = GetComponent<Rigidbody2D>();
+      refCameraFollow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
 
 		// set the hammer to inactive by default
 		hammer.enabled = false;
@@ -57,6 +64,7 @@ public class PlayerShoot : MonoBehaviour
 		if (refPlayerCollision.isDead == false)
 		{
 			CheckLookingUp();
+         SpawnCenturions();
 
 			if (refPlayerCollision.cursed == false)
 			{
@@ -194,6 +202,8 @@ public class PlayerShoot : MonoBehaviour
 
 		partsHammer.Play();
 
+      refCameraFollow.StartShake(0.1f, 0.5f);
+
 		Invoke("StopSwinging", meleeDuration);
 	}
 
@@ -206,7 +216,9 @@ public class PlayerShoot : MonoBehaviour
 
 		partsHammer.Play();
 
-		Invoke("StopSwinging", meleeDuration);
+      refCameraFollow.StartShake(0.1f, 0.5f);
+
+      Invoke("StopSwinging", meleeDuration);
 	}
 
 	void StopSwinging()
@@ -245,4 +257,18 @@ public class PlayerShoot : MonoBehaviour
 			}
 		}
 	}
+
+   private void SpawnCenturions()
+   {
+      if (Input.GetKeyDown(KeyCode.E))
+      {
+         // if we have centurions stored and we don't already have a centurion equipped, spawn one
+         if (centurionsStored > 0 && hasCenturion == false)
+         {
+            Instantiate(centurionPrefab, transform.position, transform.rotation);
+            hasCenturion = true;
+            centurionsStored--;
+         }
+      }
+   }
 }

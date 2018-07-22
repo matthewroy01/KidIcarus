@@ -25,6 +25,7 @@ public class CenturionFollow : MonoBehaviour
 
 	private PlayerMovement refPlayerMovement;
 	private PlayerCollision refPlayerCollision;
+   private PlayerShoot refPlayerShoot;
 	private Transform refPlayer;
 	private SpriteRenderer sr;
 	private Rigidbody2D rb;
@@ -34,6 +35,7 @@ public class CenturionFollow : MonoBehaviour
 	{
 		refPlayerMovement = GameObject.FindObjectOfType<PlayerMovement>();
 		refPlayerCollision = GameObject.FindObjectOfType<PlayerCollision>();
+      refPlayerShoot = GameObject.FindObjectOfType<PlayerShoot>();
 		refPlayer = GameObject.FindGameObjectWithTag("Player").transform;
 		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
 		sr = GetComponent<SpriteRenderer>();
@@ -50,7 +52,7 @@ public class CenturionFollow : MonoBehaviour
 		{
 			isDead = true;
 			refAudioManager.PlaySound(death.clip, death.volume, 1.5f);
-			refPlayerCollision.hasCenturion = false;
+			refPlayerShoot.hasCenturion = false;
 		}
 
 		if (isDead == false)

@@ -26,10 +26,6 @@ public class PlayerCollision : MonoBehaviour
 	public float healthRestoreInterval;
 	public int healthToRestore;
 
-	[Header("Centurion")]
-	public GameObject centurionPrefab;
-	public bool hasCenturion = false;
-
 	[Header("Eggplant Curse")]
 	public bool cursed;
 	public bool hasFirstAidKit;
@@ -43,6 +39,7 @@ public class PlayerCollision : MonoBehaviour
 
 	private PlayerAudio refPlayerAudio;
 	private PlayerMovement refPlayerMovement;
+   private PlayerShoot refPlayerShoot;
 	private ShopInfo refShopInfo;
 	private UtilityMusicManager refMusicManager;
 
@@ -50,6 +47,7 @@ public class PlayerCollision : MonoBehaviour
 	{
 		refPlayerAudio = GetComponent<PlayerAudio>();
 		refPlayerMovement = GetComponent<PlayerMovement>();
+      refPlayerShoot = GetComponent<PlayerShoot>();
 
 		refShopInfo = GameObject.FindObjectOfType<ShopInfo>();
 		refMusicManager = GameObject.FindObjectOfType<UtilityMusicManager>();
@@ -143,10 +141,9 @@ public class PlayerCollision : MonoBehaviour
 				refPlayerMovement.extraJumps++;
 				Destroy(other.gameObject);
 			}
-			else if (other.name == "CenturionAssist(Clone)" && hasCenturion == false)
+			else if (other.name == "CenturionAssist(Clone)")
 			{
-				hasCenturion = true;
-				Instantiate(centurionPrefab, other.transform.position, transform.rotation);
+            refPlayerShoot.centurionsStored++;
 				Destroy(other.gameObject);
 			}
 			else if (other.name == "DivineWard(Clone)")
@@ -208,12 +205,11 @@ public class PlayerCollision : MonoBehaviour
 						Destroy(other.gameObject);
 					}
 
-					if (tmp.name == "Centurion Assist" && hasCenturion == false)
+					if (tmp.name == "Centurion Assist")
 					{
 						hearts -= tmp.cost / sale;
 						sale = 1;
-						hasCenturion = true;
-						Instantiate(centurionPrefab, other.transform.position, transform.rotation);
+                  refPlayerShoot.centurionsStored++;
 						Destroy(other.gameObject);
 					}
 
@@ -317,14 +313,14 @@ public class PlayerCollision : MonoBehaviour
 		}
 
 		// centurion availability
-		if (hasCenturion == true)
+		/*if (refPlayerShoot.hasCenturion == true)
 		{
 			refShopInfo.SetAvailability(false, "Centurion Assist");
 		}
 		else
 		{
 			refShopInfo.SetAvailability(true, "Centurion Assist");
-		}
+		}*/
 	}
 
 	private void StopInvincibility()

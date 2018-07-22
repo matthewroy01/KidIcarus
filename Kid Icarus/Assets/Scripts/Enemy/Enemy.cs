@@ -10,6 +10,10 @@ public class Enemy : MonoBehaviour
 	public Sound hit;
 	public GameObject ouch;
 
+   [Header("Immunities")]
+   public bool immuneToArrows;
+   public bool immuneToHammer;
+
 	[Header("Death values")]
 	public bool isDead;
 	public float deathTime;
@@ -110,7 +114,7 @@ public class Enemy : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		// when colliding with an arrow, decrease the health
-		if (other.CompareTag("Arrow") == true)
+		if (!immuneToArrows && other.CompareTag("Arrow") == true)
 		{
 			refAudioManager.PlaySound(hit.clip, hit.volume);
 			currentHealth--;
@@ -122,7 +126,7 @@ public class Enemy : MonoBehaviour
 		}
 
 		// when colliding with a hammer, decrease the health
-		if (other.CompareTag("Hammer") == true)
+		if (!immuneToHammer && other.CompareTag("Hammer") == true)
 		{
 			refAudioManager.PlaySound(hit.clip, hit.volume);
 			currentHealth -= 3;

@@ -55,10 +55,19 @@ public class CameraFollow : MonoBehaviour
         Invoke("StopShake", tmpDur);
     }
 
-    // if you want, call this function to stop screen shake prematurely
-    public void StopShake()
+   // call this function to begin screen shake if you want a custom duration and intensity
+   public void StartShake(float tmpDur, float intensity)
+   {
+      shouldShake = true;
+      shakeIntensity = intensity;
+      Invoke("StopShake", tmpDur);
+   }
+
+   // if you want, call this function to stop screen shake prematurely
+   public void StopShake()
     {
         shouldShake = false;
+      shakeIntensity = 0.0f;
     }
 
     private void Shake()
