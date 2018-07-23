@@ -18,6 +18,12 @@ public class InfiniteGenerator : MonoBehaviour
 	public int enemiesToSpawn;
 	public EnemyToSpawn[] enemies;
 
+   [Header("List of treasures")]
+   public int spawnTreasureEveryMax;
+   public int spawnTreasureEveryMin;
+   private int treasureSpawnCounter;
+   public GameObject[] treasures;
+
 	[Header("Maximum value for keeping track of priority")]
 	public int maxAge;
 
@@ -35,6 +41,8 @@ public class InfiniteGenerator : MonoBehaviour
 	{
 		candidates = new List<int>();
 		refPlayer = GameObject.FindGameObjectWithTag("Player").transform;
+
+      treasureSpawnCounter = Random.Range(spawnTreasureEveryMin, spawnTreasureEveryMax);
 	}
 
 	public void BeginGeneration ()
@@ -57,68 +65,82 @@ public class InfiniteGenerator : MonoBehaviour
 		{
 			// spawn a shop every certain number of rooms
 			if (roomCount % spawnShopEvery == 0)
-			{				
-				// instantiate one of the levels that was chosen
-				int randomChoice = Random.Range(0, shops.Count);
-
-				GameObject tmp = Instantiate(shops[randomChoice].obj, new Vector2(defaultX, currentY), Quaternion.identity);
-
-				// add this component so the levels will destroy themselves after reaching a certain point below the player
-				tmp.AddComponent<MiscDestroyBelowThreshold>();
-
-				// increase the current Y for checking for the next instantiation
-				currentY += shops[randomChoice].height;
-
-				// increase the age of the level that was chosen
-				levels[randomChoice].age = maxAge;
-
-				// reset room count
-				roomCount++;
-
-				// prevent enemies from spawning if a shop spawned
-				waitToSpawnEnemiesCount = waitToSpawnEnemies;
+			{
+            SpawnShops();
 			}
 			// spawn rooms
 			else
 			{
-				// update list of potential rooms to spawn
-				CheckCandidates();
-
-				// instantiate one of the levels that was chosen
-				int randomChoice = candidates[Random.Range(0, candidates.Count)];
-
-				GameObject tmp = Instantiate(levels[randomChoice].obj, new Vector2(defaultX, currentY), Quaternion.identity);
-
-				// add this component so the levels will destroy themselves after reaching a certain point below the player
-				tmp.AddComponent<MiscDestroyBelowThreshold>();
-
-				if (randomFlipEnabled && Random.Range(0, 2) == 1)
-				{
-					tmp.transform.rotation = Quaternion.Euler(0, 180, 0);
-					tmp.transform.position = new Vector2(15, currentY);
-				}
-
-				if (waitToSpawnEnemiesCount == 0)
-				{
-					// spawn enemies in this part of the level
-					SpawnEnemies(levels[randomChoice].height, levels[randomChoice].width);
-				}
-				else
-				{
-					waitToSpawnEnemiesCount--;
-				}
-
-				// increase the current Y for checking for the next instantiation
-				currentY += levels[randomChoice].height;
-
-				// increase the age of the level that was chosen
-				levels[randomChoice].age = maxAge;
-
-				// increment number of rooms that has been spawned
-				roomCount++;
+            // spawning enemies and treasures also happens here
+            SpawnRooms();
 			}
 		}
 	}
+
+   private void SpawnShops()
+   {
+      // instantiate one of the levels that was chosen
+      int randomChoice = Random.Range(0, shops.Count);
+
+      GameObject tmp = Instantiate(shops[randomChoice].obj, new Vector2(defaultX, currentY), Quaternion.identity);
+
+      // add this component so the levels will destroy themselves after reaching a certain point below the player
+      tmp.AddComponent<MiscDestroyBelowThreshold>();
+
+      // increase the current Y for checking for the next instantiation
+      currentY += shops[randomChoice].height;
+
+      // increase the age of the level that was chosen
+      levels[randomChoice].age = maxAge;
+
+      // reset room count
+      roomCount++;
+
+      // prevent enemies from spawning if a shop spawned
+      waitToSpawnEnemiesCount = waitToSpawnEnemies;
+   }
+
+   private void SpawnRooms()
+   {
+      // update list of potential rooms to spawn
+      CheckCandidates();
+
+      // instantiate one of the levels that was chosen
+      int randomChoice = candidates[Random.Range(0, candidates.Count)];
+
+      GameObject tmp = Instantiate(levels[randomChoice].obj, new Vector2(defaultX, currentY), Quaternion.identity);
+
+      // add this component so the levels will destroy themselves after reaching a certain point below the player
+      tmp.AddComponent<MiscDestroyBelowThreshold>();
+
+      if (randomFlipEnabled && Random.Range(0, 2) == 1)
+      {
+         tmp.transform.rotation = Quaternion.Euler(0, 180, 0);
+         tmp.transform.position = new Vector2(15, currentY);
+      }
+
+      if (waitToSpawnEnemiesCount == 0)
+      {
+         // spawn enemies in this part of the level
+         SpawnEnemies(levels[randomChoice].height, levels[randomChoice].width);
+      }
+      else
+      {
+         waitToSpawnEnemiesCount--;
+      }
+
+      // try to spawn treasures
+      SpawnTreasure(levels[randomChoice].height, levels[randomChoice].width);
+
+      // increase the current Y for checking for the next instantiation
+      currentY += levels[randomChoice].height;
+
+      // increase the age of the level that was chosen
+      levels[randomChoice].age = maxAge;
+
+      // increment number of rooms that has been spawned
+      roomCount++;
+   }
 
 	public void AddLevel(Level newLevel)
 	{
@@ -189,7 +211,26 @@ public class InfiniteGenerator : MonoBehaviour
 		}
 	}
 
-	private bool CheckForRepeats(int rand, List<int> list)
+   private void SpawnTreasure(int height, int width)
+   {
+      if (treasureSpawnCounter <= 0)
+      {
+         int randX, randY, tmp;
+         randX = Random.Range(defaultX, defaultX + width);
+         randY = Random.Range(currentY, currentY + height);
+         tmp = Random.Range(0, treasures.Length);
+
+         Instantiate(treasures[tmp], new Vector2(randX, randY), transform.rotation);
+
+         treasureSpawnCounter = Random.Range(spawnTreasureEveryMin, spawnTreasureEveryMax);
+      }
+      else
+      {
+         treasureSpawnCounter--;
+      }
+   }
+
+      private bool CheckForRepeats(int rand, List<int> list)
 	{
 		// if for some reason, all enemies have been used, just return false
 		if (list.Count == enemies.Length)

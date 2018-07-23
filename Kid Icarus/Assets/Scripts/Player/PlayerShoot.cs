@@ -140,7 +140,7 @@ public class PlayerShoot : MonoBehaviour
 			for (int i = 0; i < tmpEggplantNum; ++i)
 			{
 				Rigidbody2D tmp = Instantiate(eggplantObject, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
-				tmp.velocity = rb.velocity * 0.5f;
+				//tmp.velocity = rb.velocity * 0.5f;
 				tmp.AddForce(new Vector2(Random.Range(-1.0f, 1.0f), 1.0f) * eggplantProjecilteSpeed);
 				canFireEggplant = false;
 
@@ -198,13 +198,16 @@ public class PlayerShoot : MonoBehaviour
 		hammer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90f));
 		hammer.enabled = true;
 
+      // sound
 		refPlayerAudio.PlayHammerHit();
 
-		partsHammer.Play();
+      // particles
+      partsHammer.Play();
 
-      refCameraFollow.StartShake(0.1f, 0.5f);
+      // camera shake
+      refCameraFollow.shakeIntensity = Mathf.Lerp(refCameraFollow.shakeIntensity, 0.5f, 1.0f);
 
-		Invoke("StopSwinging", meleeDuration);
+      Invoke("StopSwinging", meleeDuration);
 	}
 
 	void SwingLeft()
@@ -212,11 +215,14 @@ public class PlayerShoot : MonoBehaviour
 		hammer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90f));
 		hammer.enabled = true;
 
+      //sound
 		refPlayerAudio.PlayHammerHit();
 
+      // particles
 		partsHammer.Play();
 
-      refCameraFollow.StartShake(0.1f, 0.5f);
+      // camera shake
+      refCameraFollow.shakeIntensity = Mathf.Lerp(refCameraFollow.shakeIntensity, 0.5f, 1.0f);
 
       Invoke("StopSwinging", meleeDuration);
 	}
@@ -228,7 +234,10 @@ public class PlayerShoot : MonoBehaviour
 
 		isSwinging = false;
 
-		Invoke("RechargeHammer", meleeCooldown);
+      // stop camera shake
+      refCameraFollow.shakeIntensity = Mathf.Lerp(refCameraFollow.shakeIntensity, 0.0f, 1.0f);
+
+      Invoke("RechargeHammer", meleeCooldown);
 	}
 
 	void RechargeHammer()

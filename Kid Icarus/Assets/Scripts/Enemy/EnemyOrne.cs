@@ -96,7 +96,7 @@ public class EnemyOrne : MonoBehaviour
 	{
 		if (inRange == true)
 		{
-			refCamFollow.shakeIntensity = Mathf.Lerp(refCamFollow.shakeIntensity, 0.5f, 0.01f);
+			refCamFollow.shakeIntensity = Mathf.Lerp(refCamFollow.shakeIntensity, 0.5f, 0.5f);
 		}
 		else if (playMusic == true)
 		{

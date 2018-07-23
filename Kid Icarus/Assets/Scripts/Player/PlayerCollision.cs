@@ -91,7 +91,7 @@ public class PlayerCollision : MonoBehaviour
 			Death();
 		}
 
-		if (other.CompareTag("Eggplant"))
+		if (other.CompareTag("Eggplant") && !cursed)
 		{
 			cursed = true;
 			refPlayerAudio.PlayCursed(0.9f);

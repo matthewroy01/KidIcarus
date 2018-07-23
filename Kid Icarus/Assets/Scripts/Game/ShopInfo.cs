@@ -34,7 +34,7 @@ public class ShopInfo : MonoBehaviour
 		}
 
 		// otherwise return null
-		Debug.LogError("Item of name " + name + " does not exist. Returning an empty item instead.");
+		Debug.LogWarning("Item of name " + name + " does not exist. Returning an empty item instead.");
 		return emptyItem;
 	}
 

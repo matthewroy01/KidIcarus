@@ -7,6 +7,9 @@ public class EnemyCenturionStatue : MonoBehaviour
    [Header("If we're stuck in a wall")]
    public LayerMask wallLayer;
 
+   Enemy refEnemy;
+   private bool alreadyDead; // nani!?
+
    private void Start()
    {
       // if the object spawns in a wall, destroy it
@@ -14,9 +17,17 @@ public class EnemyCenturionStatue : MonoBehaviour
       {
          Destroy(gameObject);
       }
+
+      refEnemy = GetComponent<Enemy>();
    }
-   private void OnDestroy()
+
+   void Update()
    {
-      GameObject.FindObjectOfType<PlayerShoot>().centurionsStored++;
+      // when the centurion statue "dies", increase the number of centurions stored
+      if (refEnemy.isDead && !alreadyDead)
+      {
+         GameObject.FindObjectOfType<PlayerShoot>().centurionsStored++;
+         alreadyDead = true;
+      }
    }
 }
