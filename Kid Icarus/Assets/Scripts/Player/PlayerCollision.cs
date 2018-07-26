@@ -163,7 +163,7 @@ public class PlayerCollision : MonoBehaviour
 				tmpIcon.transform.parent = gameObject.transform;
 				Destroy(other.gameObject);
 			}
-         else if (other.name == "Charge Reticle(Clone)")
+         else if (other.name == "ChargeReticle(Clone)")
          {
             refPlayerShoot.hasChargeReticle = true;
             Destroy(other.gameObject);

@@ -12,6 +12,10 @@ public class GranterOfLuck : MonoBehaviour
 	public int targetM;
 	public float destroyAfterTime;
 
+   [Header("Komayto")]
+   public GameObject komaytoPrefab;
+   public Sound komaytoSound;
+
 	private bool alreadyDecided = false;
 	private bool fadeOut = false;
 
@@ -19,10 +23,12 @@ public class GranterOfLuck : MonoBehaviour
 	public Text goddessText;
 
 	private PlayerCollision refPlayerCollision;
+   private UtilityAudioManager refAudioManager;
 
 	void Start ()
 	{
 		refPlayerCollision = transform.parent.GetComponent<PlayerCollision>();
+      refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
 		startingM = refPlayerCollision.getCurrentMeters();
 		targetM = startingM + increaseMBy;
 
@@ -54,7 +60,7 @@ public class GranterOfLuck : MonoBehaviour
 
 	private void DoRandomEffect()
 	{
-		int tmp = Random.Range(0, 3);
+		int tmp = Random.Range(0, 4);
 
 		switch(tmp)
 		{
@@ -77,7 +83,14 @@ public class GranterOfLuck : MonoBehaviour
 				tmpOrne.SetDefaultMovSpeed(tmpOrne.GetDefaultMovSpeed() - tmpOrne.increaseMovSpeedBy * 2);
 				break;
 			}
-			default:
+         case 3:
+         {
+            goddessText.text = "Komaytos are attacking!\nOnly your hammer can defeat them!";
+            Instantiate(komaytoPrefab, Vector2.zero, transform.rotation);
+            refAudioManager.PlaySound(komaytoSound.clip, komaytoSound.volume);
+            break;
+         }
+         default:
 			{
 				goddessText.text = "Sorry Pit, the goddess screwed up her switch statement somehow.";
 				break;
