@@ -10,6 +10,7 @@ public class PlayerUI : MonoBehaviour
 
 	[Header("Heart display")]
 	public Text textHeart;
+   public Image iconSale;
 
 	[Header("Hammer dipslay")]
 	public Text textHammer;
@@ -109,6 +110,16 @@ public class PlayerUI : MonoBehaviour
 	private void DisplayHearts()
 	{
 		textHeart.text = refCollision.hearts.ToString();
+
+      // display the 50% symbol when the next item will be on sale
+      if (refCollision.sale == 2)
+      {
+         iconSale.enabled = true;
+      }
+      else
+      {
+         iconSale.enabled = false;
+      }
 	}
 
    private void DisplayCenturions()

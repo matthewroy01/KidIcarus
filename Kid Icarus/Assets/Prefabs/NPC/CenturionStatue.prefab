@@ -113,9 +113,10 @@ MonoBehaviour:
   death:
     clip: {fileID: 8300000, guid: 0f8714630b043ee49b52fae084ca7e18, type: 3}
     volume: 0.1
-  spawnOnDeath: {fileID: 1167111922738626, guid: 1011232962dc6594598dff209ff08fe3,
+  spawnOnDeath: {fileID: 1375542353166102, guid: f41c31d1e00493f48974365ac01f54b0,
     type: 2}
-  drops: []
+  drops:
+  - {fileID: 1084654103316700, guid: ca46b3ca55539fc4b841484bec673e5a, type: 2}
   shouldWrap: 0
 --- !u!114 &114836313095190728
 MonoBehaviour:

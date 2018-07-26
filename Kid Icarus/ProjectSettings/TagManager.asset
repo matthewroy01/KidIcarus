@@ -12,6 +12,7 @@ TagManager:
   - TextArea
   - Eggplant
   - Hammer
+  - UITarget
   layers:
   - Default
   - TransparentFX

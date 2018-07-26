@@ -26,7 +26,7 @@ public class EnemyCenturionStatue : MonoBehaviour
       // when the centurion statue "dies", increase the number of centurions stored
       if (refEnemy.isDead && !alreadyDead)
       {
-         GameObject.FindObjectOfType<PlayerShoot>().centurionsStored++;
+         // GameObject.FindObjectOfType<PlayerShoot>().centurionsStored++;
          alreadyDead = true;
       }
    }
