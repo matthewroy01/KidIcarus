@@ -5405,7 +5405,7 @@ Transform:
   - {fileID: 1301129771}
   - {fileID: 2022330208}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &690602500
 MonoBehaviour:
@@ -5429,7 +5429,9 @@ MonoBehaviour:
   hasLongbow: 0
   hasChargeReticle: 0
   isCharged: 1
-  rechargeTime: 1
+  rechargeTime: 0.8
+  rechargePrefab: {fileID: 1049192087614364, guid: 09a8fa2b051304d4fab375b6f60803ea,
+    type: 2}
   eggplantProjecilteSpeed: 350
   eggplantObject: {fileID: 1198780200618238, guid: 8616dbb6c1a11054284e6122453c946a,
     type: 2}
@@ -5897,7 +5899,7 @@ MonoBehaviour:
     isAvailable: 1
   - name: Charge Reticle
     obj: {fileID: 1011583362227442, guid: e1aa09720b0c77a4189f008bcee37ae4, type: 2}
-    description: Hold your fire to charge a powerful shot.
+    description: Modern tech. Hold your fire to charge a powerful shot.
     cost: 80
     isAvailable: 1
   - name: Longbow
@@ -11158,7 +11160,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4548059016498436, guid: c2f21cf57f72bc846bd31f8bb0a1f6fd, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114183189091063714, guid: c2f21cf57f72bc846bd31f8bb0a1f6fd,
         type: 2}
@@ -21665,48 +21667,6 @@ Transform:
   m_Father: {fileID: 1840260690}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &1766037220
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 093a5698a23536941a58e138b725d903, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1797996020
 GameObject:
   m_ObjectHideFlags: 0
@@ -21891,7 +21851,7 @@ Transform:
   - {fileID: 807967576}
   - {fileID: 1689172961}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1861488120
 GameObject:
@@ -22102,7 +22062,7 @@ Transform:
   m_Children:
   - {fileID: 866030634}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2009602875
 SpriteRenderer:

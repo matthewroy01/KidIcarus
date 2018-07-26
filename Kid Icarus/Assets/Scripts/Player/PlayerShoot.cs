@@ -11,11 +11,12 @@ public class PlayerShoot : MonoBehaviour
    public GameObject arrowPrefabCharged;
    public bool lookingUp;
 
-   [Header("Has power ups")]
+   [Header("Power ups")]
    public bool hasLongbow;
    public bool hasChargeReticle;
    public bool isCharged;
    public float rechargeTime;
+   public GameObject rechargePrefab;
    private bool rechargeInvoked = false;
 
 	[Header("Shooting eggplants")]
@@ -331,6 +332,9 @@ public class PlayerShoot : MonoBehaviour
       {
          isCharged = true;
          rechargeInvoked = false;
+
+         GameObject tmp = Instantiate(rechargePrefab, transform.position, transform.rotation);
+         tmp.transform.parent = transform;
 
          refPlayerAudio.PlayArrowRecharge();
       }

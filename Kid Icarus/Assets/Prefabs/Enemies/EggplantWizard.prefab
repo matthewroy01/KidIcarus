@@ -168,6 +168,8 @@ MonoBehaviour:
   - {fileID: 1218507675737982, guid: f7b63cb9716a2a5408bb1c5fc3dfb35f, type: 2}
   - {fileID: 1309213865734988, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
   - {fileID: 1487862482214924, guid: 8947380d66b586e47ba9078df47ce479, type: 2}
+  - {fileID: 1011583362227442, guid: e1aa09720b0c77a4189f008bcee37ae4, type: 2}
+  - {fileID: 1859114479839406, guid: 2f38f539b2b6ade4c91bd2ae5c6859cd, type: 2}
   shouldWrap: 1
 --- !u!212 &212942128496728152
 SpriteRenderer:
