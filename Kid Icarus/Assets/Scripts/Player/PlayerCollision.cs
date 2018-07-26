@@ -163,7 +163,17 @@ public class PlayerCollision : MonoBehaviour
 				tmpIcon.transform.parent = gameObject.transform;
 				Destroy(other.gameObject);
 			}
-			else
+         else if (other.name == "Charge Reticle(Clone)")
+         {
+            refPlayerShoot.hasChargeReticle = true;
+            Destroy(other.gameObject);
+         }
+         else if (other.name == "Longbow(Clone)")
+         {
+            refPlayerShoot.hasLongbow = true;
+            Destroy(other.gameObject);
+         }
+         else
 			{
 				// shop items
 				ShopItem tmp = refShopInfo.getItem(other.name);
@@ -245,7 +255,23 @@ public class PlayerCollision : MonoBehaviour
 						sale = 1;
 						Destroy(other.gameObject);
 					}
-				}
+
+               if (tmp.name == "Charge Reticle" && refPlayerShoot.hasChargeReticle == false)
+               {
+                  hearts -= tmp.cost / sale;
+                  sale = 1;
+                  refPlayerShoot.hasChargeReticle = true;
+                  Destroy(other.gameObject);
+               }
+
+               if (tmp.name == "Longbow" && refPlayerShoot.hasLongbow == false)
+               {
+                  hearts -= tmp.cost / sale;
+                  sale = 1;
+                  refPlayerShoot.hasLongbow = true;
+                  Destroy(other.gameObject);
+               }
+            }
 			}
 		}
 	}
@@ -296,32 +322,25 @@ public class PlayerCollision : MonoBehaviour
 
 	private void CommunicateWithShop()
 	{
-		// first aid kit availability
-		if (hasFirstAidKit == true)
-		{
-			refShopInfo.SetAvailability(false, "First Aid Kit");
-		}
-		else
-		{
-			refShopInfo.SetAvailability(true, "First Aid Kit");
-		}
+      // first aid kit availability
+      refShopInfo.SetAvailability(!hasFirstAidKit, "First Aid Kit");
 
 		// roc's feather availability
 		if (refPlayerMovement.extraJumps >= refPlayerMovement.extraJumpsMax)
 		{
 			refShopInfo.SetAvailability(false, "Roc's Feather");
 		}
+      else
+      {
+         refShopInfo.SetAvailability(true, "Roc's Feather");
+      }
 
-		// centurion availability
-		/*if (refPlayerShoot.hasCenturion == true)
-		{
-			refShopInfo.SetAvailability(false, "Centurion Assist");
-		}
-		else
-		{
-			refShopInfo.SetAvailability(true, "Centurion Assist");
-		}*/
-	}
+      // charge reticle availability
+      refShopInfo.SetAvailability(!refPlayerShoot.hasChargeReticle, "Charge Reticle");
+
+      // longbow availability
+      refShopInfo.SetAvailability(!refPlayerShoot.hasLongbow, "Longbow");
+   }
 
 	private void StopInvincibility()
 	{

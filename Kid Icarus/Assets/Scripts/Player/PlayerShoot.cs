@@ -6,8 +6,17 @@ public class PlayerShoot : MonoBehaviour
 {
 	[Header("Shooting arrows")]
 	public float arrowProjectileSpeed;
-	public GameObject arrowObject;
-	public bool lookingUp;
+	public GameObject arrowPrefabNormal;
+   public GameObject arrowPrefabLongbow;
+   public GameObject arrowPrefabCharged;
+   public bool lookingUp;
+
+   [Header("Has power ups")]
+   public bool hasLongbow;
+   public bool hasChargeReticle;
+   public bool isCharged;
+   public float rechargeTime;
+   private bool rechargeInvoked = false;
 
 	[Header("Shooting eggplants")]
 	public float eggplantProjecilteSpeed;
@@ -66,7 +75,13 @@ public class PlayerShoot : MonoBehaviour
 			CheckLookingUp();
          SpawnCenturions();
 
-			if (refPlayerCollision.cursed == false)
+         if (rechargeInvoked == false && !isCharged)
+         {
+            rechargeInvoked = true;
+            Invoke("RechargeBow", rechargeTime);
+         }
+
+         if (refPlayerCollision.cursed == false)
 			{
 				Shoot();
 				UpdateHammerPosition();
@@ -97,7 +112,7 @@ public class PlayerShoot : MonoBehaviour
 		{
 			Vector2 shootDir;
 			float zRotation;
-			GameObject tmp;
+			GameObject tmp = null;
 
 			// if you're facing upwards
 			if (lookingUp == true)
@@ -121,12 +136,41 @@ public class PlayerShoot : MonoBehaviour
 			// shooting is not allowed while crouching
 			if (refPlayerMovement.isCrouching == false)
 			{
-				// instantiate the arrow
-				tmp = Instantiate(arrowObject, transform.position, Quaternion.Euler(0, 0, zRotation));
-				tmp.GetComponent<Rigidbody2D>().velocity = shootDir;
+            // instantiate the arrow
+            if (hasChargeReticle && isCharged)
+            {
+               tmp = Instantiate(arrowPrefabCharged, transform.position, Quaternion.Euler(0, 0, zRotation));
+               tmp.GetComponent<Rigidbody2D>().velocity = shootDir * 1.2f;
 
-				// play the shoot sound
-				refPlayerAudio.PlayShoot();
+               isCharged = false;
+
+               // stop charging a charge shot
+               CancelInvoke("RechargeBow");
+               rechargeInvoked = false;
+
+               // play the shoot sound
+               refPlayerAudio.PlayShoot(1.5f, 0.5f);
+            }
+            else
+            {
+               if (hasLongbow)
+               {
+                  tmp = Instantiate(arrowPrefabLongbow, transform.position, Quaternion.Euler(0, 0, zRotation));
+               }
+               else
+               {
+                  tmp = Instantiate(arrowPrefabNormal, transform.position, Quaternion.Euler(0, 0, zRotation));
+               }
+               // apply velocity to the arrow
+               tmp.GetComponent<Rigidbody2D>().velocity = shootDir;
+
+               // play the shoot sound
+               refPlayerAudio.PlayShoot(1.0f, 1.0f);
+
+               // stop charging a charge shot
+               CancelInvoke("RechargeBow");
+               rechargeInvoked = false;
+            }
 			}
 		}
 	}
@@ -278,6 +322,17 @@ public class PlayerShoot : MonoBehaviour
             hasCenturion = true;
             centurionsStored--;
          }
+      }
+   }
+
+   private void RechargeBow()
+   {
+      if (hasChargeReticle)
+      {
+         isCharged = true;
+         rechargeInvoked = false;
+
+         refPlayerAudio.PlayArrowRecharge();
       }
    }
 }

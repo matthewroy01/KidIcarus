@@ -5405,7 +5405,7 @@ Transform:
   - {fileID: 1301129771}
   - {fileID: 2022330208}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &690602500
 MonoBehaviour:
@@ -5419,9 +5419,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowProjectileSpeed: 15
-  arrowObject: {fileID: 1198780200618238, guid: ff7d31cf652bbac4eae88ab57b251b70,
+  arrowPrefabNormal: {fileID: 1198780200618238, guid: ff7d31cf652bbac4eae88ab57b251b70,
+    type: 2}
+  arrowPrefabLongbow: {fileID: 1198780200618238, guid: 381a382748627024fb72871a2dba1c40,
+    type: 2}
+  arrowPrefabCharged: {fileID: 1198780200618238, guid: 093a5698a23536941a58e138b725d903,
     type: 2}
   lookingUp: 0
+  hasLongbow: 0
+  hasChargeReticle: 0
+  isCharged: 1
+  rechargeTime: 1
   eggplantProjecilteSpeed: 350
   eggplantObject: {fileID: 1198780200618238, guid: 8616dbb6c1a11054284e6122453c946a,
     type: 2}
@@ -5544,6 +5552,9 @@ MonoBehaviour:
     volume: 0.5
   hammerHit:
     clip: {fileID: 8300000, guid: 5b94e07d75cbdd54bb4ebec7072e0d79, type: 3}
+    volume: 0.5
+  arrowRecharge:
+    clip: {fileID: 8300000, guid: 9e85084681fba654e938bba206d2cc4f, type: 3}
     volume: 0.5
 --- !u!70 &690602505
 CapsuleCollider2D:
@@ -5864,11 +5875,6 @@ MonoBehaviour:
     description: Grants an extra jump. Maximum of 4.
     cost: 100
     isAvailable: 1
-  - name: Centurion Assist
-    obj: {fileID: 1077621230560480, guid: 3bb1cb9dc3638e4408982ab524594bf3, type: 2}
-    description: Summons a Centurion to fight for you. Falls in one hit.
-    cost: 80
-    isAvailable: 0
   - name: Divine Ward
     obj: {fileID: 1218507675737982, guid: f7b63cb9716a2a5408bb1c5fc3dfb35f, type: 2}
     description: Sends the Orne down 50 meters.
@@ -5888,6 +5894,16 @@ MonoBehaviour:
     obj: {fileID: 1487862482214924, guid: 8947380d66b586e47ba9078df47ce479, type: 2}
     description: An icon of the Goddess of Light. May grant luck.
     cost: 50
+    isAvailable: 1
+  - name: Charge Reticle
+    obj: {fileID: 1011583362227442, guid: e1aa09720b0c77a4189f008bcee37ae4, type: 2}
+    description: Hold your fire to charge a powerful shot.
+    cost: 80
+    isAvailable: 1
+  - name: Longbow
+    obj: {fileID: 1859114479839406, guid: 2f38f539b2b6ade4c91bd2ae5c6859cd, type: 2}
+    description: A taller bow with longer range.
+    cost: 80
     isAvailable: 1
   emptyItem:
     name: Empty
@@ -11142,7 +11158,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4548059016498436, guid: c2f21cf57f72bc846bd31f8bb0a1f6fd, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114183189091063714, guid: c2f21cf57f72bc846bd31f8bb0a1f6fd,
         type: 2}
@@ -21649,6 +21665,48 @@ Transform:
   m_Father: {fileID: 1840260690}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &1766037220
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454716181033858, guid: 093a5698a23536941a58e138b725d903, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 093a5698a23536941a58e138b725d903, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1797996020
 GameObject:
   m_ObjectHideFlags: 0
@@ -21833,7 +21891,7 @@ Transform:
   - {fileID: 807967576}
   - {fileID: 1689172961}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1861488120
 GameObject:
@@ -22044,7 +22102,7 @@ Transform:
   m_Children:
   - {fileID: 866030634}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2009602875
 SpriteRenderer:

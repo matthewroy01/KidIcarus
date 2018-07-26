@@ -17,6 +17,7 @@ public class PlayerAudio : MonoBehaviour
 	public Sound cursed;
 	public Sound hammerSwing;
 	public Sound hammerHit;
+   public Sound arrowRecharge;
 
 	void Start()
 	{
@@ -28,9 +29,9 @@ public class PlayerAudio : MonoBehaviour
 		refAudioManager.PlaySound(jump.clip, jump.volume, true);
 	}
 		
-	public void PlayShoot()
+	public void PlayShoot(float volumeMultiplier, float pitch)
 	{
-		refAudioManager.PlaySound(shoot.clip, shoot.volume, true);
+		refAudioManager.PlaySound(shoot.clip, shoot.volume * volumeMultiplier, pitch);
 	}	
 
 	public void PlayFlap(int jumps)
@@ -72,6 +73,11 @@ public class PlayerAudio : MonoBehaviour
 	{
 		refAudioManager.PlaySound(hammerHit.clip, hammerHit.volume, true);
 	}
+
+   public void PlayArrowRecharge()
+   {
+      refAudioManager.PlaySound(arrowRecharge.clip, arrowRecharge.volume, false);
+   }
 }
 
 [System.Serializable]
