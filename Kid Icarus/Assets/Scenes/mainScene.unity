@@ -5558,6 +5558,9 @@ MonoBehaviour:
   arrowRecharge:
     clip: {fileID: 8300000, guid: 9e85084681fba654e938bba206d2cc4f, type: 3}
     volume: 0.5
+  theif:
+    clip: {fileID: 8300000, guid: 6c765c2280094f143b3b138628e33934, type: 3}
+    volume: 0.25
 --- !u!70 &690602505
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -16859,16 +16862,16 @@ MonoBehaviour:
   waitToSpawnEnemies: 1
   enemiesToSpawn: 2
   enemies:
-  - obj: {fileID: 1040655999123246, guid: 49bb6c8ddccecf74b9c07601a342c6d0, type: 2}
-    limitSpawns: 1
-    linkedTo: -1
   - obj: {fileID: 1194326722190070, guid: e5179478419fddf4e8614436b979f88d, type: 2}
     limitSpawns: 1
     linkedTo: -1
-  - obj: {fileID: 1784919452603194, guid: 2265cdade982b69419f547e7b291baca, type: 2}
-    limitSpawns: 0
+  - obj: {fileID: 1040655999123246, guid: 49bb6c8ddccecf74b9c07601a342c6d0, type: 2}
+    limitSpawns: 1
     linkedTo: -1
   - obj: {fileID: 1275306939347786, guid: 2bffa755fb6048244aa265ac4a7dc9cb, type: 2}
+    limitSpawns: 0
+    linkedTo: -1
+  - obj: {fileID: 1784919452603194, guid: 2265cdade982b69419f547e7b291baca, type: 2}
     limitSpawns: 0
     linkedTo: -1
   - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 2}
@@ -16877,10 +16880,17 @@ MonoBehaviour:
   - obj: {fileID: 1141117070903062, guid: 18019a28288d92c4bae661d0a6e0248d, type: 2}
     limitSpawns: 1
     linkedTo: 4
+  - obj: {fileID: 1511023610978616, guid: 84aaa855e347969439fc5b70d7605d9e, type: 2}
+    limitSpawns: 1
+    linkedTo: -1
   spawnTreasureEveryMax: 2
   spawnTreasureEveryMin: 5
   treasures:
   - {fileID: 1445101104682042, guid: 6f4f5839805b4f748b21fea503f32991, type: 2}
+  - {fileID: 1445101104682042, guid: 6f4f5839805b4f748b21fea503f32991, type: 2}
+  - {fileID: 1445101104682042, guid: 6f4f5839805b4f748b21fea503f32991, type: 2}
+  - {fileID: 1445101104682042, guid: 6f4f5839805b4f748b21fea503f32991, type: 2}
+  - {fileID: 1754845607052008, guid: 25563761bfc80ad4e80c7261c7b7a705, type: 2}
   maxAge: 2
   currentY: 0
   defaultX: 0
@@ -22122,7 +22132,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.7}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.0625}
@@ -22133,7 +22143,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1}
+  m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!1 &2015839443
 GameObject:

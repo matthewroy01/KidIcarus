@@ -112,7 +112,7 @@ public class PlayerCollision : MonoBehaviour
 				hearts += 5;
 				Destroy(other.gameObject);
 			}
-			else if (other.name == "Heart10(Clone)")
+			else if (other.name == "Heart10(Clone)" || other.name == "FlyingHeart(Clone)")
 			{
 				refPlayerAudio.PlayHeart();
 				hearts += 10;
@@ -286,7 +286,71 @@ public class PlayerCollision : MonoBehaviour
 			Invoke("StopInvincibility", invincibilityTime);
 		}
 
-		if (other.CompareTag("SafeZone"))
+      if (other.CompareTag("Theif") && canGetHit == true)
+      {
+         List<int> candidates = new List<int>();
+
+         if (refPlayerMovement.extraJumps != 1)
+         {
+            candidates.Add(0);
+         }
+
+         if (hearts > 0)
+         {
+            candidates.Add(1);
+         }
+
+         if (refPlayerShoot.hasChargeReticle || refPlayerShoot.hasLongbow)
+         {
+            candidates.Add(2);
+         }
+
+         if (candidates.Count > 0)
+         {
+            int rand = Random.Range(0, candidates.Count);
+
+            switch (candidates[rand])
+            {
+               case 0:
+               {
+                  Debug.Log("Pluton stole a Roc's Feather!");
+                  if (refPlayerMovement.extraJumps != 1)
+                  {
+                     refPlayerMovement.extraJumps--;
+                  }
+                  break;
+               }
+               case 1:
+               {
+                  Debug.Log("Pluton stole half of your Hearts!");
+                  hearts = hearts / 2;
+                  break;
+               }
+               case 2:
+               {
+                  Debug.Log("Pluton stole your bow upgrades!");
+                  refPlayerShoot.hasChargeReticle = false;
+                  refPlayerShoot.hasLongbow = false;
+                  break;
+               }
+               default:
+               {
+                  break;
+               }
+            }
+         }
+         else
+         {
+            Debug.Log("Pluton didn't steal anything!");
+         }
+
+         refPlayerAudio.PlayTheif();
+
+         canGetHit = false;
+         Invoke("StopInvincibility", invincibilityTime);
+      }
+
+      if (other.CompareTag("SafeZone"))
 		{
 			refMusicManager.SetMusicStatus(MusicStatus.shopTheme);
 			inSafeZone = true;
