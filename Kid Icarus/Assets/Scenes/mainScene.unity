@@ -16862,26 +16862,11 @@ MonoBehaviour:
   waitToSpawnEnemies: 1
   enemiesToSpawn: 2
   enemies:
-  - obj: {fileID: 1194326722190070, guid: e5179478419fddf4e8614436b979f88d, type: 2}
-    limitSpawns: 1
-    linkedTo: -1
-  - obj: {fileID: 1040655999123246, guid: 49bb6c8ddccecf74b9c07601a342c6d0, type: 2}
-    limitSpawns: 1
-    linkedTo: -1
-  - obj: {fileID: 1275306939347786, guid: 2bffa755fb6048244aa265ac4a7dc9cb, type: 2}
-    limitSpawns: 0
-    linkedTo: -1
-  - obj: {fileID: 1784919452603194, guid: 2265cdade982b69419f547e7b291baca, type: 2}
-    limitSpawns: 0
-    linkedTo: -1
-  - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 2}
-    limitSpawns: 1
-    linkedTo: 5
-  - obj: {fileID: 1141117070903062, guid: 18019a28288d92c4bae661d0a6e0248d, type: 2}
-    limitSpawns: 1
-    linkedTo: 4
   - obj: {fileID: 1511023610978616, guid: 84aaa855e347969439fc5b70d7605d9e, type: 2}
     limitSpawns: 1
+    linkedTo: -1
+  - obj: {fileID: 1034353125502332, guid: a5f2d0c42ba8df64d8a72483075a6b4e, type: 2}
+    limitSpawns: 0
     linkedTo: -1
   spawnTreasureEveryMax: 2
   spawnTreasureEveryMin: 5
