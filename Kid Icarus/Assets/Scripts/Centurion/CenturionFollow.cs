@@ -24,7 +24,6 @@ public class CenturionFollow : MonoBehaviour
 	public Sound death;
 
 	private PlayerMovement refPlayerMovement;
-	private PlayerCollision refPlayerCollision;
    private PlayerShoot refPlayerShoot;
 	private Transform refPlayer;
 	private SpriteRenderer sr;
@@ -34,7 +33,6 @@ public class CenturionFollow : MonoBehaviour
 	void Start ()
 	{
 		refPlayerMovement = GameObject.FindObjectOfType<PlayerMovement>();
-		refPlayerCollision = GameObject.FindObjectOfType<PlayerCollision>();
       refPlayerShoot = GameObject.FindObjectOfType<PlayerShoot>();
 		refPlayer = GameObject.FindGameObjectWithTag("Player").transform;
 		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();

@@ -68,8 +68,8 @@ public class ShopCreator : MonoBehaviour
 					// if the lengths are equal, then there are no new items to spawn
 					if (alreadyUsed.Count == possibleItems.Length)
 					{
-						Debug.LogWarning("Number of items to spawn in the shop was greater than the number of possible items.");
-						return;
+                  Debug.LogWarning("Number of items to spawn in the shop was greater than the number of possible items.");
+                  return;
 					}
 
 					// randomly select a number
@@ -108,8 +108,10 @@ public class ShopCreator : MonoBehaviour
 
 			// keep track of the items already used
 			alreadyUsed.Add(toSpawn);
-		}
-	}
+      }
+
+      Debug.Log("Already Used: " + alreadyUsed.Count + ", Possible Items: " + possibleItems.Length);
+   }
 
 	bool CheckIfAlreadyUsed(int toCheck)
 	{
@@ -130,7 +132,7 @@ public class ShopCreator : MonoBehaviour
 		for (int i = 0; i < possibleItems.Length; ++i)
 		{
 			// if the item isn't available, prematurely add it to the "alreadyUsed" list
-			if (possibleItems[i].isAvailable == false)
+			if (possibleItems[i].isAvailable == false && !CheckIfAlreadyUsed(i))
 			{
 				alreadyUsed.Add(i);
 			}

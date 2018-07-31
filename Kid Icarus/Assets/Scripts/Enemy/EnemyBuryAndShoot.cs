@@ -37,7 +37,6 @@ public class EnemyBuryAndShoot : MonoBehaviour
    private Enemy refEnemy;
    private GameObject refPlayer;
    private Animator refAnimator;
-   private Collider2D refCollider;
    private iamahammer[] tmpHammer;
    private Collider2D refHammer;
    private UtilityAudioManager refAudioManager;
@@ -47,12 +46,12 @@ public class EnemyBuryAndShoot : MonoBehaviour
       refEnemy = GetComponent<Enemy>();
       refPlayer = GameObject.FindGameObjectWithTag("Player");
       refAnimator = GetComponent<Animator>();
-      refCollider = GetComponent<Collider2D>();
       tmpHammer = Resources.FindObjectsOfTypeAll<iamahammer>();
       refHammer = tmpHammer[0].GetComponent<Collider2D>();
       refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
 
-      refCollider.enabled = false;
+      refEnemy.immuneToArrows = true;
+      refEnemy.immuneToHammer = true;
 
       CheckBelow();
 	}
@@ -109,7 +108,8 @@ public class EnemyBuryAndShoot : MonoBehaviour
 
             // make vulnerable
             Reposition(new Vector2(0, 0.5f));
-            refCollider.enabled = true;
+            refEnemy.immuneToArrows = false;
+            refEnemy.immuneToHammer = false;
          }
 
          if (isStunned == false && CheckRange() == true)
@@ -130,7 +130,8 @@ public class EnemyBuryAndShoot : MonoBehaviour
 
       // make invulnerable
       Reposition(new Vector2(0, 0.0f));
-      refCollider.enabled = false;
+      refEnemy.immuneToArrows = true;
+      refEnemy.immuneToHammer = true;
    }
 
    private void Shoot()
@@ -151,7 +152,8 @@ public class EnemyBuryAndShoot : MonoBehaviour
       refAnimator.SetTrigger("Shooting");
 
       // make vulnerable
-      refCollider.enabled = true;
+      refEnemy.immuneToArrows = false;
+      refEnemy.immuneToHammer = false;
 
       // play sound
       refAudioManager.PlaySound(soundPopOut.clip, soundPopOut.volume, true);
@@ -179,7 +181,8 @@ public class EnemyBuryAndShoot : MonoBehaviour
       refAnimator.SetTrigger("Shooting");
 
       // make invulnerable
-      refCollider.enabled = false;
+      refEnemy.immuneToArrows = true;
+      refEnemy.immuneToHammer = true;
 
       // play sound
       refAudioManager.PlaySound(soundHide.clip, soundHide.volume, true);

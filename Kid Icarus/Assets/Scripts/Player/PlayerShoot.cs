@@ -50,14 +50,12 @@ public class PlayerShoot : MonoBehaviour
    private PlayerMovement refPlayerMovement;
 	private PlayerAudio refPlayerAudio;
 	private PlayerCollision refPlayerCollision;
-	private Rigidbody2D rb;
 
 	void Start ()
 	{
 		refPlayerMovement = GetComponent<PlayerMovement>();
 		refPlayerAudio = GetComponent<PlayerAudio>();
 		refPlayerCollision = GetComponent<PlayerCollision>();
-		rb = GetComponent<Rigidbody2D>();
       refCameraFollow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
 
 		// set the hammer to inactive by default
