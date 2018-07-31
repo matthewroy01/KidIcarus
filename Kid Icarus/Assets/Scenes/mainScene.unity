@@ -11178,7 +11178,7 @@ Prefab:
     - target: {fileID: 114183189091063714, guid: c2f21cf57f72bc846bd31f8bb0a1f6fd,
         type: 2}
       propertyPath: movSpeed
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 82185001708480092, guid: c2f21cf57f72bc846bd31f8bb0a1f6fd,
         type: 2}
@@ -22038,6 +22038,7 @@ GameObject:
   - component: {fileID: 2009602874}
   - component: {fileID: 2009602875}
   - component: {fileID: 2009602876}
+  - component: {fileID: 2009602877}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: Hammer
@@ -22130,6 +22131,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
+--- !u!114 &2009602877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2009602873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a78ee4bdbe21384390368d97f2bfa88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2015839443
 GameObject:
   m_ObjectHideFlags: 0

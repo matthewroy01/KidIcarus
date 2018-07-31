@@ -15,13 +15,45 @@ public class EnemyBuryAndShoot : MonoBehaviour
    public GameObject projPrefab;
    public Vector2 projOrigin;
    public float projSpeed;
+   public bool canShoot = true;
+   public bool facingRight;
+   public float timeStartup;
+   public float timeCooldown;
+   public float timeWait;
+   public Sound soundPopOut;
+   public Sound soundHide;
+
+   [Header("Player detection")]
+   public float detectionRadius;
+   public float tooCloseRadius;
 
    [Header("Getting stunned")]
    public float stunDist;
    public float stunDuration;
+   public bool isStunned = false;
+   public GameObject stunnedEffect;
+   public Sound soundStunned;
+
+   private Enemy refEnemy;
+   private GameObject refPlayer;
+   private Animator refAnimator;
+   private Collider2D refCollider;
+   private iamahammer[] tmpHammer;
+   private Collider2D refHammer;
+   private UtilityAudioManager refAudioManager;
 
 	void Start ()
    {
+      refEnemy = GetComponent<Enemy>();
+      refPlayer = GameObject.FindGameObjectWithTag("Player");
+      refAnimator = GetComponent<Animator>();
+      refCollider = GetComponent<Collider2D>();
+      tmpHammer = Resources.FindObjectsOfTypeAll<iamahammer>();
+      refHammer = tmpHammer[0].GetComponent<Collider2D>();
+      refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
+
+      refCollider.enabled = false;
+
       CheckBelow();
 	}
 
@@ -37,7 +69,7 @@ public class EnemyBuryAndShoot : MonoBehaviour
             finalPos = checkPos + finalPosOffset;
             transform.position = finalPos;
             allSet = true;
-            Debug.Log("Girin found a good spot!");
+            canShoot = true;
             return;
          }
       }
@@ -45,13 +77,154 @@ public class EnemyBuryAndShoot : MonoBehaviour
       if (allSet == false)
       {
          // if we didn't find an appropriate position, destroy
-         Debug.Log("Girin was not able to find a good spot...");
          Destroy(gameObject);
       }
    }
 	
 	void Update ()
    {
-		
+      if (allSet && refEnemy.isDead == false)
+      {
+         if (CheckHammer() == true && isStunned == false)
+         {
+            // stun
+            isStunned = true;
+            refAnimator.SetTrigger("Stun");
+
+            // cancel any invokes
+            CancelInvoke("ActuallyShoot");
+            CancelInvoke("RechargeShoot");
+            CancelInvoke("WaitToShoot");
+
+            // wait to stop being stunned
+            Invoke("StopStun", stunDuration);
+
+            // make stun effect
+            GameObject tmp = Instantiate(stunnedEffect, (Vector2)transform.position + projOrigin, transform.rotation);
+            tmp.transform.localScale *= 0.3f;
+            tmp.transform.parent = transform;
+
+            // play sound
+            StartCoroutine("PlayStunSound");
+
+            // make vulnerable
+            Reposition(new Vector2(0, 0.5f));
+            refCollider.enabled = true;
+         }
+
+         if (isStunned == false && CheckRange() == true)
+         {
+            CheckDirection();
+            Shoot();
+         }
+      }
 	}
+
+   private void StopStun()
+   {
+      isStunned = false;
+      refAnimator.SetTrigger("Stun");
+
+      // reset shooting
+      canShoot = true;
+
+      // make invulnerable
+      Reposition(new Vector2(0, 0.0f));
+      refCollider.enabled = false;
+   }
+
+   private void Shoot()
+   {
+      if (canShoot)
+      {
+         canShoot = false;
+         Invoke("ActuallyShoot", timeStartup);
+      }
+   }
+
+   private void ActuallyShoot()
+   {
+      // change position
+      Reposition(new Vector2(0, 0.5f));
+
+      // do animation
+      refAnimator.SetTrigger("Shooting");
+
+      // make vulnerable
+      refCollider.enabled = true;
+
+      // play sound
+      refAudioManager.PlaySound(soundPopOut.clip, soundPopOut.volume, true);
+
+      // spawn the projectile and add velocity
+      GameObject tmp = Instantiate(projPrefab, (Vector2)transform.position + projOrigin, transform.rotation);
+      if (facingRight == true)
+      {
+         tmp.GetComponent<Rigidbody2D>().velocity = Vector2.right * projSpeed;
+      }
+      else
+      {
+         tmp.GetComponent<Rigidbody2D>().velocity = Vector2.right * projSpeed * -1;
+      }
+
+      Invoke("RechargeShoot", timeCooldown);
+   }
+
+   private void RechargeShoot()
+   {
+      // change position
+      Reposition(new Vector2(0, 0.0f));
+
+      // do animation
+      refAnimator.SetTrigger("Shooting");
+
+      // make invulnerable
+      refCollider.enabled = false;
+
+      // play sound
+      refAudioManager.PlaySound(soundHide.clip, soundHide.volume, true);
+
+      Invoke("WaitToShoot", timeWait);
+   }
+
+   private void WaitToShoot()
+   {
+      refAnimator.SetTrigger("Shooting");
+      canShoot = true;
+   }
+
+   private bool CheckRange()
+   {
+      // check if the player is in range and also not too close
+      if (refPlayer.transform.position.y > finalPos.y - detectionRadius && Vector2.Distance(finalPos, refPlayer.transform.position) > tooCloseRadius)
+      {
+         return true;
+      }
+      return false;
+   }
+
+   private bool CheckHammer()
+   {
+      return Vector2.Distance(finalPos, refHammer.transform.position) <= stunDist && refHammer.enabled == true;
+   }
+
+   private void CheckDirection()
+   {
+      facingRight = refPlayer.transform.position.x > finalPos.x;
+   }
+
+   private void Reposition(Vector2 offset)
+   {
+      // that meta Fire Emblem Heroes skill, essential for Voting Gauntlets
+      transform.position = finalPos + offset;
+   }
+
+   private IEnumerator PlayStunSound()
+   {
+      while (isStunned == true)
+      {
+         refAudioManager.PlaySound(soundStunned.clip, soundStunned.volume, true);
+         yield return new WaitForSeconds(0.5f);
+      }
+   }
 }
