@@ -36,6 +36,7 @@ public class PlayerCollision : MonoBehaviour
 	[Header("UI")]
 	private int currentMeters = 0;
 	public Text textMessages;
+   public Text textTheft;
 
 	private PlayerAudio refPlayerAudio;
 	private PlayerMovement refPlayerMovement;
@@ -313,7 +314,7 @@ public class PlayerCollision : MonoBehaviour
             {
                case 0:
                {
-                  Debug.Log("Pluton stole a Roc's Feather!");
+                  textTheft.text = "Roc's Feather stolen!";
                   if (refPlayerMovement.extraJumps != 1)
                   {
                      refPlayerMovement.extraJumps--;
@@ -322,13 +323,13 @@ public class PlayerCollision : MonoBehaviour
                }
                case 1:
                {
-                  Debug.Log("Pluton stole half of your Hearts!");
+                  textTheft.text = "Half of your hearts stolen!";
                   hearts = hearts / 2;
                   break;
                }
                case 2:
                {
-                  Debug.Log("Pluton stole your bow upgrades!");
+                  textTheft.text = "Bow upgrades stolen!";
                   refPlayerShoot.hasChargeReticle = false;
                   refPlayerShoot.hasLongbow = false;
                   break;
@@ -341,10 +342,13 @@ public class PlayerCollision : MonoBehaviour
          }
          else
          {
-            Debug.Log("Pluton didn't steal anything!");
+            textTheft.text = "Couldn't steal anything!";
          }
 
          refPlayerAudio.PlayTheif();
+
+         CancelInvoke("ResetTheftMessage");
+         Invoke("ResetTheftMessage", 3.0f);
 
          canGetHit = false;
          Invoke("StopInvincibility", invincibilityTime);
@@ -410,6 +414,11 @@ public class PlayerCollision : MonoBehaviour
 	{
 		canGetHit = true;
 	}
+
+   private void ResetTheftMessage()
+   {
+      textTheft.text = "";
+   }
 
 	private void Death()
 	{

@@ -72,9 +72,9 @@ public class PlayerUI : MonoBehaviour
 	private void DisplayFeathers()
 	{
 		// enable feathers as more jumps are added
-		for (int i = 0; i < refMovement.extraJumps; ++i)
+		for (int i = 0; i < feathers.Length; ++i)
 		{
-			feathers[i].SetActive(true);
+         feathers[i].SetActive(i < refMovement.extraJumps);
 		}
 	}
 
@@ -131,4 +131,4 @@ public class PlayerUI : MonoBehaviour
 	{
 		textMeters.text = (refCollision.getCurrentMeters() + startingMeterOffset).ToString() + "m";
 	}
-}
+} 
