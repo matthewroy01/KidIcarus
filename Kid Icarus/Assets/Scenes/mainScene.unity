@@ -5975,7 +5975,7 @@ MonoBehaviour:
     isAvailable: 1
   - name: Divine Ward
     obj: {fileID: 1218507675737982, guid: f7b63cb9716a2a5408bb1c5fc3dfb35f, type: 2}
-    description: Sends the Orne down 50 meters.
+    description: Sends the Orne down 100 meters.
     cost: 100
     isAvailable: 1
   - name: First Aid Kit
@@ -5983,25 +5983,10 @@ MonoBehaviour:
     description: Removes the Eggplant Curse. Can be stored for later.
     cost: 20
     isAvailable: 1
-  - name: Kiddie Size Drink
-    obj: {fileID: 1370745428962280, guid: af23a75a027c65b4396f267705b2bfed, type: 2}
-    description: For those guilty moments. Restores 1 unit of life.
-    cost: 12
-    isAvailable: 1
   - name: Icon of Light
     obj: {fileID: 1487862482214924, guid: 8947380d66b586e47ba9078df47ce479, type: 2}
     description: An icon of the Goddess of Light. May grant luck.
     cost: 50
-    isAvailable: 1
-  - name: Charge Reticle
-    obj: {fileID: 1011583362227442, guid: e1aa09720b0c77a4189f008bcee37ae4, type: 2}
-    description: Modern tech. Hold your fire to charge a powerful shot.
-    cost: 80
-    isAvailable: 1
-  - name: Longbow
-    obj: {fileID: 1859114479839406, guid: 2f38f539b2b6ade4c91bd2ae5c6859cd, type: 2}
-    description: A taller bow with longer range.
-    cost: 80
     isAvailable: 1
   emptyItem:
     name: Empty
@@ -17049,28 +17034,36 @@ MonoBehaviour:
   enemies:
   - obj: {fileID: 1194326722190070, guid: e5179478419fddf4e8614436b979f88d, type: 2}
     limitSpawns: 1
-    linkedTo: -1
+    linkedTo: 3
+    dontSpawnBefore: 0
   - obj: {fileID: 1040655999123246, guid: 49bb6c8ddccecf74b9c07601a342c6d0, type: 2}
     limitSpawns: 1
     linkedTo: -1
+    dontSpawnBefore: 0
   - obj: {fileID: 1275306939347786, guid: 2bffa755fb6048244aa265ac4a7dc9cb, type: 2}
     limitSpawns: 0
     linkedTo: -1
+    dontSpawnBefore: 0
   - obj: {fileID: 1784919452603194, guid: 2265cdade982b69419f547e7b291baca, type: 2}
     limitSpawns: 0
-    linkedTo: -1
+    linkedTo: 0
+    dontSpawnBefore: 0
   - obj: {fileID: 1034353125502332, guid: a5f2d0c42ba8df64d8a72483075a6b4e, type: 2}
     limitSpawns: 0
     linkedTo: -1
+    dontSpawnBefore: 0
   - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 2}
     limitSpawns: 1
     linkedTo: 6
+    dontSpawnBefore: 300
   - obj: {fileID: 1141117070903062, guid: 18019a28288d92c4bae661d0a6e0248d, type: 2}
     limitSpawns: 1
     linkedTo: 5
+    dontSpawnBefore: 300
   - obj: {fileID: 1511023610978616, guid: 84aaa855e347969439fc5b70d7605d9e, type: 2}
     limitSpawns: 1
     linkedTo: -1
+    dontSpawnBefore: 1000
   spawnTreasureEveryMax: 2
   spawnTreasureEveryMin: 5
   treasures:

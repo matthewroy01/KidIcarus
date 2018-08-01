@@ -17,6 +17,7 @@ public class EnemyBuryAndShoot : MonoBehaviour
    public float projSpeed;
    public bool canShoot = true;
    public bool facingRight;
+   public float timePopout;
    public float timeStartup;
    public float timeCooldown;
    public float timeWait;
@@ -91,6 +92,7 @@ public class EnemyBuryAndShoot : MonoBehaviour
             refAnimator.SetTrigger("Stun");
 
             // cancel any invokes
+            CancelInvoke("PopOut");
             CancelInvoke("ActuallyShoot");
             CancelInvoke("RechargeShoot");
             CancelInvoke("WaitToShoot");
@@ -139,11 +141,11 @@ public class EnemyBuryAndShoot : MonoBehaviour
       if (canShoot)
       {
          canShoot = false;
-         Invoke("ActuallyShoot", timeStartup);
+         Invoke("PopOut", timePopout);
       }
    }
 
-   private void ActuallyShoot()
+   private void PopOut()
    {
       // change position
       Reposition(new Vector2(0, 0.5f));
@@ -158,6 +160,11 @@ public class EnemyBuryAndShoot : MonoBehaviour
       // play sound
       refAudioManager.PlaySound(soundPopOut.clip, soundPopOut.volume, true);
 
+      Invoke("ActuallyShoot", timeStartup);
+   }
+
+   private void ActuallyShoot()
+   {
       // spawn the projectile and add velocity
       GameObject tmp = Instantiate(projPrefab, (Vector2)transform.position + projOrigin, transform.rotation);
       if (facingRight == true)

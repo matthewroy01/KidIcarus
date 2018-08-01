@@ -36,11 +36,13 @@ public class InfiniteGenerator : MonoBehaviour
 	// private variables
 	private bool isGenerating; // if the game has begun generating yet
 	private Transform refPlayer; // a reference to the player's transform to see how high they've made it for the purposes of spawning more levels
+   private PlayerCollision refPlayerCollision;
 
 	void Start()
 	{
 		candidates = new List<int>();
 		refPlayer = GameObject.FindGameObjectWithTag("Player").transform;
+      refPlayerCollision = GameObject.FindObjectOfType<PlayerCollision>();
 
       treasureSpawnCounter = Random.Range(spawnTreasureEveryMin, spawnTreasureEveryMax);
 	}
@@ -191,7 +193,7 @@ public class InfiniteGenerator : MonoBehaviour
 				{
 					tmp = Random.Range(0, enemies.Length);
 				}
-				while(CheckForRepeats(tmp, limitedSpawn) == true);
+				while(CheckForRepeats(tmp, limitedSpawn) == true || enemies[tmp].dontSpawnBefore > refPlayerCollision.getCurrentMeters());
 
 				Instantiate(enemies[tmp].obj, new Vector2(randX, randY), Quaternion.identity);
 
@@ -201,9 +203,9 @@ public class InfiniteGenerator : MonoBehaviour
 					// Debug.Log("Enemy at " + tmp + " prevent enemy at " + enemies[tmp].linkedTo + " from spawning.");
 					limitedSpawn.Add(enemies[tmp].linkedTo);
 				}
-	
-				// if spawns are limited, add it to the list so we don't spawn more
-				if (enemies[tmp].limitSpawns == true)
+
+            // if spawns are limited, add it to the list so we don't spawn more
+            if (enemies[tmp].limitSpawns == true)
 				{
 					limitedSpawn.Add(tmp);
 				}
@@ -230,7 +232,7 @@ public class InfiniteGenerator : MonoBehaviour
       }
    }
 
-      private bool CheckForRepeats(int rand, List<int> list)
+   private bool CheckForRepeats(int rand, List<int> list)
 	{
 		// if for some reason, all enemies have been used, just return false
 		if (list.Count == enemies.Length)
@@ -272,4 +274,5 @@ public class EnemyToSpawn
 	public GameObject obj;
 	public bool limitSpawns;
 	public int linkedTo = -1;
+   public int dontSpawnBefore = 0;
 }

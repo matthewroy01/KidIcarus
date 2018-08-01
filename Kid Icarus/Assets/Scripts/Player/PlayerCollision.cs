@@ -150,7 +150,7 @@ public class PlayerCollision : MonoBehaviour
 			else if (other.name == "DivineWard(Clone)")
 			{
 				GameObject tmpOrne = GameObject.Find("Orne");
-				tmpOrne.transform.position = new Vector2(tmpOrne.transform.position.x, tmpOrne.transform.position.y - 50.0f);
+				tmpOrne.transform.position = new Vector2(tmpOrne.transform.position.x, tmpOrne.transform.position.y - 100.0f);
 				Destroy(other.gameObject);
 			}
 			else if (other.name == "FirstAidKit(Clone)" && !hasFirstAidKit)
@@ -229,7 +229,7 @@ public class PlayerCollision : MonoBehaviour
 						hearts -= tmp.cost / sale;
 						sale = 1;
 						GameObject tmpOrne = GameObject.Find("Orne");
-						tmpOrne.transform.position = new Vector2(tmpOrne.transform.position.x, tmpOrne.transform.position.y - 50.0f);
+						tmpOrne.transform.position = new Vector2(tmpOrne.transform.position.x, tmpOrne.transform.position.y - 100.0f);
 						Destroy(other.gameObject);
 					}
 
@@ -296,7 +296,7 @@ public class PlayerCollision : MonoBehaviour
             candidates.Add(0);
          }
 
-         if (hearts > 0)
+         /*if (hearts > 0)
          {
             candidates.Add(1);
          }
@@ -304,7 +304,7 @@ public class PlayerCollision : MonoBehaviour
          if (refPlayerShoot.hasChargeReticle || refPlayerShoot.hasLongbow)
          {
             candidates.Add(2);
-         }
+         }*/
 
          if (candidates.Count > 0)
          {

@@ -131,7 +131,8 @@ MonoBehaviour:
   projSpeed: 8
   canShoot: 1
   facingRight: 0
-  timeStartup: 0.5
+  timePopout: 0.1
+  timeStartup: 0.4
   timeCooldown: 0.5
   timeWait: 1
   soundPopOut:
@@ -176,7 +177,10 @@ MonoBehaviour:
     volume: 0.5
   spawnOnDeath: {fileID: 0}
   drops:
-  - {fileID: 1716224392259714, guid: 3afa8cf07586000408054aed253ab23d, type: 2}
+  - {fileID: 1011583362227442, guid: e1aa09720b0c77a4189f008bcee37ae4, type: 2}
+  - {fileID: 1859114479839406, guid: 2f38f539b2b6ade4c91bd2ae5c6859cd, type: 2}
+  - {fileID: 1711906733496614, guid: 0e08660203a9ce54dbb38dd44a28163b, type: 2}
+  - {fileID: 1711906733496614, guid: 0e08660203a9ce54dbb38dd44a28163b, type: 2}
   shouldWrap: 1
 --- !u!114 &114419184743305430
 MonoBehaviour:
