@@ -28,6 +28,8 @@ public class PlayerUI : MonoBehaviour
 	[Header("Meters display")]
 	public Text textMeters;
 	public int startingMeterOffset;
+   public Text textHighScore;
+   public bool resetScore = false;
 
 	private PlayerMovement refMovement;
 	private PlayerCollision refCollision;
@@ -47,6 +49,12 @@ public class PlayerUI : MonoBehaviour
 
 		// update the size of the hammer slider for convenience
 		sliderHammer.maxValue = refShoot.meleeChargeTotal;
+
+      if (resetScore || !PlayerPrefs.HasKey("HighScore"))
+      {
+         Debug.LogWarning("High score being reset, turn off for builds.");
+         PlayerPrefs.SetInt("HighScore", 0);
+      }
 	}
 
 	void Update ()
@@ -58,6 +66,7 @@ public class PlayerUI : MonoBehaviour
 		DisplayFirstAidKit();
       DisplayCenturions();
 		DisplayMeters();
+      DisplayHighScore();
 	}
 
 	private void DisplayHammerValues()
@@ -131,4 +140,16 @@ public class PlayerUI : MonoBehaviour
 	{
 		textMeters.text = (refCollision.getCurrentMeters() + startingMeterOffset).ToString() + "m";
 	}
+
+   private void DisplayHighScore()
+   {
+      int tmpScore = refCollision.getCurrentMeters() + startingMeterOffset;
+
+      if (PlayerPrefs.GetInt("HighScore") < tmpScore)
+      {
+         PlayerPrefs.SetInt("HighScore", tmpScore);
+      }
+
+      textHighScore.text = "HIGH SCORE\n" + PlayerPrefs.GetInt("HighScore").ToString() + "m";
+   }
 } 

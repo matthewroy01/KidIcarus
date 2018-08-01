@@ -10,6 +10,7 @@ public class MiscLoadScene : MonoBehaviour
 
 	[Header("Input")]
 	public KeyCode keyToPress;
+   public KeyCode resetHighScore;
 
 	void Update ()
 	{
@@ -17,5 +18,10 @@ public class MiscLoadScene : MonoBehaviour
 		{
 			SceneManager.LoadScene(sceneNum);
 		}
+
+      if (Input.GetKeyDown(resetHighScore))
+      {
+         PlayerPrefs.SetInt("HighScore", 0);
+      }
 	}
 }
