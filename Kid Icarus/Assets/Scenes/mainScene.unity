@@ -5508,18 +5508,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97936a25fd3ea93458f5c4c6b2d2e107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowProjectileSpeed: 15
   arrowPrefabNormal: {fileID: 1198780200618238, guid: ff7d31cf652bbac4eae88ab57b251b70,
-    type: 2}
-  arrowPrefabLongbow: {fileID: 1198780200618238, guid: 381a382748627024fb72871a2dba1c40,
     type: 2}
   arrowPrefabCharged: {fileID: 1198780200618238, guid: 093a5698a23536941a58e138b725d903,
     type: 2}
+  arrowSpeedNormal: 15
+  arrowSpeedCharged: 20
   lookingUp: 0
-  hasLongbow: 0
-  hasChargeReticle: 0
-  isCharged: 1
-  rechargeTime: 0.8
+  arrowRangeLevel: 0
+  arrowRangeBase: 0.4
+  arrowRangeIncrement: 0.12
+  arrowChargeLevel: 0
+  arrowChargeBase: 1.5
+  arrowChargeIncrement: -0.25
+  arrowLevelMax: 5
+  isCharged: 0
   rechargePrefab: {fileID: 1049192087614364, guid: 09a8fa2b051304d4fab375b6f60803ea,
     type: 2}
   eggplantProjecilteSpeed: 350

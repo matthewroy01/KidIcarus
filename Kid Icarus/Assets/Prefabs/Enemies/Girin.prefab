@@ -179,8 +179,6 @@ MonoBehaviour:
   drops:
   - {fileID: 1011583362227442, guid: e1aa09720b0c77a4189f008bcee37ae4, type: 2}
   - {fileID: 1859114479839406, guid: 2f38f539b2b6ade4c91bd2ae5c6859cd, type: 2}
-  - {fileID: 1711906733496614, guid: 0e08660203a9ce54dbb38dd44a28163b, type: 2}
-  - {fileID: 1711906733496614, guid: 0e08660203a9ce54dbb38dd44a28163b, type: 2}
   shouldWrap: 1
 --- !u!114 &114419184743305430
 MonoBehaviour:

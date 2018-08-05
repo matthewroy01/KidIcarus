@@ -166,12 +166,12 @@ public class PlayerCollision : MonoBehaviour
 			}
          else if (other.name == "ChargeReticle(Clone)")
          {
-            refPlayerShoot.hasChargeReticle = true;
+            refPlayerShoot.arrowChargeLevel++;
             Destroy(other.gameObject);
          }
          else if (other.name == "Longbow(Clone)")
          {
-            refPlayerShoot.hasLongbow = true;
+
             Destroy(other.gameObject);
          }
          else
@@ -257,19 +257,19 @@ public class PlayerCollision : MonoBehaviour
 						Destroy(other.gameObject);
 					}
 
-               if (tmp.name == "Charge Reticle" && refPlayerShoot.hasChargeReticle == false)
+               if (tmp.name == "Charge Reticle")
                {
                   hearts -= tmp.cost / sale;
                   sale = 1;
-                  refPlayerShoot.hasChargeReticle = true;
+                  refPlayerShoot.IncreaseCharge();
                   Destroy(other.gameObject);
                }
 
-               if (tmp.name == "Longbow" && refPlayerShoot.hasLongbow == false)
+               if (tmp.name == "Longbow")
                {
                   hearts -= tmp.cost / sale;
                   sale = 1;
-                  refPlayerShoot.hasLongbow = true;
+                  refPlayerShoot.IncreaseRange();
                   Destroy(other.gameObject);
                }
             }
@@ -330,8 +330,9 @@ public class PlayerCollision : MonoBehaviour
                case 2:
                {
                   textTheft.text = "Bow upgrades stolen!";
-                  refPlayerShoot.hasChargeReticle = false;
-                  refPlayerShoot.hasLongbow = false;
+                  refPlayerShoot.arrowChargeLevel = 0;
+                  refPlayerShoot.arrowRangeLevel = 0;
+
                   break;
                }
                default:
@@ -402,12 +403,6 @@ public class PlayerCollision : MonoBehaviour
       {
          refShopInfo.SetAvailability(true, "Roc's Feather");
       }
-
-      // charge reticle availability
-      refShopInfo.SetAvailability(!refPlayerShoot.hasChargeReticle, "Charge Reticle");
-
-      // longbow availability
-      refShopInfo.SetAvailability(!refPlayerShoot.hasLongbow, "Longbow");
    }
 
 	private void StopInvincibility()
