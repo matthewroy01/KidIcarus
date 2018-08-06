@@ -154,7 +154,7 @@ MonoBehaviour:
   physicsAcceleration: 20
   checkDistance: 2
   numOfClones: 3
-  spawnInterval: 0.5
+  spawnInterval: 1
   isOriginal: 1
 --- !u!212 &212248468162914396
 SpriteRenderer:

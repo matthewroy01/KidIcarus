@@ -107,7 +107,7 @@ public class PlayerShoot : MonoBehaviour
 
 	void CheckLookingUp()
 	{
-		if (Input.GetKey("w"))
+		if (Input.GetButton("Up"))
 		{
 			lookingUp = true;
 		}
@@ -119,7 +119,7 @@ public class PlayerShoot : MonoBehaviour
 
 	void Shoot()
 	{
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetButtonDown("Shoot"))
 		{
 			Vector2 shootDir;
 			float zRotation;
@@ -192,7 +192,7 @@ public class PlayerShoot : MonoBehaviour
 	{
 		int tmpEggplantNum = eggplantNum - Random.Range(0, 1);
 
-		if (Input.GetMouseButtonDown(0) && canFireEggplant)
+		if (Input.GetButtonDown("Shoot") && canFireEggplant)
 		{
 			for (int i = 0; i < tmpEggplantNum; ++i)
 			{
@@ -225,7 +225,7 @@ public class PlayerShoot : MonoBehaviour
 
 	void Melee()
 	{
-		if (Input.GetMouseButtonDown(1) && canHammer && meleeUsesCurrent > 0)
+		if (Input.GetButtonDown("Melee") && canHammer && meleeUsesCurrent > 0)
 		{
 			meleeUsesCurrent--;
 
@@ -326,7 +326,7 @@ public class PlayerShoot : MonoBehaviour
 
    private void SpawnCenturions()
    {
-      if (Input.GetKeyDown(KeyCode.E))
+      if (Input.GetButtonDown("CallCenturion"))
       {
          // if we have centurions stored and we don't already have a centurion equipped, spawn one
          if (centurionsStored > 0 && hasCenturion == false)

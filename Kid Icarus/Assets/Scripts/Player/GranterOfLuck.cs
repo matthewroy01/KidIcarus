@@ -78,8 +78,9 @@ public class GranterOfLuck : MonoBehaviour
 			}
 			case 2:
 			{
-				goddessText.text = "I've slowed down the Orne\nfor you, Pit...";
+				goddessText.text = "I've sent the Orne down 50m\nfor you, Pit...";
 				EnemyOrne tmpOrne = GameObject.Find("Orne").GetComponent<EnemyOrne>();
+            tmpOrne.transform.position = new Vector2(tmpOrne.transform.position.x, tmpOrne.transform.position.y - 50.0f);
 				tmpOrne.SetDefaultMovSpeed(tmpOrne.GetDefaultMovSpeed() - tmpOrne.increaseMovSpeedBy * 2);
 				break;
 			}

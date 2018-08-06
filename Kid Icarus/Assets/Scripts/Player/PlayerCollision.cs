@@ -166,12 +166,12 @@ public class PlayerCollision : MonoBehaviour
 			}
          else if (other.name == "ChargeReticle(Clone)")
          {
-            refPlayerShoot.arrowChargeLevel++;
+            refPlayerShoot.IncreaseCharge();
             Destroy(other.gameObject);
          }
          else if (other.name == "Longbow(Clone)")
          {
-
+            refPlayerShoot.IncreaseRange();
             Destroy(other.gameObject);
          }
          else
