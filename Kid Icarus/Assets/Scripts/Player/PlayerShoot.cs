@@ -23,6 +23,10 @@ public class PlayerShoot : MonoBehaviour
    [Header("")]
    public int arrowLevelMax;
 
+   [Header("Plus one")]
+   public GameObject chargePlusOnePrefab;
+   public GameObject rangePlusOnePrefab;
+
    [Header("Charge")]
    public bool isCharged;
    private float rechargeTime;
@@ -357,6 +361,8 @@ public class PlayerShoot : MonoBehaviour
       if (arrowChargeLevel < arrowLevelMax)
       {
          ++arrowChargeLevel;
+         refPlayerAudio.PlayPowerUp();
+         Instantiate(chargePlusOnePrefab, new Vector2(transform.position.x, transform.position.y + 0.5f), transform.rotation);
       }
    }
 
@@ -365,6 +371,8 @@ public class PlayerShoot : MonoBehaviour
       if (arrowRangeLevel < arrowLevelMax)
       {
          ++arrowRangeLevel;
+         refPlayerAudio.PlayPowerUp();
+         Instantiate(rangePlusOnePrefab, new Vector2(transform.position.x, transform.position.y + 0.5f), transform.rotation);
       }
    }
 }

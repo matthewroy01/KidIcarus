@@ -34,11 +34,11 @@ public class PlayerCollision : MonoBehaviour
 	public GameObject iconOfLightPrefab;
 
 	[Header("UI")]
-	private int currentMeters = 0;
 	public Text textMessages;
    public Text textTheft;
+   private int currentMeters = 0;
 
-	private PlayerAudio refPlayerAudio;
+   private PlayerAudio refPlayerAudio;
 	private PlayerMovement refPlayerMovement;
    private PlayerShoot refPlayerShoot;
 	private ShopInfo refShopInfo;

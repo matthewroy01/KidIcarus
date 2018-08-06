@@ -5522,6 +5522,10 @@ MonoBehaviour:
   arrowChargeBase: 1.5
   arrowChargeIncrement: -0.25
   arrowLevelMax: 5
+  chargePlusOnePrefab: {fileID: 1043148246282004, guid: 23d8c06f0f0ab4e4686854823effdb29,
+    type: 2}
+  rangePlusOnePrefab: {fileID: 1574898953324470, guid: ba6d8365bc6cdd14ab633916051b39ed,
+    type: 2}
   isCharged: 0
   rechargePrefab: {fileID: 1049192087614364, guid: 09a8fa2b051304d4fab375b6f60803ea,
     type: 2}
@@ -5655,6 +5659,9 @@ MonoBehaviour:
   theif:
     clip: {fileID: 8300000, guid: 6c765c2280094f143b3b138628e33934, type: 3}
     volume: 0.25
+  powerUp:
+    clip: {fileID: 8300000, guid: 2ec66311ed444b44b8be12d046b7b615, type: 3}
+    volume: 0.75
 --- !u!70 &690602505
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

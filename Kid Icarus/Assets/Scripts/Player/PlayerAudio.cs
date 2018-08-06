@@ -19,6 +19,7 @@ public class PlayerAudio : MonoBehaviour
 	public Sound hammerHit;
    public Sound arrowRecharge;
    public Sound theif;
+   public Sound powerUp;
 
 	void Start()
 	{
@@ -83,6 +84,11 @@ public class PlayerAudio : MonoBehaviour
    public void PlayTheif()
    {
       refAudioManager.PlaySound(theif.clip, theif.volume, false);
+   }
+
+   public void PlayPowerUp()
+   {
+      refAudioManager.PlaySound(powerUp.clip, powerUp.volume, false);
    }
 }
 
