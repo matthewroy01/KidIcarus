@@ -29,12 +29,6 @@ public class EnemyPounceAndSteal : MonoBehaviour
 
    void Start ()
    {
-      // if we spawn inside a wall, destroy
-      if (Physics2D.OverlapCircle((Vector2)transform.position, 0.5f, groundMask) == true)
-      {
-         Destroy(gameObject);
-      }
-
       refPlayer = GameObject.FindGameObjectWithTag("Player");
       sr = GetComponent<SpriteRenderer>();
       rb = GetComponent<Rigidbody2D>();

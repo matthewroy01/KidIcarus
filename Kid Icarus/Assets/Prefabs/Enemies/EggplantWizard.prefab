@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 50487912199946082}
   - component: {fileID: 114412859608349510}
   - component: {fileID: 114169267707724934}
+  - component: {fileID: 114808479598037044}
   m_Layer: 9
   m_Name: EggplantWizard
   m_TagString: Enemy
@@ -130,7 +131,7 @@ MonoBehaviour:
   movSpeed: 1.5
   eggplantPrefab: {fileID: 1176366862215850, guid: 1006a7f1e7bd3dd47abfad4175df85e0,
     type: 2}
-  fireRate: 1.25
+  fireRate: 1.1
   force: {x: 75, y: 300}
   detectionDistance: 10
   fire:
@@ -169,6 +170,22 @@ MonoBehaviour:
   - {fileID: 1309213865734988, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
   - {fileID: 1487862482214924, guid: 8947380d66b586e47ba9078df47ce479, type: 2}
   shouldWrap: 1
+--- !u!114 &114808479598037044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1141117070903062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3211ef95be2b1c94aa214bf5f2a36784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
+  numberOfTries: 3
+  yAccuracy: 4
 --- !u!212 &212942128496728152
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -17040,7 +17040,7 @@ MonoBehaviour:
   randomFlipEnabled: 1
   shops: []
   waitToSpawnEnemies: 1
-  enemiesToSpawn: 2
+  enemiesToSpawn: 3
   enemies:
   - obj: {fileID: 1194326722190070, guid: e5179478419fddf4e8614436b979f88d, type: 2}
     limitSpawns: 1
@@ -17073,7 +17073,11 @@ MonoBehaviour:
   - obj: {fileID: 1511023610978616, guid: 84aaa855e347969439fc5b70d7605d9e, type: 2}
     limitSpawns: 1
     linkedTo: -1
-    dontSpawnBefore: 1000
+    dontSpawnBefore: 600
+  - obj: {fileID: 1649594314718266, guid: 421ffc9deb54f2b409917c7ccc80154d, type: 2}
+    limitSpawns: 1
+    linkedTo: -1
+    dontSpawnBefore: 100
   spawnTreasureEveryMax: 2
   spawnTreasureEveryMin: 5
   treasures:

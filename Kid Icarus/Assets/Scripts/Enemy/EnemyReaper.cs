@@ -57,12 +57,6 @@ public class EnemyReaper : MonoBehaviour
 		refPlayer = GameObject.Find("Pit");
 		refMusicManager = GameObject.FindObjectOfType<UtilityMusicManager>();
 		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
-
-		// if we spawn inside a wall, destroy
-		if (Physics2D.OverlapCircle((Vector2)transform.position, 0.5f, groundMask) == true)
-		{
-			Destroy(gameObject);
-		}
 	}
 
 	void FixedUpdate()

@@ -120,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destructableLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   destroyAfterTime: 1.25
   doScreenWrapping: 1
 --- !u!212 &212532808156466046

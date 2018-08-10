@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114000085674719292}
   - component: {fileID: 114858393763805796}
   - component: {fileID: 95195574230242778}
+  - component: {fileID: 114428779238868176}
   m_Layer: 9
   m_Name: Pluton
   m_TagString: Theif
@@ -187,8 +188,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 84765fd95692fa4439fa6659e3a4b937, type: 3}
     volume: 0.5
   ouch: {fileID: 1793277941987778, guid: 564a6d101f34e024c9a1f5c59cb11c97, type: 2}
-  immuneToArrows: 0
-  immuneToHammer: 0
+  immuneToArrows: 1
+  immuneToHammer: 1
   isDead: 0
   deathTime: 0.5
   death:
@@ -198,6 +199,22 @@ MonoBehaviour:
   drops:
   - {fileID: 1711906733496614, guid: 0e08660203a9ce54dbb38dd44a28163b, type: 2}
   shouldWrap: 1
+--- !u!114 &114428779238868176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1511023610978616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3211ef95be2b1c94aa214bf5f2a36784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
+  numberOfTries: 3
+  yAccuracy: 4
 --- !u!114 &114858393763805796
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -41,12 +41,6 @@ public class EnemyEggplant : MonoBehaviour
 		refAnimator = GetComponent<Animator>();
 		refPlayer = GameObject.Find("Pit");
 		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
-
-		// if we spawn inside a wall, destroy
-		if (Physics2D.OverlapCircle((Vector2)transform.position, 0.5f, groundMask) == true)
-		{
-			Destroy(gameObject);
-		}
 	}
 
 	void FixedUpdate()

@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114220449667667256}
   - component: {fileID: 114792352864025980}
   - component: {fileID: 95541512689779790}
+  - component: {fileID: 114461617575406540}
   m_Layer: 9
   m_Name: Reaper
   m_TagString: Enemy
@@ -170,6 +171,22 @@ MonoBehaviour:
   - {fileID: 1309213865734988, guid: 18bb24a45899f0f44865ad3eaf0a93f9, type: 2}
   - {fileID: 1487862482214924, guid: 8947380d66b586e47ba9078df47ce479, type: 2}
   shouldWrap: 1
+--- !u!114 &114461617575406540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713951788145516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3211ef95be2b1c94aa214bf5f2a36784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
+  numberOfTries: 3
+  yAccuracy: 4
 --- !u!114 &114792352864025980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,10 +206,10 @@ MonoBehaviour:
   grounded: 0
   facingRight: 0
   movSpeed: 0.75
-  doRandomWait: 0
+  doRandomWait: 1
   turnRate: 300
   waiting: 0
-  waitTime: 1.5
+  waitTime: 1
   sightDistance: 10
   lineOfSightObj: {fileID: 1393896937171272, guid: 429475fedac20f44999050abd4f5d488,
     type: 2}
