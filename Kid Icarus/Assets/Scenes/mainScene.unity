@@ -11842,6 +11842,11 @@ MonoBehaviour:
   death: {fileID: 1177960286}
   reap: {fileID: 1177960291}
   musicStatus: 1
+  options:
+  - {fileID: 8300000, guid: 56516f7f3e05fbd44aa34a2ee03fa92b, type: 3}
+  - {fileID: 8300000, guid: ab1640c11eefef343aaca8e738f0dd02, type: 3}
+  - {fileID: 8300000, guid: 776cbc461d066da47825a8d4efdf5a3d, type: 3}
+  - {fileID: 8300000, guid: a205854130d435944a996bc3a23aa20f, type: 3}
 --- !u!82 &1177960291
 AudioSource:
   m_ObjectHideFlags: 0

@@ -15,8 +15,13 @@ public class UtilityMusicManager : MonoBehaviour
 	[SerializeField]
 	private MusicStatus musicStatus;
 
+   [Header("Main theme options")]
+   public AudioClip[] options;
+
 	void Start ()
 	{
+      main.clip = options[Random.Range(0, options.Length)];
+
 		// set the status to playing the main theme by default
 		musicStatus = MusicStatus.mainTheme;
 

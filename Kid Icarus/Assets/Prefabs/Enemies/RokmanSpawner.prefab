@@ -55,7 +55,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bb3e713413703fe46ac168d674800e5e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -220,5 +220,5 @@ MonoBehaviour:
   destructableLayer:
     serializedVersion: 2
     m_Bits: 0
-  destroyAfterTime: 5
+  destroyAfterTime: 4
   doScreenWrapping: 0
