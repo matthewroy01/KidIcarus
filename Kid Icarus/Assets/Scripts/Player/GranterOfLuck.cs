@@ -16,6 +16,9 @@ public class GranterOfLuck : MonoBehaviour
    public GameObject komaytoPrefab;
    public Sound komaytoSound;
 
+   [Header("Mini Divine Ward")]
+   public int wardMeters;
+
 	private bool alreadyDecided = false;
 	private bool fadeOut = false;
 
@@ -78,10 +81,9 @@ public class GranterOfLuck : MonoBehaviour
 			}
 			case 2:
 			{
-				goddessText.text = "I've sent the Orne down 50m\nfor you, Pit...";
-				EnemyOrne tmpOrne = GameObject.Find("Orne").GetComponent<EnemyOrne>();
-            tmpOrne.transform.position = new Vector2(tmpOrne.transform.position.x, tmpOrne.transform.position.y - 50.0f);
-				tmpOrne.SetDefaultMovSpeed(tmpOrne.GetDefaultMovSpeed() - tmpOrne.increaseMovSpeedBy * 2);
+				goddessText.text = "I've sent the Orne down " + wardMeters + "m\nfor you, Pit...";
+				EnemyOrne tmpOrne = GameObject.FindObjectOfType<EnemyOrne>();
+            tmpOrne.SendBack(wardMeters);
 				break;
 			}
          case 3:

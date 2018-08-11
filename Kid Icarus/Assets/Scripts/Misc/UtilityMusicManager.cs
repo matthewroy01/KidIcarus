@@ -18,6 +18,8 @@ public class UtilityMusicManager : MonoBehaviour
    [Header("Main theme options")]
    public AudioClip[] options;
 
+   private bool playedDeath = false;
+
 	void Start ()
 	{
       main.clip = options[Random.Range(0, options.Length)];
@@ -83,10 +85,11 @@ public class UtilityMusicManager : MonoBehaviour
 			}
 			case MusicStatus.death:
 			{
-				if (death.isPlaying == false)
+            if (death.isPlaying == false && playedDeath == false)
 				{
 					death.Play();
 				}
+            playedDeath = true;
 				orne.volume = Mathf.Lerp(orne.volume, 0.0f, 0.1f);
 				main.volume = Mathf.Lerp(main.volume, 0.0f, 0.1f);
 				shop.volume = Mathf.Lerp(shop.volume, 0.0f, 0.1f);

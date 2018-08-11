@@ -18,6 +18,8 @@ public class EnemyOrne : MonoBehaviour
 	public bool inRange;
 	public bool playMusic;
 
+   private int metersSentBack;
+
 	private CameraFollow refCamFollow;
 
 	private Transform refPlayer;
@@ -156,4 +158,15 @@ public class EnemyOrne : MonoBehaviour
 	{
 		defaultMovSpeed = newValue;
 	}
+
+   public void SendBack(int meters)
+   {
+      transform.position = new Vector2(transform.position.x, transform.position.y - meters);
+      metersSentBack += meters;
+   }
+
+   public int GetMetersSentBack()
+   {
+      return metersSentBack;
+   }
 }

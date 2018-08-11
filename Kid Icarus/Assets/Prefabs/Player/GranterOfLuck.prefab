@@ -61,4 +61,5 @@ MonoBehaviour:
   komaytoSound:
     clip: {fileID: 8300000, guid: 42181ac0c74b6d74b88f970c5792e449, type: 3}
     volume: 0.75
+  wardMeters: 50
   goddessText: {fileID: 0}
