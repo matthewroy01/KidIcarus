@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
 	public bool isDead;
 	public float deathTime;
 	public Sound death;
+   public float instantDeathTime = 0;
 
 	[Header("Spawn this on destroy")]
 	public GameObject spawnOnDeath;
@@ -140,7 +141,12 @@ public class Enemy : MonoBehaviour
 		// when colliding with the death floor, destroy the object
 		if (other.CompareTag("InstantDeath") == true)
 		{
-			Destroy(gameObject);
+         Invoke("Dest", instantDeathTime);
 		}
 	}
+
+   private void Dest()
+   {
+      Destroy(gameObject);
+   }
 }
