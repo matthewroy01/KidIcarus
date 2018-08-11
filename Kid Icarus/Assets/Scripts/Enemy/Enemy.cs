@@ -58,9 +58,10 @@ public class Enemy : MonoBehaviour
 			ScreenWrapping();
 		}
 
+      // if the animator isn't null...
 		if (refAnimator != null)
 		{
-			refAnimator.SetBool("isDead", isDead);
+         refAnimator.SetBool("isDead", isDead);
 		}
 	}
 

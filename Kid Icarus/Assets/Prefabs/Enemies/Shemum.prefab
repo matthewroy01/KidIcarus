@@ -8,15 +8,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1734664284482482}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1734664284482482
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4609978655208722}
   - component: {fileID: 212191942087518210}
@@ -35,7 +35,7 @@ GameObject:
 --- !u!4 &4609978655208722
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734664284482482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -49,7 +49,7 @@ Transform:
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734664284482482}
   m_BodyType: 0
@@ -68,7 +68,7 @@ Rigidbody2D:
 --- !u!61 &61712519415223370
 BoxCollider2D:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734664284482482}
   m_Enabled: 1
@@ -94,7 +94,7 @@ BoxCollider2D:
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734664284482482}
   m_Enabled: 1
@@ -111,7 +111,7 @@ Animator:
 --- !u!114 &114161391164097156
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734664284482482}
   m_Enabled: 1
@@ -125,18 +125,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 84765fd95692fa4439fa6659e3a4b937, type: 3}
     volume: 0.5
   ouch: {fileID: 1793277941987778, guid: 564a6d101f34e024c9a1f5c59cb11c97, type: 2}
+  immuneToArrows: 0
+  immuneToHammer: 0
   isDead: 0
   deathTime: 0.5
   death:
     clip: {fileID: 8300000, guid: b56a85d825d731c43b916354e5101743, type: 3}
     volume: 0.5
+  instantDeathTime: 0
+  spawnOnDeath: {fileID: 0}
   drops:
   - {fileID: 1650531386953710, guid: 060c8e9a9ed2bc34aad8d9656af609e5, type: 2}
   shouldWrap: 1
 --- !u!114 &114917790221865988
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734664284482482}
   m_Enabled: 1
@@ -155,11 +159,12 @@ MonoBehaviour:
   radius: 0.1
   walkSpeed: 3
   facingRight: 0
+  flip: 1
   fallSpeed: 6
 --- !u!212 &212191942087518210
 SpriteRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734664284482482}
   m_Enabled: 1
@@ -201,3 +206,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

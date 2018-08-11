@@ -18,6 +18,7 @@ public class EnemyWalkAndFall : MonoBehaviour
 	[Header("Movement")]
 	public float walkSpeed;
 	public bool facingRight;
+   public bool flip = false;
 	public float fallSpeed;
 
 	// rigidbody
@@ -132,14 +133,15 @@ public class EnemyWalkAndFall : MonoBehaviour
 
 	private void CheckFlipSprite()
 	{
-		// flip the sprite according to which direction we're facing
-		if (facingRight == true)
-		{
-			sr.flipX = false;
-		}
-		else
-		{
-			sr.flipX = true;
-		}
-	}
+      if (flip == true)
+      {
+         // flip the sprite according to which direction we're facing
+         sr.flipX = !facingRight;
+      }
+      else
+      {
+         // flip the sprite according to which direction we're facing
+         sr.flipX = facingRight;
+      }
+   }
 }

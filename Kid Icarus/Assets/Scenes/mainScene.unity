@@ -17280,6 +17280,8 @@ MonoBehaviour:
   - {fileID: 1445101104682042, guid: 6f4f5839805b4f748b21fea503f32991, type: 2}
   - {fileID: 1445101104682042, guid: 6f4f5839805b4f748b21fea503f32991, type: 2}
   - {fileID: 1754845607052008, guid: 25563761bfc80ad4e80c7261c7b7a705, type: 2}
+  - {fileID: 1135907609370792, guid: f8cd5355553abfa45bacad230e04b7f9, type: 2}
+  - {fileID: 1135907609370792, guid: f8cd5355553abfa45bacad230e04b7f9, type: 2}
   maxAge: 2
   currentY: 0
   defaultX: 0
