@@ -41,6 +41,7 @@ public class EnemyBuryAndShoot : MonoBehaviour
    private iamahammer[] tmpHammer;
    private Collider2D refHammer;
    private UtilityAudioManager refAudioManager;
+   private Collider2D refCollider;
 
 	void Start ()
    {
@@ -50,9 +51,11 @@ public class EnemyBuryAndShoot : MonoBehaviour
       tmpHammer = Resources.FindObjectsOfTypeAll<iamahammer>();
       refHammer = tmpHammer[0].GetComponent<Collider2D>();
       refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
+      refCollider = GetComponent<Collider2D>();
 
       refEnemy.immuneToArrows = true;
       refEnemy.immuneToHammer = true;
+      refCollider.enabled = false;
 
       CheckBelow();
 	}
@@ -112,6 +115,7 @@ public class EnemyBuryAndShoot : MonoBehaviour
             Reposition(new Vector2(0, 0.5f));
             refEnemy.immuneToArrows = false;
             refEnemy.immuneToHammer = false;
+            refCollider.enabled = true;
          }
 
          if (isStunned == false && CheckRange() == true)
@@ -134,6 +138,7 @@ public class EnemyBuryAndShoot : MonoBehaviour
       Reposition(new Vector2(0, 0.0f));
       refEnemy.immuneToArrows = true;
       refEnemy.immuneToHammer = true;
+      refCollider.enabled = false;
    }
 
    private void Shoot()
@@ -156,6 +161,7 @@ public class EnemyBuryAndShoot : MonoBehaviour
       // make vulnerable
       refEnemy.immuneToArrows = false;
       refEnemy.immuneToHammer = false;
+      refCollider.enabled = true;
 
       // play sound
       refAudioManager.PlaySound(soundPopOut.clip, soundPopOut.volume, true);
@@ -190,6 +196,7 @@ public class EnemyBuryAndShoot : MonoBehaviour
       // make invulnerable
       refEnemy.immuneToArrows = true;
       refEnemy.immuneToHammer = true;
+      refCollider.enabled = false;
 
       // play sound
       refAudioManager.PlaySound(soundHide.clip, soundHide.volume, true);
