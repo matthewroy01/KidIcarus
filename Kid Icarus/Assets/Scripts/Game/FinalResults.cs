@@ -18,6 +18,7 @@ public class FinalResults : MonoBehaviour
 
    // for heart totals
    private PlayerCollision refPlayerCollision;
+   private PlayerUI refPlayerUI;
 
    private void Start()
    {
@@ -25,10 +26,15 @@ public class FinalResults : MonoBehaviour
       refPlayerShoot = GameObject.FindObjectOfType<PlayerShoot>();
       refOrne = GameObject.FindObjectOfType<EnemyOrne>();
       refPlayerCollision = GameObject.FindObjectOfType<PlayerCollision>();
+      refPlayerUI = GameObject.FindObjectOfType<PlayerUI>();
    }
 
-   void Update ()
+   public void CalculateFinalResults()
    {
+      // calculate meters
+      int tmpMeters = refPlayerCollision.getCurrentMeters() + refPlayerUI.startingMeterOffset;
+      
+      // display the text
       display.text = refPlayerMovement.extraJumps + "/" + refPlayerMovement.extraJumpsMax + "\n" +
                      refPlayerShoot.arrowChargeLevel + "/" + refPlayerShoot.arrowLevelMax + "\n" +
                      refPlayerShoot.arrowRangeLevel + "/" + refPlayerShoot.arrowLevelMax + "\n" +
@@ -36,6 +42,6 @@ public class FinalResults : MonoBehaviour
                      refPlayerCollision.GetHeartsCollected() + "\n" +
                      refPlayerCollision.GetHeartsSpent() + "\n" +
                      "\n" +
-                     refPlayerCollision.getCurrentMeters() + "m";
+                     tmpMeters + "m";
    }
 }

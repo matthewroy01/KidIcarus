@@ -5428,6 +5428,7 @@ GameObject:
   - component: {fileID: 690602503}
   - component: {fileID: 690602504}
   - component: {fileID: 690602506}
+  - component: {fileID: 690602507}
   m_Layer: 10
   m_Name: Pit
   m_TagString: Player
@@ -5671,7 +5672,7 @@ MonoBehaviour:
   invincibilityTime: 1
   inSafeZone: 0
   constantHealthRegen: 0
-  refFinalResults: {fileID: 1606305241}
+  refFinalResultsText: {fileID: 1606305241}
   kiddieDrinkAmount: 1
   smallDrinkAmount: 2
   largeDrinkAmount: 4
@@ -5778,6 +5779,18 @@ MonoBehaviour:
   startingMeterOffset: -4
   textHighScore: {fileID: 891965771}
   resetScore: 0
+--- !u!114 &690602507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 690602494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3aac9aa3d2693442a15934be48c8524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  display: {fileID: 2051175866}
 --- !u!1 &747931975
 GameObject:
   m_ObjectHideFlags: 0
@@ -11142,7 +11155,6 @@ GameObject:
   - component: {fileID: 992454157}
   - component: {fileID: 992454156}
   - component: {fileID: 992454160}
-  - component: {fileID: 992454161}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -11241,18 +11253,6 @@ MonoBehaviour:
   shakePrevRotation: {x: 0, y: 0, z: 0}
   shakeIntensity: 0
   shakeDuration: 0
---- !u!114 &992454161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 992454155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3aac9aa3d2693442a15934be48c8524, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  display: {fileID: 2051175866}
 --- !u!1 &1029729452
 GameObject:
   m_ObjectHideFlags: 0
@@ -23138,20 +23138,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '0/4
-
-    0/5
-
-    0/5
-
-    0m
-
-    0
-
-    0
-
-
-    0m'
+  m_Text: 
 --- !u!222 &2051175867
 CanvasRenderer:
   m_ObjectHideFlags: 0

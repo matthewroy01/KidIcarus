@@ -20,7 +20,8 @@ public class PlayerCollision : MonoBehaviour
 	private bool canGetHit = true;
 	public bool inSafeZone = false;
    public bool constantHealthRegen = false;
-   public GameObject refFinalResults;
+   public GameObject refFinalResultsText;
+   private FinalResults refFinalResults;
    private bool readyToRestart = false;
 
    [Header("Drink of the Gods")]
@@ -60,7 +61,8 @@ public class PlayerCollision : MonoBehaviour
 		refShopInfo = GameObject.FindObjectOfType<ShopInfo>();
 		refMusicManager = GameObject.FindObjectOfType<UtilityMusicManager>();
 
-      refFinalResults.SetActive(false);
+      refFinalResultsText.SetActive(false);
+      refFinalResults = GetComponent<FinalResults>();
 
 		currentHealth = maxHealth;
 	}
@@ -463,7 +465,8 @@ public class PlayerCollision : MonoBehaviour
    private void DisplayFinalResults()
    {
       readyToRestart = true;
-      refFinalResults.SetActive(true);
+      refFinalResultsText.SetActive(true);
+      refFinalResults.CalculateFinalResults();
    }
 
 	private void ReloadScene()
