@@ -14,6 +14,7 @@ TagManager:
   - Hammer
   - UITarget
   - Theif
+  - Tutorial
   layers:
   - Default
   - TransparentFX
