@@ -5607,6 +5607,7 @@ MonoBehaviour:
   defaultCollider: {fileID: 690602496}
   crouchedCollider: {fileID: 690602505}
   partsFeathers: {fileID: 1301129770}
+  gameStarted: 0
   QAURL: https://docs.google.com/forms/d/1Ltrj_wb9BIiaWpyWJQDvXOUt9TNFsZF7JpXae-YS5_Q/edit
 --- !u!70 &690602496
 CapsuleCollider2D:
@@ -5920,6 +5921,7 @@ MonoBehaviour:
   startingMeterOffset: -4
   textHighScore: {fileID: 891965771}
   resetScore: 0
+  startScreen: {fileID: 1633661409}
 --- !u!114 &690602507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22369,7 +22371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1633661410
 RectTransform:
   m_ObjectHideFlags: 0

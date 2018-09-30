@@ -36,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
 	[Header("Particle systems")]
 	public ParticleSystem partsFeathers;
 
+    [Header("Check if the game has started")]
+    public bool gameStarted = false;
+
 	[Header("QA")]
 	public string QAURL;
 
@@ -70,17 +73,17 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update()
 	{
-		// only allow movement if we're alive
-		if (refPlayerCollision.isDead == false)
-		{
-			CheckGround();
+        // only allow movement if we're alive
+        if (refPlayerCollision.isDead == false && gameStarted == true)
+        {
+            CheckGround();
 
-			DoJumping();
-			DoCrouching();
-			DoTerminalVelocities();
+            DoJumping();
+            DoCrouching();
+            DoTerminalVelocities();
 
-			CheckFlipSprite();
-		}
+            CheckFlipSprite();
+        }
 
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
@@ -92,12 +95,18 @@ public class PlayerMovement : MonoBehaviour
 	void FixedUpdate ()
 	{
 		// only allow movement if we're alive
-		if (refPlayerCollision.isDead == false)
+		if (refPlayerCollision.isDead == false && gameStarted == true)
 		{
 			ScreenWrapping();
 			DoMovement();
 		}
-	}
+
+        // start the game with spacebar
+        if (gameStarted == false && Input.GetButtonDown("Jump"))
+        {
+            gameStarted = true;
+        }
+    }
 
 	private void DoMovement()
 	{

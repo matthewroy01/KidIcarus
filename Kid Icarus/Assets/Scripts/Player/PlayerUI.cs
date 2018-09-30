@@ -10,7 +10,7 @@ public class PlayerUI : MonoBehaviour
 
 	[Header("Heart display")]
 	public Text textHeart;
-   public Image iconSale;
+    public Image iconSale;
 
 	[Header("Hammer dipslay")]
 	public Text textHammer;
@@ -22,14 +22,17 @@ public class PlayerUI : MonoBehaviour
 	[Header("First Aid Kit display")]
 	public GameObject firstAidKit;
 
-   [Header("Centurions display")]
-   public Text textCenturions;
+    [Header("Centurions display")]
+    public Text textCenturions;
 
 	[Header("Meters display")]
 	public Text textMeters;
 	public int startingMeterOffset;
-   public Text textHighScore;
-   public bool resetScore = false;
+    public Text textHighScore;
+    public bool resetScore = false;
+
+    [Header("Start Screen display")]
+    public GameObject startScreen;
 
 	private PlayerMovement refMovement;
 	private PlayerCollision refCollision;
@@ -50,11 +53,11 @@ public class PlayerUI : MonoBehaviour
 		// update the size of the hammer slider for convenience
 		sliderHammer.maxValue = refShoot.meleeChargeTotal;
 
-      if (resetScore || !PlayerPrefs.HasKey("HighScore"))
-      {
-         Debug.LogWarning("High score being reset, turn off for builds.");
-         PlayerPrefs.SetInt("HighScore", 0);
-      }
+        if (resetScore || !PlayerPrefs.HasKey("HighScore"))
+        {
+            Debug.LogWarning("High score being reset, turn off for builds.");
+            PlayerPrefs.SetInt("HighScore", 0);
+        }
 	}
 
 	void Update ()
@@ -64,9 +67,10 @@ public class PlayerUI : MonoBehaviour
 		DisplayHammerValues();
 		DisplayFeathers();
 		DisplayFirstAidKit();
-      DisplayCenturions();
+        DisplayCenturions();
 		DisplayMeters();
-      DisplayHighScore();
+        DisplayHighScore();
+        DisplayStartScreen();
 	}
 
 	private void DisplayHammerValues()
@@ -83,7 +87,7 @@ public class PlayerUI : MonoBehaviour
 		// enable feathers as more jumps are added
 		for (int i = 0; i < feathers.Length; ++i)
 		{
-         feathers[i].SetActive(i < refMovement.extraJumps);
+            feathers[i].SetActive(i < refMovement.extraJumps);
 		}
 	}
 
@@ -120,15 +124,15 @@ public class PlayerUI : MonoBehaviour
 	{
 		textHeart.text = refCollision.hearts.ToString();
 
-      // display the 50% symbol when the next item will be on sale
-      if (refCollision.sale == 2)
-      {
-         iconSale.enabled = true;
-      }
-      else
-      {
-         iconSale.enabled = false;
-      }
+        // display the 50% symbol when the next item will be on sale
+        if (refCollision.sale == 2)
+        {
+            iconSale.enabled = true;
+        }
+        else
+        {
+            iconSale.enabled = false;
+        }
 	}
 
    private void DisplayCenturions()
@@ -152,4 +156,9 @@ public class PlayerUI : MonoBehaviour
 
       textHighScore.text = "HIGH SCORE\n" + PlayerPrefs.GetInt("HighScore").ToString() + "m";
    }
+
+    private void DisplayStartScreen()
+    {
+        startScreen.SetActive(!refMovement.gameStarted);
+    }
 } 

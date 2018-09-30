@@ -5,35 +5,35 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
 	[Header("Arrow prefabs")]
-   public GameObject arrowPrefabNormal;
-   public GameObject arrowPrefabCharged;
+    public GameObject arrowPrefabNormal;
+    public GameObject arrowPrefabCharged;
+    
+    [Header("Arrow stats")]
+    public float arrowSpeedNormal;
+    public float arrowSpeedCharged;
+    public bool lookingUp;
+    [Header("")]
+    public int arrowRangeLevel = 0;
+    public float arrowRangeBase;
+    public float arrowRangeIncrement;
+    [Header("")]
+    public int arrowChargeLevel = 0;
+    public float arrowChargeBase;
+    public float arrowChargeIncrement;
+    [Header("")]
+    public int arrowLevelMax;
+    
+    [Header("Plus one")]
+    public GameObject chargePlusOnePrefab;
+    public GameObject rangePlusOnePrefab;
+    
+    [Header("Charge")]
+    public bool isCharged;
+    private float rechargeTime;
+    public GameObject rechargePrefab;
+    private bool rechargeInvoked = false;
 
-   [Header("Arrow stats")]
-   public float arrowSpeedNormal;
-   public float arrowSpeedCharged;
-   public bool lookingUp;
-   [Header("")]
-   public int arrowRangeLevel = 0;
-   public float arrowRangeBase;
-   public float arrowRangeIncrement;
-   [Header("")]
-   public int arrowChargeLevel = 0;
-   public float arrowChargeBase;
-   public float arrowChargeIncrement;
-   [Header("")]
-   public int arrowLevelMax;
-
-   [Header("Plus one")]
-   public GameObject chargePlusOnePrefab;
-   public GameObject rangePlusOnePrefab;
-
-   [Header("Charge")]
-   public bool isCharged;
-   private float rechargeTime;
-   public GameObject rechargePrefab;
-   private bool rechargeInvoked = false;
-
-   [Header("Eggplants")]
+    [Header("Eggplants")]
 	public float eggplantProjecilteSpeed;
 	public GameObject eggplantObject;
 	public int eggplantNum;
@@ -48,7 +48,7 @@ public class PlayerShoot : MonoBehaviour
 	public bool isSwinging = false;
 	private bool canHammer = true;
 	public ParticleSystem partsHammer;
-   private CameraFollow refCameraFollow;
+    private CameraFollow refCameraFollow;
 
 	[Header("Melee charge")]
 	public int meleeUsesTotal;
@@ -56,12 +56,12 @@ public class PlayerShoot : MonoBehaviour
 	public int meleeChargeTotal;
 	public int meleeChargeCurrent;
 
-   [Header("Centurions")]
-   public bool hasCenturion = false;
-   public int centurionsStored = 0;
-   public GameObject centurionPrefab;
+    [Header("Centurions")]
+    public bool hasCenturion = false;
+    public int centurionsStored = 0;
+    public GameObject centurionPrefab;
 
-   private PlayerMovement refPlayerMovement;
+    private PlayerMovement refPlayerMovement;
 	private PlayerAudio refPlayerAudio;
 	private PlayerCollision refPlayerCollision;
 
@@ -70,7 +70,7 @@ public class PlayerShoot : MonoBehaviour
 		refPlayerMovement = GetComponent<PlayerMovement>();
 		refPlayerAudio = GetComponent<PlayerAudio>();
 		refPlayerCollision = GetComponent<PlayerCollision>();
-      refCameraFollow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
+        refCameraFollow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
 
 		// set the hammer to inactive by default
 		hammer.enabled = false;
@@ -82,31 +82,31 @@ public class PlayerShoot : MonoBehaviour
 
 	void Update ()
 	{
-		// only allow shooting if we're alive
-		if (refPlayerCollision.isDead == false)
-		{
-			CheckLookingUp();
-         SpawnCenturions();
+        // only allow shooting if we're alive
+        if (refPlayerCollision.isDead == false && refPlayerMovement.gameStarted == true)
+        {
+            CheckLookingUp();
+            SpawnCenturions();
 
-         rechargeTime = arrowChargeBase + (arrowChargeIncrement * arrowChargeLevel);
+            rechargeTime = arrowChargeBase + (arrowChargeIncrement * arrowChargeLevel);
 
-         if (rechargeInvoked == false && !isCharged)
-         {
-            rechargeInvoked = true;
-            Invoke("RechargeBow", rechargeTime);
-         }
+            if (rechargeInvoked == false && !isCharged)
+            {
+                rechargeInvoked = true;
+                Invoke("RechargeBow", rechargeTime);
+            }
 
-         if (refPlayerCollision.cursed == false)
-			{
-				Shoot();
-				UpdateHammerPosition();
-				Melee();
-			}
-			else
-			{
-				ShootEggplant();
-			}
-		}
+            if (refPlayerCollision.cursed == false)
+            {
+	            Shoot();
+	            UpdateHammerPosition();
+	            Melee();
+            }
+            else
+            {
+	            ShootEggplant();
+            }
+        }
 	}
 
 	void CheckLookingUp()
