@@ -153,6 +153,7 @@ MonoBehaviour:
   death:
     clip: {fileID: 8300000, guid: b56a85d825d731c43b916354e5101743, type: 3}
     volume: 0.5
+  instantDeathTime: 0
   spawnOnDeath: {fileID: 0}
   drops:
   - {fileID: 1711906733496614, guid: 0e08660203a9ce54dbb38dd44a28163b, type: 2}
@@ -170,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   numberOfTries: 1
   yAccuracy: 1
 --- !u!212 &212600634690798196

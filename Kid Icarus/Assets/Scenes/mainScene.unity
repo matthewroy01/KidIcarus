@@ -5607,7 +5607,7 @@ MonoBehaviour:
   defaultCollider: {fileID: 690602496}
   crouchedCollider: {fileID: 690602505}
   partsFeathers: {fileID: 1301129770}
-  QAURL: https://docs.google.com/forms/d/1Ld-ojTNG43Nfl9GHSfHm7wf6gKK2tnA7VUSb7N4PxBI/edit
+  QAURL: https://docs.google.com/forms/d/1Ltrj_wb9BIiaWpyWJQDvXOUt9TNFsZF7JpXae-YS5_Q/edit
 --- !u!70 &690602496
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -11747,6 +11747,7 @@ GameObject:
   - component: {fileID: 1177960287}
   - component: {fileID: 1177960291}
   - component: {fileID: 1177960286}
+  - component: {fileID: 1177960292}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -12265,6 +12266,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1177960292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1177960284}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bde7a59fc20f4040a19946e3256be37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  high: 1.2
+  low: 0.8
+  lerpSpeed: 0.1
+  source: {fileID: 1177960288}
 --- !u!1 &1214328500
 GameObject:
   m_ObjectHideFlags: 0
@@ -22449,7 +22465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1638302089
 SpriteRenderer:
   m_ObjectHideFlags: 0
