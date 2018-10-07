@@ -17,9 +17,10 @@ public class PlayerAudio : MonoBehaviour
 	public Sound cursed;
 	public Sound hammerSwing;
 	public Sound hammerHit;
-   public Sound arrowRecharge;
-   public Sound theif;
-   public Sound powerUp;
+    public Sound arrowRecharge;
+    public Sound theif;
+    public Sound powerUp;
+    public Sound kaching;
 
 	void Start()
 	{
@@ -90,6 +91,11 @@ public class PlayerAudio : MonoBehaviour
    {
       refAudioManager.PlaySound(powerUp.clip, powerUp.volume, false);
    }
+
+    public void PlayKaching()
+    {
+        refAudioManager.PlaySound(kaching.clip, kaching.volume, true);
+    }
 }
 
 [System.Serializable]

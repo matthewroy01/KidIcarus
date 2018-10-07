@@ -9,30 +9,30 @@ public class PlayerCollision : MonoBehaviour
 	[Header("Score")]
 	public int hearts;
 	public int sale = 1;
-   private int heartsCollected = 0;
-   private int heartsSpent = 0;
+    private int heartsCollected = 0;
+    private int heartsSpent = 0;
 
-   [Header("Health")]
+    [Header("Health")]
 	public int maxHealth;
 	public int currentHealth;
 	public bool isDead;
 	public float invincibilityTime;
 	private bool canGetHit = true;
 	public bool inSafeZone = false;
-   public bool constantHealthRegen = false;
-   public GameObject refFinalResultsText;
-   private FinalResults refFinalResults;
-   private bool readyToRestart = false;
+    public bool constantHealthRegen = false;
+    public GameObject refFinalResultsText;
+    private FinalResults refFinalResults;
+    private bool readyToRestart = false;
 
-   [Header("Drink of the Gods")]
+    [Header("Drink of the Gods")]
 	public int kiddieDrinkAmount;
 	public int smallDrinkAmount;
 	public int largeDrinkAmount;
 	public float healthRestoreInterval;
 	public int healthToRestore;
 
-   [Header("Divine Ward")]
-   public int wardMeters;
+    [Header("Divine Ward")]
+    public int wardMeters;
 
 	[Header("Eggplant Curse")]
 	public bool cursed;
@@ -43,12 +43,13 @@ public class PlayerCollision : MonoBehaviour
 
 	[Header("UI")]
 	public Text textMessages;
-   public Text textTheft;
-   private int currentMeters = 0;
+    public Text textTheft;
+    public ParticleSystem moneyParts;
+    private int currentMeters = 0;
 
-   private PlayerAudio refPlayerAudio;
+    private PlayerAudio refPlayerAudio;
 	private PlayerMovement refPlayerMovement;
-   private PlayerShoot refPlayerShoot;
+    private PlayerShoot refPlayerShoot;
 	private ShopInfo refShopInfo;
 	private UtilityMusicManager refMusicManager;
 
@@ -56,13 +57,13 @@ public class PlayerCollision : MonoBehaviour
 	{
 		refPlayerAudio = GetComponent<PlayerAudio>();
 		refPlayerMovement = GetComponent<PlayerMovement>();
-      refPlayerShoot = GetComponent<PlayerShoot>();
+        refPlayerShoot = GetComponent<PlayerShoot>();
 
 		refShopInfo = GameObject.FindObjectOfType<ShopInfo>();
 		refMusicManager = GameObject.FindObjectOfType<UtilityMusicManager>();
 
-      refFinalResultsText.SetActive(false);
-      refFinalResults = GetComponent<FinalResults>();
+        refFinalResultsText.SetActive(false);
+        refFinalResults = GetComponent<FinalResults>();
 
 		currentHealth = maxHealth;
 	}
@@ -95,10 +96,12 @@ public class PlayerCollision : MonoBehaviour
 			StopCoroutine("RestoreHealth");
 		}
 
-      if (readyToRestart == true && Input.GetButtonDown("Jump"))
-      {
-         ReloadScene();
-      }
+        if (readyToRestart == true && Input.GetButtonDown("Jump"))
+        {
+            ReloadScene();
+        }
+
+        refMusicManager.SetWobble(cursed);
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -121,21 +124,21 @@ public class PlayerCollision : MonoBehaviour
 			{
 				refPlayerAudio.PlayHeart();
 				hearts += 1;
-            heartsCollected += 1;
+                heartsCollected += 1;
 				Destroy(other.gameObject);
 			}
 			else if (other.name == "Heart5(Clone)")
 			{
 				refPlayerAudio.PlayHeart();
 				hearts += 5;
-            heartsCollected += 5;
+                heartsCollected += 5;
 				Destroy(other.gameObject);
 			}
 			else if (other.name == "Heart10(Clone)" || other.name == "FlyingHeart(Clone)")
 			{
 				refPlayerAudio.PlayHeart();
 				hearts += 10;
-            heartsCollected += 10;
+                heartsCollected += 10;
 				Destroy(other.gameObject);
 			}
 			else if (other.name == "DrinkSmall(Clone)")
@@ -168,9 +171,9 @@ public class PlayerCollision : MonoBehaviour
 			}
 			else if (other.name == "DivineWard(Clone)")
 			{
-            EnemyOrne tmpOrne = GameObject.FindObjectOfType<EnemyOrne>();
-            tmpOrne.SendBack(wardMeters);
-            Destroy(other.gameObject);
+                EnemyOrne tmpOrne = GameObject.FindObjectOfType<EnemyOrne>();
+                tmpOrne.SendBack(wardMeters);
+                Destroy(other.gameObject);
 			}
 			else if (other.name == "FirstAidKit(Clone)" && !hasFirstAidKit)
 			{
@@ -183,123 +186,129 @@ public class PlayerCollision : MonoBehaviour
 				tmpIcon.transform.parent = gameObject.transform;
 				Destroy(other.gameObject);
 			}
-         else if (other.name == "ChargeReticle(Clone)")
-         {
-            refPlayerShoot.IncreaseCharge();
-            Destroy(other.gameObject);
-         }
-         else if (other.name == "Longbow(Clone)")
-         {
-            refPlayerShoot.IncreaseRange();
-            Destroy(other.gameObject);
-         }
-         else
-			{
-				// shop items
-				ShopItem tmp = refShopInfo.getItem(other.name);
-
-				if (tmp.cost / sale <= hearts)
-				{
-               if (tmp.name == "Small Drink")
-               {
-                  if (currentHealth != maxHealth)
-                  {
-                     healthToRestore += smallDrinkAmount;
-                     StartCoroutine("RestoreHealth");
-                  }
-                  else
-                  {
-                     return;
-                  }
-               }
-
-					if (tmp.name == "Large Drink")
-					{
-                  if (currentHealth != maxHealth)
-                  {
-                     healthToRestore += largeDrinkAmount;
-                     StartCoroutine("RestoreHealth");
-                  }
-                  else
-                  {
-                     return;
-                  }
-					}
-
-					if (tmp.name == "Kiddie Size Drink")
-					{
-                  if (currentHealth != maxHealth)
-                  {
-                     healthToRestore += kiddieDrinkAmount;
-                     StartCoroutine("RestoreHealth");
-                  }
-                  else
-                  {
-                     return;
-                  }
-					}
-
-					if (tmp.name == "Roc's Feather")
-					{
-                  if (refPlayerMovement.extraJumps != refPlayerMovement.extraJumpsMax)
-                  {
-                     refPlayerMovement.extraJumps++;
-                  }
-						else
-                  {
-                     return;
-                  }
-					}
-
-					if (tmp.name == "Centurion Assist")
-					{
-                  refPlayerShoot.centurionsStored++;
-					}
-
-					if (tmp.name == "Divine Ward")
-					{
-                  EnemyOrne tmpOrne = GameObject.FindObjectOfType<EnemyOrne>();
-                  tmpOrne.SendBack(wardMeters);
-					}
-
-					if (tmp.name == "First Aid Kit")
-					{
-                  if (!hasFirstAidKit)
-                  {
-                     hasFirstAidKit = true;
-                  }
-                  else
-                  {
-                     return;
-                  }
-					}
-
-					if (tmp.name == "Icon of Light")
-					{
-						GameObject tmpIcon = Instantiate(iconOfLightPrefab, transform.position, transform.rotation);
-						tmpIcon.transform.parent = gameObject.transform;
-					}
-
-					if (tmp.name == "Icon of Nature")
-					{
-
-					}
-
-               if (tmp.name == "Charge Reticle")
-               {
-                  refPlayerShoot.IncreaseCharge();
-               }
-
-               if (tmp.name == "Longbow")
-               {
-                  refPlayerShoot.IncreaseRange();
-               }
-
-               hearts -= tmp.cost / sale;
-               sale = 1;
-               heartsSpent += tmp.cost;
-               Destroy(other.gameObject);
+            else if (other.name == "ChargeReticle(Clone)")
+            {
+                refPlayerShoot.IncreaseCharge();
+                Destroy(other.gameObject);
             }
+            else if (other.name == "Longbow(Clone)")
+            {
+                refPlayerShoot.IncreaseRange();
+                Destroy(other.gameObject);
+            }
+            else
+			{
+                // shop items
+                ShopItem tmp = refShopInfo.getItem(other.name);
+
+                if (tmp.cost / sale <= hearts)
+                {
+                    if (tmp.name == "Small Drink")
+                    {
+                        if (currentHealth != maxHealth)
+                        {
+                            healthToRestore += smallDrinkAmount;
+                            StartCoroutine("RestoreHealth");
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                    if (tmp.name == "Large Drink")
+                    {
+                        if (currentHealth != maxHealth)
+                        {
+                            healthToRestore += largeDrinkAmount;
+                            StartCoroutine("RestoreHealth");
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                    if (tmp.name == "Kiddie Size Drink")
+                    {
+                        if (currentHealth != maxHealth)
+                        {
+                            healthToRestore += kiddieDrinkAmount;
+                            StartCoroutine("RestoreHealth");
+                        }
+                        else
+                        {
+                        return;
+                        }
+                    }
+
+                    if (tmp.name == "Roc's Feather")
+                    {
+                        if (refPlayerMovement.extraJumps != refPlayerMovement.extraJumpsMax)
+                        {
+                            refPlayerMovement.extraJumps++;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                    if (tmp.name == "Centurion Assist")
+                    {
+                        refPlayerShoot.centurionsStored++;
+                    }
+
+                    if (tmp.name == "Divine Ward")
+                    {
+                        EnemyOrne tmpOrne = GameObject.FindObjectOfType<EnemyOrne>();
+                        tmpOrne.SendBack(wardMeters);
+                    }
+
+                    if (tmp.name == "First Aid Kit")
+                    {
+                        if (!hasFirstAidKit)
+                        {
+                            hasFirstAidKit = true;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                    if (tmp.name == "Icon of Light")
+                    {
+                        GameObject tmpIcon = Instantiate(iconOfLightPrefab, transform.position, transform.rotation);
+                        tmpIcon.transform.parent = gameObject.transform;
+                    }
+
+                    if (tmp.name == "Icon of Nature")
+                    {
+
+                    }
+
+                    if (tmp.name == "Charge Reticle")
+                    {
+                        refPlayerShoot.IncreaseCharge();
+                    }
+
+                    if (tmp.name == "Longbow")
+                    {
+                        refPlayerShoot.IncreaseRange();
+                    }
+
+                    hearts -= tmp.cost / sale;
+                    sale = 1;
+                    heartsSpent += tmp.cost;
+                    Destroy(other.gameObject);
+
+                    // play money particles
+                    ParticleSystem tmpParts = Instantiate(moneyParts, transform.position, Quaternion.identity);
+                    tmpParts.emission.SetBurst(0, new ParticleSystem.Burst(0.0f, tmp.cost / 2));
+                    tmpParts.Play();
+                    refPlayerAudio.PlayKaching();
+                }
 			}
 		}
 	}
