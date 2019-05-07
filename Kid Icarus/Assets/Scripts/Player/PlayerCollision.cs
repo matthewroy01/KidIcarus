@@ -175,7 +175,7 @@ public class PlayerCollision : MonoBehaviour
                 tmpOrne.SendBack(wardMeters);
                 Destroy(other.gameObject);
 			}
-			else if (other.name == "FirstAidKit(Clone)" && !hasFirstAidKit)
+			else if (other.name == "FirstAidKit(Clone)")
 			{
 				hasFirstAidKit = true;
 				Destroy(other.gameObject);

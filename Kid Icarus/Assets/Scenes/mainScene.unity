@@ -18063,13 +18063,13 @@ MonoBehaviour:
   - main: {fileID: 2800000, guid: dff070b5711b06e46af0da8013140717, type: 3}
     props: {fileID: 2800000, guid: b084f8494ad7c0a44b8ae9e79013f353, type: 3}
   - main: {fileID: 2800000, guid: 2aae959069d060449ae2d9cc79744b9d, type: 3}
-    props: {fileID: 0}
+    props: {fileID: 2800000, guid: 0636801eb3c6e7449a0f3548f4bc3565, type: 3}
   - main: {fileID: 2800000, guid: 845fc823118535841a9b155249532c6c, type: 3}
-    props: {fileID: 0}
+    props: {fileID: 2800000, guid: fc76cf80ded23c84c90ff25719e91fc3, type: 3}
   - main: {fileID: 2800000, guid: 1fbbe7a47bd263a479609818b444321a, type: 3}
-    props: {fileID: 0}
+    props: {fileID: 2800000, guid: c8d54fdd2d5c41a44a85d8ffd71b9691, type: 3}
   - main: {fileID: 2800000, guid: b951c8bf77c72ac46b6ed120f0834271, type: 3}
-    props: {fileID: 0}
+    props: {fileID: 2800000, guid: 1ac94997e6e6a874896c02113adba1e9, type: 3}
   defaultName: Map
   shopMaps:
   - main: {fileID: 2800000, guid: 8af853bf26d459247a88853399055083, type: 3}
@@ -18186,6 +18186,10 @@ MonoBehaviour:
   - {fileID: 422863976712490782, guid: b0afbcb185cf3dc4c9b32c8d26e4f150, type: 3}
   - {fileID: 1190268205597478989, guid: 19a64dd3f42a72d498bcc351c81864cd, type: 3}
   - {fileID: 1190268205597478989, guid: ca4e95dd932511346a187ddcf2503d8b, type: 3}
+  - {fileID: 1452226217150208002, guid: 4574609dc4a735e4a9508c6b360c2d7f, type: 3}
+  - {fileID: 2309211412889991528, guid: 8224b017470c7ae4394c0636e1722282, type: 3}
+  - {fileID: 422443553672204293, guid: 9cd14e0d82d05e04a8665ca87be2ae10, type: 3}
+  - {fileID: 4941684301386882426, guid: 01d23cd4065327b468222a5da6f57268, type: 3}
   maxAge: 2
   currentY: 0
   defaultX: 0
