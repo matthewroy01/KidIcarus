@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 // tutorial by Brackeys: https://www.youtube.com/watch?v=B_Xp9pt8nRY
 // edited by Matt Roy
@@ -6,10 +7,10 @@
 public class LevelGenerator : MonoBehaviour
 {
 	[Header("Texture that represents the level layout")]
-	public Texture2D[] maps;
+	public Map[] maps;
 	public string defaultName;
 	[Header("Texture that represents shop layout")]
-	public Texture2D[] shopMaps;
+	public Map[] shopMaps;
 	public string defaultShopName;
 	[Header("List of prefabs and their corresponding colors")]
 	public ColorToPrefab[] colorMappings;
@@ -26,6 +27,7 @@ public class LevelGenerator : MonoBehaviour
 	private Transform currentParent; // the current parent is where all blocks will be instantiated to as children
 	private InfiniteGenerator refInfiniteGenerator; // a reference to the infinite generator which holds a list of all the levels
 	private int offsetXDebug = 0; // another X offset used to instantiate each level off screen for debugging purposes
+    private List<Vector2> propPlacement = new List<Vector2>(); // a temporary list of Vector2 to keep track of where props can be spawned
 
 	void Start ()
 	{
@@ -51,10 +53,13 @@ public class LevelGenerator : MonoBehaviour
 
 			// move the level that was just created over a bit
 			currentParent.position = new Vector2(offsetXDebug, -50);
-			offsetXDebug += maps[num].width + 1;
+			offsetXDebug += maps[num].main.width + 1;
 
 			// add the current parent to the infinite generator's list of potential levels
-			refInfiniteGenerator.AddLevel(new Level(currentParent.gameObject, maps[num].height, maps[num].width));
+			refInfiniteGenerator.AddLevel(new Level(currentParent.gameObject, maps[num].main.height, maps[num].main.width, propPlacement.ToArray()));
+
+            // clear prop placement list
+            propPlacement.Clear();
 		}
 
 		// generate shops
@@ -67,21 +72,24 @@ public class LevelGenerator : MonoBehaviour
 
 			// move the level that was just created over a bit
 			currentParent.position = new Vector2(offsetXDebug, -50);
-			offsetXDebug += shopMaps[num].width + 1;
+			offsetXDebug += shopMaps[num].main.width + 1;
 
 			// add the current parent to the infinite generator's list of potential levels
-			refInfiniteGenerator.AddShop(new Level(currentParent.gameObject, shopMaps[num].height, shopMaps[num].width));
+			refInfiniteGenerator.AddShop(new Level(currentParent.gameObject, shopMaps[num].main.height, shopMaps[num].main.width, propPlacement.ToArray()));
+
+            // clear prop placement list
+            propPlacement.Clear();
 		}
 	}
 
-	void GenerateLevel(int num, Texture2D[] list, bool safe)
+	void GenerateLevel(int num, Map[] list, bool safe)
 	{
 		int x = 0, y = 0;
 
 		// loop through all pixels in map
-		for (y = 0; y < maps[num].height; ++y)
+		for (y = 0; y < maps[num].main.height; ++y)
 		{
-			for(x = 0; x < maps[num].width; ++x)
+			for(x = 0; x < maps[num].main.width; ++x)
 			{
 				// generate the tile
 				GenerateTile(list, num, x, y);
@@ -96,13 +104,25 @@ public class LevelGenerator : MonoBehaviour
 		{
 			GameObject tmp = Instantiate(safeZone, new Vector2((x / 2.0f) - 0.5f, (y / 2.0f) - 0.5f), transform.rotation);
 			tmp.transform.parent = currentParent;
-			tmp.transform.localScale = new Vector3(maps[num].width, maps[num].height, 1.0f);
+			tmp.transform.localScale = new Vector3(maps[num].main.width, maps[num].main.height, 1.0f);
 		}
 	}
 
-	void GenerateTile(Texture2D[] list, int num, int x, int y)
+	void GenerateTile(Map[] list, int num, int x, int y)
 	{
-		Color32 pixelColor = list[num].GetPixel(x, y);
+		Color32 pixelColor = list[num].main.GetPixel(x, y);
+
+        // add position to list of potential prop placements if the props texture isn't null and the pixel isn't transparent
+        if (list[num].props != null)
+        {
+            Color32 pixelColorProps = list[num].props.GetPixel(x, y);
+
+            // TEMPORARY CODE FOR PROPS, may want to make props only spawn on specific tile types
+            if (pixelColorProps.a != 0)
+            {
+                propPlacement.Add(new Vector2(x, y));
+            }
+        }
 
 		// if the pixel's color is completely transparent
 		if (pixelColor.a == 0)
@@ -154,6 +174,13 @@ public class LevelGenerator : MonoBehaviour
 			}
 		}
 	}
+}
+
+[System.Serializable]
+public struct Map
+{
+    public Texture2D main;
+    public Texture2D props;
 }
 
 [System.Serializable]

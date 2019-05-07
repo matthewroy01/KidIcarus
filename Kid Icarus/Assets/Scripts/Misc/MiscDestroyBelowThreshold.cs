@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MiscDestroyBelowThreshold : MonoBehaviour
 {
-	public Transform playerTransform;
-	private float threshold = 32;
+	private Transform playerTransform;
+    [HideInInspector]
+	public float threshold = 32;
 
 	void Start ()
 	{
