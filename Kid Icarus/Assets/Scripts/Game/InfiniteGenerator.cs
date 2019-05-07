@@ -125,6 +125,9 @@ public class InfiniteGenerator : MonoBehaviour
         MiscDestroyBelowThreshold destThresh = tmp.AddComponent<MiscDestroyBelowThreshold>();
         destThresh.threshold += levels[randomChoice].height - 16;
 
+        // spawn props in this level
+        SpawnProps(levels[randomChoice], tmp.transform);
+
         if (randomFlipEnabled && Random.Range(0, 2) == 1)
         {
             tmp.transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -140,9 +143,6 @@ public class InfiniteGenerator : MonoBehaviour
         {
             waitToSpawnEnemiesCount--;
         }
-
-        // spawn props in this level
-        SpawnProps(levels[randomChoice], tmp.transform);
 
         // try to spawn treasures
         SpawnTreasure(levels[randomChoice].height, levels[randomChoice].width);

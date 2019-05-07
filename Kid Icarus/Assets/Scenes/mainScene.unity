@@ -18059,9 +18059,9 @@ MonoBehaviour:
   - main: {fileID: 2800000, guid: bb47a617096ccfe41aa9d5a27f4b9d2b, type: 3}
     props: {fileID: 2800000, guid: 6f15bec8d98d56843b001405fe356a33, type: 3}
   - main: {fileID: 2800000, guid: 71b79b518c6013642aecf958a00a8bef, type: 3}
-    props: {fileID: 0}
+    props: {fileID: 2800000, guid: b036c00184d816145b63a8965e924d89, type: 3}
   - main: {fileID: 2800000, guid: dff070b5711b06e46af0da8013140717, type: 3}
-    props: {fileID: 0}
+    props: {fileID: 2800000, guid: b084f8494ad7c0a44b8ae9e79013f353, type: 3}
   - main: {fileID: 2800000, guid: 2aae959069d060449ae2d9cc79744b9d, type: 3}
     props: {fileID: 0}
   - main: {fileID: 2800000, guid: 845fc823118535841a9b155249532c6c, type: 3}
@@ -18178,7 +18178,7 @@ MonoBehaviour:
   - {fileID: 1135907609370792, guid: f8cd5355553abfa45bacad230e04b7f9, type: 3}
   - {fileID: 1135907609370792, guid: f8cd5355553abfa45bacad230e04b7f9, type: 3}
   propSpawnProbability: 10
-  propZ: 0.5
+  propZ: 0.25
   propTint: {r: 0.13901745, g: 0.17303537, b: 0.41509432, a: 1}
   props:
   - {fileID: 6467950258156696711, guid: 066d57194346be8418b29baa411c2870, type: 3}
