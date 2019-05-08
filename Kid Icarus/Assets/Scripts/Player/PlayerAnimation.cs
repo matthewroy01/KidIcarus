@@ -6,12 +6,13 @@ public enum PlayerState { Idle = 0, Walk = 1 , Jump = 2, Fall = 3, Crouch = 4, L
 
 public class PlayerAnimation : MonoBehaviour
 {
-
 	private Animator refAnimator;
 	private PlayerMovement refPlayerMovement;
 	private PlayerShoot refPlayerShoot;
 	private Rigidbody2D rb;
 	private PlayerCollision refPlayerCollision;
+
+    private SpriteRenderer refSpriteRenderer;
 
 	[Header("Current animation state")]
 	public PlayerState animationState;
@@ -28,6 +29,7 @@ public class PlayerAnimation : MonoBehaviour
 		refPlayerShoot = GetComponent<PlayerShoot>();
 		rb = GetComponent<Rigidbody2D>();
 		refPlayerCollision = GetComponent<PlayerCollision>();
+        refSpriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
 	void Update ()
@@ -78,4 +80,28 @@ public class PlayerAnimation : MonoBehaviour
 			}
 		}
 	}
+
+    public void StartBlink()
+    {
+        StartCoroutine("Blink");
+    }
+
+    private IEnumerator Blink()
+    {
+        while (!refPlayerCollision.canGetHit)
+        {
+            if (refSpriteRenderer.color.a < 1.0f)
+            {
+                refSpriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            }
+            else
+            {
+                refSpriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
+            }
+
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        refSpriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+    }
 }

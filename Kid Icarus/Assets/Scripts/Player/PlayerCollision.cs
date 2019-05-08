@@ -17,7 +17,7 @@ public class PlayerCollision : MonoBehaviour
 	public float currentHealth;
 	public bool isDead;
 	public float invincibilityTime;
-	private bool canGetHit = true;
+	public bool canGetHit = true;
 	public bool inSafeZone = false;
     public bool constantHealthRegen = false;
     public GameObject refFinalResultsText;
@@ -50,6 +50,7 @@ public class PlayerCollision : MonoBehaviour
     private PlayerAudio refPlayerAudio;
 	private PlayerMovement refPlayerMovement;
     private PlayerShoot refPlayerShoot;
+    private PlayerAnimation refPlayerAnimation;
 	private ShopInfo refShopInfo;
 	private UtilityMusicManager refMusicManager;
 
@@ -58,6 +59,7 @@ public class PlayerCollision : MonoBehaviour
 		refPlayerAudio = GetComponent<PlayerAudio>();
 		refPlayerMovement = GetComponent<PlayerMovement>();
         refPlayerShoot = GetComponent<PlayerShoot>();
+        refPlayerAnimation = GetComponent<PlayerAnimation>();
 
 		refShopInfo = GameObject.FindObjectOfType<ShopInfo>();
 		refMusicManager = GameObject.FindObjectOfType<UtilityMusicManager>();
@@ -344,7 +346,8 @@ public class PlayerCollision : MonoBehaviour
             Invoke("ResetTime", 0.02f);
 
 			canGetHit = false;
-			Invoke("StopInvincibility", invincibilityTime);
+            refPlayerAnimation.StartBlink();
+            Invoke("StopInvincibility", invincibilityTime);
 		}
 
       if (other.CompareTag("Theif") && canGetHit == true)
