@@ -5839,7 +5839,7 @@ MonoBehaviour:
   crouchedCollider: {fileID: 690602505}
   partsFeathers: {fileID: 1301129770}
   gameStarted: 0
-  QAURL: https://docs.google.com/forms/d/1Ltrj_wb9BIiaWpyWJQDvXOUt9TNFsZF7JpXae-YS5_Q/edit
+  QAURL: https://docs.google.com/forms/d/e/1FAIpQLSfqMGbA6bOk6aoZuy6aHRQlHDcXZ1-kZawRmswqS7DIMEysxA/viewform
 --- !u!70 &690602496
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5974,7 +5974,7 @@ MonoBehaviour:
   arrowChargeIncrement: -0.25
   arrowHomingLevel: 0
   arrowHomingBase: 0
-  arrowHomingIncrement: 20
+  arrowHomingIncrement: 15
   arrowLevelMax: 5
   chargePlusOnePrefab: {fileID: 1043148246282004, guid: 23d8c06f0f0ab4e4686854823effdb29,
     type: 3}
@@ -12702,6 +12702,10 @@ MonoBehaviour:
     description: 'Uprising
 
       That First Town'
+  - clip: {fileID: 8300000, guid: dca2f82dd1cd12a4ba1abff17138d47b, type: 3}
+    description: 'Uprising
+
+      That Burning Town'
   - clip: {fileID: 8300000, guid: ecafc7e0b542ae14d8d38ec97dcb8b89, type: 3}
     description: 'Uprising
 
