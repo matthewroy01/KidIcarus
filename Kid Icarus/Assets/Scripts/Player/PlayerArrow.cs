@@ -20,14 +20,23 @@ public class PlayerArrow : MonoBehaviour
     void Update()
 	{
         Align();
+	}
+
+    private void FixedUpdate()
+    {
         HomeIn();
 
+        // always check for closest enemy to make homing more consistent
+        FindClosestEnemy();
+
+        /*
         // if the enemy died, look for another one
         if (closestEnemy == null)
         {
             FindClosestEnemy();
         }
-	}
+        */
+    }
 
     private void FindClosestEnemy()
     {

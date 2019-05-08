@@ -13,8 +13,8 @@ public class PlayerCollision : MonoBehaviour
     private int heartsSpent = 0;
 
     [Header("Health")]
-	public int maxHealth;
-	public int currentHealth;
+	public float maxHealth;
+	public float currentHealth;
 	public bool isDead;
 	public float invincibilityTime;
 	private bool canGetHit = true;
