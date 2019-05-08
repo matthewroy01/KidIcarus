@@ -38,6 +38,7 @@ public class FinalResults : MonoBehaviour
       display.text = refPlayerMovement.extraJumps + "/" + refPlayerMovement.extraJumpsMax + "\n" +
                      refPlayerShoot.arrowChargeLevel + "/" + refPlayerShoot.arrowLevelMax + "\n" +
                      refPlayerShoot.arrowRangeLevel + "/" + refPlayerShoot.arrowLevelMax + "\n" +
+                     refPlayerShoot.arrowHomingLevel + "/" + refPlayerShoot.arrowLevelMax + "\n" +
                      refOrne.GetMetersSentBack() + "m" + "\n" +
                      refPlayerCollision.GetHeartsCollected() + "\n" +
                      refPlayerCollision.GetHeartsSpent() + "\n" +
