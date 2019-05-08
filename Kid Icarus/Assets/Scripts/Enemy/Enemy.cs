@@ -4,35 +4,38 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-	[Header("Health values")]
-	public int maxHealth;
-	public int currentHealth;
-	public Sound hit;
-	public GameObject ouch;
+    [Header("Health values")]
+    public int maxHealth;
+    public int currentHealth;
+    public Sound hit;
+    public GameObject ouch;
 
-   [Header("Immunities")]
-   public bool immuneToArrows;
-   public bool immuneToHammer;
+    [Header("Damage to deal")]
+    public float damage = 1.0f;
 
-	[Header("Death values")]
-	public bool isDead;
-	public float deathTime;
-	public Sound death;
-   public float instantDeathTime = 0;
+    [Header("Immunities")]
+    public bool immuneToArrows;
+    public bool immuneToHammer;
 
-	[Header("Spawn this on destroy")]
-	public GameObject spawnOnDeath;
+    [Header("Death values")]
+    public bool isDead;
+    public float deathTime;
+    public Sound death;
+    public float instantDeathTime = 0;
 
-	[Header("List of dropables")]
-	public GameObject[] drops;
+    [Header("Spawn this on destroy")]
+    public GameObject spawnOnDeath;
 
-	[Header("Screen wrapping")]
-	public bool shouldWrap;
+    [Header("List of dropables")]
+    public GameObject[] drops;
 
-	// collider to turn off
-	private Collider2D refCollider;
-	private Animator refAnimator;
-	private UtilityAudioManager refAudioManager;
+    [Header("Screen wrapping")]
+    public bool shouldWrap;
+
+    // collider to turn off
+    private Collider2D refCollider;
+    private Animator refAnimator;
+    private UtilityAudioManager refAudioManager;
 
 	void Start ()
 	{
@@ -49,21 +52,21 @@ public class Enemy : MonoBehaviour
 		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
 	}
 
-	void Update()
-	{
-		CheckHealth();
+    void Update()
+    {
+	    CheckHealth();
 
-		if (shouldWrap)
-		{
-			ScreenWrapping();
-		}
+	    if (shouldWrap)
+	    {
+		    ScreenWrapping();
+	    }
 
-      // if the animator isn't null...
-		if (refAnimator != null)
-		{
-         refAnimator.SetBool("isDead", isDead);
-		}
-	}
+        // if the animator isn't null...
+	    if (refAnimator != null)
+	    {
+            refAnimator.SetBool("isDead", isDead);
+	    }
+    }
 
 	private void CheckHealth()
 	{
@@ -142,12 +145,12 @@ public class Enemy : MonoBehaviour
 		// when colliding with the death floor, destroy the object
 		if (other.CompareTag("InstantDeath") == true)
 		{
-         Invoke("Dest", instantDeathTime);
+            Invoke("Dest", instantDeathTime);
 		}
 	}
 
-   private void Dest()
-   {
-      Destroy(gameObject);
-   }
+    private void Dest()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -328,7 +328,21 @@ public class PlayerCollision : MonoBehaviour
 		if (other.CompareTag("Enemy") && canGetHit == true)
 		{
 			refPlayerAudio.PlayHurt();
-			currentHealth--;
+
+            Enemy tmp = other.GetComponent<Enemy>();
+            if (tmp != null)
+            {
+                currentHealth -= tmp.damage;
+            }
+            else
+            {
+                currentHealth -= 1.0f;
+                Debug.LogWarning("This object with Enemy tag has no Enemy component.");
+            }
+
+            Time.timeScale = 0.1f;
+            Invoke("ResetTime", 0.02f);
+
 			canGetHit = false;
 			Invoke("StopInvincibility", invincibilityTime);
 		}
@@ -425,6 +439,11 @@ public class PlayerCollision : MonoBehaviour
 			inSafeZone = false;
 		}
 	}
+
+    private void ResetTime()
+    {
+        Time.timeScale = 1.0f;
+    }
 
 	private void UpdateMeters()
 	{
