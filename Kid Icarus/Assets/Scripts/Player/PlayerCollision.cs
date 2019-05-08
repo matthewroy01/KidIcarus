@@ -196,6 +196,11 @@ public class PlayerCollision : MonoBehaviour
                 refPlayerShoot.IncreaseRange();
                 Destroy(other.gameObject);
             }
+            else if (other.name == "HomingBooster(Clone)")
+            {
+                refPlayerShoot.IncreaseHoming();
+                Destroy(other.gameObject);
+            }
             else
 			{
                 // shop items
@@ -296,6 +301,11 @@ public class PlayerCollision : MonoBehaviour
                     if (tmp.name == "Longbow")
                     {
                         refPlayerShoot.IncreaseRange();
+                    }
+
+                    if (tmp.name == "Homing Booster")
+                    {
+                        refPlayerShoot.IncreaseHoming();
                     }
 
                     hearts -= tmp.cost / sale;

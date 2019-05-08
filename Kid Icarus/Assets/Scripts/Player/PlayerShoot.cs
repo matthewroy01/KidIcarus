@@ -21,11 +21,16 @@ public class PlayerShoot : MonoBehaviour
     public float arrowChargeBase;
     public float arrowChargeIncrement;
     [Header("")]
+    public int arrowHomingLevel = 0;
+    public float arrowHomingBase;
+    public float arrowHomingIncrement;
+    [Header("")]
     public int arrowLevelMax;
     
     [Header("Plus one")]
     public GameObject chargePlusOnePrefab;
     public GameObject rangePlusOnePrefab;
+    public GameObject homingPlusOnePrefab;
     
     [Header("Charge")]
     public bool isCharged;
@@ -356,23 +361,33 @@ public class PlayerShoot : MonoBehaviour
       }
    }
 
-   public void IncreaseCharge()
-   {
-      if (arrowChargeLevel < arrowLevelMax)
-      {
-         ++arrowChargeLevel;
-         refPlayerAudio.PlayPowerUp();
-         Instantiate(chargePlusOnePrefab, new Vector2(transform.position.x, transform.position.y + 0.5f), transform.rotation);
-      }
-   }
+    public void IncreaseCharge()
+    {
+        if (arrowChargeLevel < arrowLevelMax)
+        {
+            ++arrowChargeLevel;
+            refPlayerAudio.PlayPowerUp();
+            Instantiate(chargePlusOnePrefab, new Vector2(transform.position.x, transform.position.y + 0.5f), transform.rotation);
+        }
+    }
 
-   public void IncreaseRange()
-   {
-      if (arrowRangeLevel < arrowLevelMax)
-      {
-         ++arrowRangeLevel;
-         refPlayerAudio.PlayPowerUp();
-         Instantiate(rangePlusOnePrefab, new Vector2(transform.position.x, transform.position.y + 0.5f), transform.rotation);
-      }
-   }
+    public void IncreaseRange()
+    {
+        if (arrowRangeLevel < arrowLevelMax)
+        {
+            ++arrowRangeLevel;
+            refPlayerAudio.PlayPowerUp();
+            Instantiate(rangePlusOnePrefab, new Vector2(transform.position.x, transform.position.y + 0.5f), transform.rotation);
+        }
+    }
+
+    public void IncreaseHoming()
+    {
+        if (arrowHomingLevel < arrowLevelMax)
+        {
+            ++arrowHomingLevel;
+            refPlayerAudio.PlayPowerUp();
+            Instantiate(homingPlusOnePrefab, new Vector2(transform.position.x, transform.position.y + 0.5f), transform.rotation);
+        }
+    }
 }

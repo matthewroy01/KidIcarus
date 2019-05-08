@@ -5972,10 +5972,15 @@ MonoBehaviour:
   arrowChargeLevel: 0
   arrowChargeBase: 1.5
   arrowChargeIncrement: -0.25
+  arrowHomingLevel: 0
+  arrowHomingBase: 0
+  arrowHomingIncrement: 20
   arrowLevelMax: 5
   chargePlusOnePrefab: {fileID: 1043148246282004, guid: 23d8c06f0f0ab4e4686854823effdb29,
     type: 3}
   rangePlusOnePrefab: {fileID: 1574898953324470, guid: ba6d8365bc6cdd14ab633916051b39ed,
+    type: 3}
+  homingPlusOnePrefab: {fileID: 272347053557002605, guid: de4ef9c0c130c234ca42179f6c47f18a,
     type: 3}
   isCharged: 0
   rechargePrefab: {fileID: 1049192087614364, guid: 09a8fa2b051304d4fab375b6f60803ea,
@@ -23214,7 +23219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1638302089
 SpriteRenderer:
   m_ObjectHideFlags: 0
