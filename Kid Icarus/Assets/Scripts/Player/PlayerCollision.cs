@@ -17,6 +17,7 @@ public class PlayerCollision : MonoBehaviour
 	public float currentHealth;
 	public bool isDead;
 	public float invincibilityTime;
+    public GameObject hurtParts;
 	public bool canGetHit = true;
 	public bool inSafeZone = false;
     public bool constantHealthRegen = false;
@@ -330,6 +331,7 @@ public class PlayerCollision : MonoBehaviour
 		if (other.CompareTag("Enemy") && canGetHit == true)
 		{
 			refPlayerAudio.PlayHurt();
+            Instantiate(hurtParts, transform.position, Quaternion.identity);
 
             Enemy tmp = other.GetComponent<Enemy>();
             if (tmp != null)
