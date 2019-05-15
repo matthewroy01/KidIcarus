@@ -84,47 +84,50 @@ public class EnemyBuryAndShoot : MonoBehaviour
       }
    }
 	
-	void Update ()
-   {
-      if (allSet && refEnemy.isDead == false)
-      {
-         if (CheckHammer() == true && isStunned == false)
-         {
-            // stun
-            isStunned = true;
-            refAnimator.SetTrigger("Stun");
+    void Update ()
+    {
+        if (allSet && refEnemy.isDead == false)
+        {
+            if (CheckHammer() == true && isStunned == false)
+            {
+                // stun
+                isStunned = true;
+                refAnimator.SetTrigger("Stun");
 
-            // cancel any invokes
-            CancelInvoke("PopOut");
-            CancelInvoke("ActuallyShoot");
-            CancelInvoke("RechargeShoot");
-            CancelInvoke("WaitToShoot");
+                // cancel any invokes
+                CancelInvoke("PopOut");
+                CancelInvoke("ActuallyShoot");
+                CancelInvoke("RechargeShoot");
+                CancelInvoke("WaitToShoot");
 
-            // wait to stop being stunned
-            Invoke("StopStun", stunDuration);
+                // wait to stop being stunned
+                Invoke("StopStun", stunDuration);
 
-            // make stun effect
-            GameObject tmp = Instantiate(stunnedEffect, (Vector2)transform.position + projOrigin, transform.rotation);
-            tmp.transform.localScale *= 0.3f;
-            tmp.transform.parent = transform;
+                // make stun effect
+                GameObject tmp = Instantiate(stunnedEffect, (Vector2)transform.position + projOrigin, transform.rotation);
+                tmp.transform.localScale *= 0.3f;
+                tmp.transform.parent = transform;
 
-            // play sound
-            StartCoroutine("PlayStunSound");
+                // don't deal damage
+                gameObject.tag = "Untagged";
 
-            // make vulnerable
-            Reposition(new Vector2(0, 0.5f));
-            refEnemy.immuneToArrows = false;
-            refEnemy.immuneToHammer = false;
-            refCollider.enabled = true;
-         }
+                // play sound
+                StartCoroutine("PlayStunSound");
 
-         if (isStunned == false && CheckRange() == true)
-         {
-            CheckDirection();
-            Shoot();
-         }
-      }
-	}
+                // make vulnerable
+                Reposition(new Vector2(0, 0.5f));
+                refEnemy.immuneToArrows = false;
+                refEnemy.immuneToHammer = false;
+                refCollider.enabled = true;
+            }
+
+            if (isStunned == false && CheckRange() == true)
+            {
+                CheckDirection();
+                Shoot();
+            }
+        }
+    }
 
    private void StopStun()
    {
@@ -139,6 +142,9 @@ public class EnemyBuryAndShoot : MonoBehaviour
       refEnemy.immuneToArrows = true;
       refEnemy.immuneToHammer = true;
       refCollider.enabled = false;
+
+        // deal damage again
+        gameObject.tag = "Enemy";
    }
 
    private void Shoot()
