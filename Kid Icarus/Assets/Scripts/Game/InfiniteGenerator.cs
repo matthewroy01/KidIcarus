@@ -205,8 +205,6 @@ public class InfiniteGenerator : MonoBehaviour
     private void SpawnEnemies(int height, int width)
     {
 	    int randX, randY;
-	    randX = Random.Range(defaultX, defaultX + width);
-	    randY = Random.Range(currentY, currentY + height);
 
 	    List<int> limitedSpawn;
 	    limitedSpawn = new List<int>();
@@ -224,7 +222,11 @@ public class InfiniteGenerator : MonoBehaviour
 			    }
 			    while(CheckForRepeats(tmp, limitedSpawn) == true || enemies[tmp].dontSpawnBefore > refPlayerCollision.getCurrentMeters());
 
-			    Instantiate(enemies[tmp].obj, new Vector2(randX, randY), Quaternion.identity);
+                // select random position
+                randX = Random.Range(defaultX, defaultX + width);
+                randY = Random.Range(currentY, currentY + height);
+
+                Instantiate(enemies[tmp].obj, new Vector2(randX, randY), Quaternion.identity);
 
 			    // if the enemy that was spawned is linked to something else, prevent that thing from spawning
 			    if (enemies[tmp].linkedTo >= 0)

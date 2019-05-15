@@ -5311,6 +5311,148 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325408052}
   m_CullTransparentMesh: 0
+--- !u!1 &368524916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 368524917}
+  - component: {fileID: 368524919}
+  - component: {fileID: 368524918}
+  m_Layer: 0
+  m_Name: LevelGeneratorTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &368524917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368524916}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1840260690}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &368524918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368524916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad2ae87e2283704583d0782eeb08374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels: []
+  randomFlipEnabled: 1
+  shops: []
+  waitToSpawnEnemies: 1
+  enemiesToSpawn: 3
+  enemies:
+  - obj: {fileID: 1034353125502332, guid: a5f2d0c42ba8df64d8a72483075a6b4e, type: 3}
+    limitSpawns: 1
+    linkedTo: -1
+    dontSpawnBefore: 0
+  - obj: {fileID: 1034353125502332, guid: a5f2d0c42ba8df64d8a72483075a6b4e, type: 3}
+    limitSpawns: 1
+    linkedTo: -1
+    dontSpawnBefore: 0
+  spawnTreasureEveryMax: 2
+  spawnTreasureEveryMin: 5
+  treasures:
+  - {fileID: 1445101104682042, guid: 6f4f5839805b4f748b21fea503f32991, type: 3}
+  - {fileID: 1445101104682042, guid: 6f4f5839805b4f748b21fea503f32991, type: 3}
+  - {fileID: 1445101104682042, guid: 6f4f5839805b4f748b21fea503f32991, type: 3}
+  - {fileID: 1445101104682042, guid: 6f4f5839805b4f748b21fea503f32991, type: 3}
+  - {fileID: 1754845607052008, guid: 25563761bfc80ad4e80c7261c7b7a705, type: 3}
+  - {fileID: 1135907609370792, guid: f8cd5355553abfa45bacad230e04b7f9, type: 3}
+  - {fileID: 1135907609370792, guid: f8cd5355553abfa45bacad230e04b7f9, type: 3}
+  propSpawnProbability: 10
+  propZ: 0.25
+  propTint: {r: 0.13901745, g: 0.17303537, b: 0.41509432, a: 1}
+  props:
+  - {fileID: 6467950258156696711, guid: 066d57194346be8418b29baa411c2870, type: 3}
+  - {fileID: 1190268205597478989, guid: ab6dbfbbd2562914f86097bbd6ef50f0, type: 3}
+  - {fileID: 422863976712490782, guid: b0afbcb185cf3dc4c9b32c8d26e4f150, type: 3}
+  - {fileID: 1190268205597478989, guid: 19a64dd3f42a72d498bcc351c81864cd, type: 3}
+  - {fileID: 1190268205597478989, guid: ca4e95dd932511346a187ddcf2503d8b, type: 3}
+  - {fileID: 1452226217150208002, guid: 4574609dc4a735e4a9508c6b360c2d7f, type: 3}
+  - {fileID: 2309211412889991528, guid: 8224b017470c7ae4394c0636e1722282, type: 3}
+  - {fileID: 422443553672204293, guid: 9cd14e0d82d05e04a8665ca87be2ae10, type: 3}
+  - {fileID: 4941684301386882426, guid: 01d23cd4065327b468222a5da6f57268, type: 3}
+  maxAge: 2
+  currentY: 0
+  defaultX: 0
+  roomCount: 0
+  spawnShopEvery: 8
+--- !u!114 &368524919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368524916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6379b7685b36ce041acb5fbd6150963b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maps:
+  - main: {fileID: 2800000, guid: bb47a617096ccfe41aa9d5a27f4b9d2b, type: 3}
+    props: {fileID: 2800000, guid: 6f15bec8d98d56843b001405fe356a33, type: 3}
+  - main: {fileID: 2800000, guid: 71b79b518c6013642aecf958a00a8bef, type: 3}
+    props: {fileID: 2800000, guid: b036c00184d816145b63a8965e924d89, type: 3}
+  - main: {fileID: 2800000, guid: dff070b5711b06e46af0da8013140717, type: 3}
+    props: {fileID: 2800000, guid: b084f8494ad7c0a44b8ae9e79013f353, type: 3}
+  - main: {fileID: 2800000, guid: 2aae959069d060449ae2d9cc79744b9d, type: 3}
+    props: {fileID: 2800000, guid: 0636801eb3c6e7449a0f3548f4bc3565, type: 3}
+  - main: {fileID: 2800000, guid: 845fc823118535841a9b155249532c6c, type: 3}
+    props: {fileID: 2800000, guid: fc76cf80ded23c84c90ff25719e91fc3, type: 3}
+  - main: {fileID: 2800000, guid: 1fbbe7a47bd263a479609818b444321a, type: 3}
+    props: {fileID: 2800000, guid: c8d54fdd2d5c41a44a85d8ffd71b9691, type: 3}
+  - main: {fileID: 2800000, guid: b951c8bf77c72ac46b6ed120f0834271, type: 3}
+    props: {fileID: 2800000, guid: 1ac94997e6e6a874896c02113adba1e9, type: 3}
+  defaultName: Map
+  shopMaps:
+  - main: {fileID: 2800000, guid: 8af853bf26d459247a88853399055083, type: 3}
+    props: {fileID: 0}
+  defaultShopName: Shop
+  colorMappings:
+  - color:
+      serializedVersion: 2
+      rgba: 4278190080
+    prefab: {fileID: 1107581552906788, guid: 9002fabd5125a47409952cdcdbc565aa, type: 3}
+  - color:
+      serializedVersion: 2
+      rgba: 4290799865
+    prefab: {fileID: 1686733032737908, guid: 5268585b068d5524f8c65cb7c2d61737, type: 3}
+  - color:
+      serializedVersion: 2
+      rgba: 4289924283
+    prefab: {fileID: 1960480732698576, guid: b7a54a24c0ab60e40be34006b50f7902, type: 3}
+  - color:
+      serializedVersion: 2
+      rgba: 4288221696
+    prefab: {fileID: 1978357002431008, guid: 2da030a11ae0b39428579b1c4f266eeb, type: 3}
+  - color:
+      serializedVersion: 2
+      rgba: 4278216704
+    prefab: {fileID: 1198956981417286, guid: fb7193a6a7932644daf4aa31a6cff600, type: 3}
+  safeZone: {fileID: 1859968276344474, guid: 1dc7ad01403e5c349991a32efb450612, type: 3}
+  invisibleWall: {fileID: 1100759860602982, guid: e82da72947bdb5348acae097c43646d2,
+    type: 3}
 --- !u!1 &378040635
 GameObject:
   m_ObjectHideFlags: 0
@@ -23666,6 +23808,7 @@ Transform:
   - {fileID: 1177960285}
   - {fileID: 807967576}
   - {fileID: 1689172961}
+  - {fileID: 368524917}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
