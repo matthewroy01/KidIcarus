@@ -24,6 +24,7 @@ public class PlayerCollision : MonoBehaviour
     public GameObject refFinalResultsText;
     private FinalResults refFinalResults;
     private bool readyToRestart = false;
+    public UIShake refUIShake;
 
     [Header("Drink of the Gods")]
 	public int kiddieDrinkAmount;
@@ -331,6 +332,7 @@ public class PlayerCollision : MonoBehaviour
 		if (other.CompareTag("Enemy") && canGetHit == true)
 		{
 			refPlayerAudio.PlayHurt();
+            refUIShake.Shake();
             Instantiate(hurtParts, transform.position, Quaternion.identity);
 
             Enemy tmp = other.GetComponent<Enemy>();

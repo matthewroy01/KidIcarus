@@ -6206,6 +6206,7 @@ MonoBehaviour:
   inSafeZone: 0
   constantHealthRegen: 0
   refFinalResultsText: {fileID: 1606305241}
+  refUIShake: {fileID: 1797996023}
   kiddieDrinkAmount: 1
   smallDrinkAmount: 2
   largeDrinkAmount: 4
@@ -23551,6 +23552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1797996021}
   - component: {fileID: 1797996022}
+  - component: {fileID: 1797996023}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -23628,6 +23630,21 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1797996023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797996020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b5286443f646e949a3aa9f398bea01d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.25
+  strength: 10
+  speed: 100
 --- !u!1 &1811826560
 GameObject:
   m_ObjectHideFlags: 0
