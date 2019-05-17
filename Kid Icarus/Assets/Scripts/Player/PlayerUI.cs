@@ -88,7 +88,16 @@ public class PlayerUI : MonoBehaviour
 		for (int i = 0; i < feathers.Length; ++i)
 		{
             feathers[i].SetActive(i < refMovement.extraJumps);
-		}
+
+            if (i >= refMovement.currentJumps)
+            {
+                feathers[i].GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                feathers[i].GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 1.0f);
+            }
+        }
 	}
 
 	private void DisplayFirstAidKit()

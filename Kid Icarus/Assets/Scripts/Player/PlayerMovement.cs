@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
 	[Header("Jump variables")]
 	public float jumpForce;
 	public int extraJumps;
-	private int currentJumps = 0;
+    [HideInInspector]
+	public int currentJumps = 0;
 	public int extraJumpsMax;
 
 	[Header("Ground variables")]

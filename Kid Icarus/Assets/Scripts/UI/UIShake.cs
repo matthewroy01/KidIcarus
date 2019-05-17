@@ -27,14 +27,14 @@ public class UIShake : MonoBehaviour
         Invoke("StopShake", duration);
     }
 
-    /*public void Update()
+    public void Update()
     {
         // reset position while not shaking
         if (!shaking && refRectTransform.localPosition.y != defaultY)
         {
             refRectTransform.localPosition = Vector3.Lerp(refRectTransform.transform.localPosition, new Vector3(refRectTransform.transform.localPosition.x, defaultY, refRectTransform.transform.localPosition.z), 0.5f);
         }
-    }*/
+    }
 
     private IEnumerator DoShake()
     {
