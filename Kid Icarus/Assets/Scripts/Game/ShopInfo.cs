@@ -50,6 +50,48 @@ public class ShopInfo : MonoBehaviour
 			}
 		}
 	}
+
+    public GameObject GetRandomAvailableItem(GameObject[] exclusions)
+    {
+        int failsafe = 50;
+
+        // keep a failsafe in case there are no available items
+        while (failsafe > 0)
+        {
+            int rand = Random.Range(0, shopItems.Length);
+            if (shopItems[rand].isAvailable)
+            {
+                bool excluded = false;
+
+                // make sure this item isn't being excluded
+                for (int i = 0; i < exclusions.Length; ++i)
+                {
+                    if (shopItems[rand].obj == exclusions[i])
+                    {
+                        excluded = true;
+                    }
+                }
+
+                // if the item wasn't specifically excluded
+                if (!excluded)
+                {
+                    // return item
+                    return shopItems[rand].obj;
+                }
+            }
+        }
+
+        if (shopItems.Length > 0)
+        {
+            Debug.LogWarning("ShopInfo could not find an available item, and gave up looking for one. Returning the first item from the list.");
+            return shopItems[0].obj;
+        }
+        else
+        {
+            Debug.LogWarning("ShopInfo could not find an available item, and gave up looking for one. Returning null since the list of items is empty");
+            return null;
+        }
+    }
 }
 
 [System.Serializable]

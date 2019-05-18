@@ -55,6 +55,7 @@ public class PlayerCollision : MonoBehaviour
     private PlayerAnimation refPlayerAnimation;
 	private ShopInfo refShopInfo;
 	private UtilityMusicManager refMusicManager;
+    private SpriteRenderer refSpriteRenderer;
 
 	void Start()
 	{
@@ -65,6 +66,8 @@ public class PlayerCollision : MonoBehaviour
 
 		refShopInfo = GameObject.FindObjectOfType<ShopInfo>();
 		refMusicManager = GameObject.FindObjectOfType<UtilityMusicManager>();
+
+        refSpriteRenderer = GetComponent<SpriteRenderer>();
 
         refFinalResultsText.SetActive(false);
         refFinalResults = GetComponent<FinalResults>();

@@ -5361,11 +5361,11 @@ MonoBehaviour:
   waitToSpawnEnemies: 1
   enemiesToSpawn: 3
   enemies:
-  - obj: {fileID: 1034353125502332, guid: a5f2d0c42ba8df64d8a72483075a6b4e, type: 3}
+  - obj: {fileID: 1141117070903062, guid: 18019a28288d92c4bae661d0a6e0248d, type: 3}
     limitSpawns: 1
     linkedTo: -1
     dontSpawnBefore: 0
-  - obj: {fileID: 1034353125502332, guid: a5f2d0c42ba8df64d8a72483075a6b4e, type: 3}
+  - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 3}
     limitSpawns: 1
     linkedTo: -1
     dontSpawnBefore: 0

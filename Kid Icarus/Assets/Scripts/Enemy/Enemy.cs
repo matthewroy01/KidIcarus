@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     public GameObject spawnOnDeath;
 
     [Header("List of dropables")]
+    public bool overrideWithShopItems = false;
     public GameObject[] drops;
 
     [Header("Screen wrapping")]
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
     private Collider2D refCollider;
     private Animator refAnimator;
     private UtilityAudioManager refAudioManager;
+    private ShopInfo refShopInfo;
 
 	void Start ()
 	{
@@ -50,6 +52,9 @@ public class Enemy : MonoBehaviour
 
 		// get the audio manager
 		refAudioManager = GameObject.FindObjectOfType<UtilityAudioManager>();
+
+        // get shop info in case an enemy needs to check for an appropriate item
+        refShopInfo = GameObject.FindObjectOfType<ShopInfo>();
 	}
 
     void Update()
@@ -88,14 +93,19 @@ public class Enemy : MonoBehaviour
 
 	private void Death()
 	{
-		// drop something from the list of drops
-		if (drops.Length != 0)
-		{
-			refAudioManager.PlaySound(death.clip, death.volume);
-			Instantiate(drops[Random.Range(0, drops.Length)], transform.position, Quaternion.identity);
-		}
+        // get an item from the shop to spawn
+        if (overrideWithShopItems)
+        {
+            Instantiate(refShopInfo.GetRandomAvailableItem(drops), transform.position, Quaternion.identity);
+        }
+        // drop something from the list of drops
+        else if (drops.Length != 0)
+        {
+            refAudioManager.PlaySound(death.clip, death.volume);
+            Instantiate(drops[Random.Range(0, drops.Length)], transform.position, Quaternion.identity);
+        }
 
-		if (spawnOnDeath != null)
+        if (spawnOnDeath != null)
 		{
 			Instantiate(spawnOnDeath, transform.position, Quaternion.identity);
 		}
