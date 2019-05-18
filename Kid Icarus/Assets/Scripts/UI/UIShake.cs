@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIShake : MonoBehaviour
+public class UIShake : UIEffect
 {
     private RectTransform refRectTransform;
     private float defaultY;
@@ -18,7 +18,12 @@ public class UIShake : MonoBehaviour
         defaultY = refRectTransform.localPosition.y;
     }
 
-    public void Shake()
+    public override void DoEffect()
+    {
+        Shake();
+    }
+
+    private void Shake()
     {
         StopCoroutine(DoShake());
         CancelInvoke("StopShake");

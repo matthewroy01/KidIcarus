@@ -7,16 +7,19 @@ public class PlayerUI : MonoBehaviour
 {
 	[Header("Health display")]
 	public Slider sliderHealth;
+    public UIEffect effectHealth;
 
 	[Header("Heart display")]
 	public Text textHeart;
     public Image iconSale;
+    public UIEffect effectHeart;
 
 	[Header("Hammer dipslay")]
 	public Text textHammer;
 	public Slider sliderHammer;
+    public UIEffect effectHammer;
 
-	[Header("Feather display")]
+    [Header("Feather display")]
 	public GameObject[] feathers;
 
 	[Header("First Aid Kit display")]
@@ -169,5 +172,20 @@ public class PlayerUI : MonoBehaviour
     private void DisplayStartScreen()
     {
         startScreen.SetActive(!refMovement.gameStarted);
+    }
+
+    public void DoEffectHealth()
+    {
+        effectHealth.DoEffect();
+    }
+
+    public void DoEffectHeart()
+    {
+        effectHeart.DoEffect();
+    }
+
+    public void DoEffectHammer()
+    {
+        effectHammer.DoEffect();
     }
 } 

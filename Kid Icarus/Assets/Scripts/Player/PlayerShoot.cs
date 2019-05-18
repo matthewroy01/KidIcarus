@@ -69,12 +69,14 @@ public class PlayerShoot : MonoBehaviour
     private PlayerMovement refPlayerMovement;
 	private PlayerAudio refPlayerAudio;
 	private PlayerCollision refPlayerCollision;
+    private PlayerUI refPlayerUI;
 
 	void Start ()
 	{
 		refPlayerMovement = GetComponent<PlayerMovement>();
 		refPlayerAudio = GetComponent<PlayerAudio>();
 		refPlayerCollision = GetComponent<PlayerCollision>();
+        refPlayerUI = GetComponent<PlayerUI>();
         refCameraFollow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
 
 		// set the hammer to inactive by default
@@ -327,6 +329,7 @@ public class PlayerShoot : MonoBehaviour
 				meleeChargeCurrent = 0;
 				if (meleeUsesCurrent < meleeUsesTotal)
 				{
+                    refPlayerUI.DoEffectHammer();
 					meleeUsesCurrent++;
 				}
 			}

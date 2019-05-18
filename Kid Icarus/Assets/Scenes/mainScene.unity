@@ -6207,7 +6207,6 @@ MonoBehaviour:
   inSafeZone: 0
   constantHealthRegen: 0
   refFinalResultsText: {fileID: 1606305241}
-  refUIShake: {fileID: 1797996023}
   kiddieDrinkAmount: 1
   smallDrinkAmount: 2
   largeDrinkAmount: 4
@@ -6305,10 +6304,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliderHealth: {fileID: 1797996022}
+  effectHealth: {fileID: 1797996023}
   textHeart: {fileID: 1861488122}
   iconSale: {fileID: 1261713038}
+  effectHeart: {fileID: 1861488125}
   textHammer: {fileID: 2032505398}
   sliderHammer: {fileID: 1431605220}
+  effectHammer: {fileID: 2032505400}
   feathers:
   - {fileID: 22691373}
   - {fileID: 264956269}
@@ -23842,6 +23844,7 @@ GameObject:
   - component: {fileID: 1861488123}
   - component: {fileID: 1861488122}
   - component: {fileID: 1861488124}
+  - component: {fileID: 1861488125}
   m_Layer: 5
   m_Name: textHearts
   m_TagString: Untagged
@@ -23865,9 +23868,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -336.9, y: 369.4}
+  m_AnchoredPosition: {x: -467.49002, y: 369.4}
   m_SizeDelta: {x: 580.4, y: 185.85}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.05, y: 0.5}
 --- !u!114 &1861488122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23925,6 +23928,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0.7372549, a: 1}
   m_EffectDistance: {x: 10, y: 10}
   m_UseGraphicAlpha: 1
+--- !u!114 &1861488125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861488120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adffc3cc1eb13fc4a88a962579a0adf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleMultiplier: 2
+  resetScaleSpeed: 0.25
 --- !u!1 &1929404135
 GameObject:
   m_ObjectHideFlags: 0
@@ -24455,6 +24472,7 @@ GameObject:
   - component: {fileID: 2032505399}
   - component: {fileID: 2032505398}
   - component: {fileID: 2032505397}
+  - component: {fileID: 2032505400}
   m_Layer: 5
   m_Name: textHammer
   m_TagString: Untagged
@@ -24478,9 +24496,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -336.89996, y: 277}
+  m_AnchoredPosition: {x: -467.48178, y: 277}
   m_SizeDelta: {x: 580.4, y: 185.85}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.05, y: 0.5}
 --- !u!114 &2032505397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24538,6 +24556,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032505395}
   m_CullTransparentMesh: 0
+--- !u!114 &2032505400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032505395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adffc3cc1eb13fc4a88a962579a0adf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleMultiplier: 2
+  resetScaleSpeed: 0.25
 --- !u!1 &2050341096
 GameObject:
   m_ObjectHideFlags: 0

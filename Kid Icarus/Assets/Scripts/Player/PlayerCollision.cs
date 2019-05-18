@@ -24,7 +24,6 @@ public class PlayerCollision : MonoBehaviour
     public GameObject refFinalResultsText;
     private FinalResults refFinalResults;
     private bool readyToRestart = false;
-    public UIShake refUIShake;
 
     [Header("Drink of the Gods")]
 	public int kiddieDrinkAmount;
@@ -53,6 +52,7 @@ public class PlayerCollision : MonoBehaviour
 	private PlayerMovement refPlayerMovement;
     private PlayerShoot refPlayerShoot;
     private PlayerAnimation refPlayerAnimation;
+    private PlayerUI refPlayerUI;
 	private ShopInfo refShopInfo;
 	private UtilityMusicManager refMusicManager;
     private SpriteRenderer refSpriteRenderer;
@@ -63,6 +63,7 @@ public class PlayerCollision : MonoBehaviour
 		refPlayerMovement = GetComponent<PlayerMovement>();
         refPlayerShoot = GetComponent<PlayerShoot>();
         refPlayerAnimation = GetComponent<PlayerAnimation>();
+        refPlayerUI = GetComponent<PlayerUI>();
 
 		refShopInfo = GameObject.FindObjectOfType<ShopInfo>();
 		refMusicManager = GameObject.FindObjectOfType<UtilityMusicManager>();
@@ -132,6 +133,7 @@ public class PlayerCollision : MonoBehaviour
 				refPlayerAudio.PlayHeart();
 				hearts += 1;
                 heartsCollected += 1;
+                refPlayerUI.DoEffectHeart();
 				Destroy(other.gameObject);
 			}
 			else if (other.name == "Heart5(Clone)")
@@ -139,14 +141,16 @@ public class PlayerCollision : MonoBehaviour
 				refPlayerAudio.PlayHeart();
 				hearts += 5;
                 heartsCollected += 5;
-				Destroy(other.gameObject);
+                refPlayerUI.DoEffectHeart();
+                Destroy(other.gameObject);
 			}
 			else if (other.name == "Heart10(Clone)" || other.name == "FlyingHeart(Clone)")
 			{
 				refPlayerAudio.PlayHeart();
 				hearts += 10;
                 heartsCollected += 10;
-				Destroy(other.gameObject);
+                refPlayerUI.DoEffectHeart();
+                Destroy(other.gameObject);
 			}
 			else if (other.name == "DrinkSmall(Clone)")
 			{
@@ -335,7 +339,7 @@ public class PlayerCollision : MonoBehaviour
 		if (other.CompareTag("Enemy") && canGetHit == true)
 		{
 			refPlayerAudio.PlayHurt();
-            refUIShake.Shake();
+            refPlayerUI.DoEffectHealth();
             Instantiate(hurtParts, transform.position, Quaternion.identity);
 
             Enemy tmp = other.GetComponent<Enemy>();
