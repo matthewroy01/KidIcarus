@@ -5964,6 +5964,7 @@ MonoBehaviour:
   maxSpeed: 5
   jumpForce: 1100
   extraJumps: 1
+  currentJumps: 0
   extraJumpsMax: 4
   groundMask:
     serializedVersion: 2
@@ -23643,7 +23644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0.25
-  strength: 10
+  strength: 20
   speed: 100
 --- !u!1 &1811826560
 GameObject:
