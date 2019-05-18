@@ -6721,7 +6721,7 @@ MonoBehaviour:
     description: Restores 4 units of life.
     cost: 50
     isAvailable: 1
-  - name: Roc's Feather
+  - name: Angel's Feather
     obj: {fileID: 1281153778484098, guid: ffbe1ede72f841e44951deef5d922d32, type: 3}
     description: Grants an extra jump. Maximum of 4.
     cost: 100
@@ -18072,7 +18072,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Roc''s Feathers
+  m_Text: 'Angel''s Feathers
 
     Charge
 

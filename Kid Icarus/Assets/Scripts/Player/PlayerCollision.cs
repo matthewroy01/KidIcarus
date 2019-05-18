@@ -166,7 +166,7 @@ public class PlayerCollision : MonoBehaviour
 				StartCoroutine("RestoreHealth");
 				Destroy(other.gameObject);
 			}
-			else if (other.name == "RocFeather(Clone)" && refPlayerMovement.extraJumps != refPlayerMovement.extraJumpsMax)
+			else if (other.name == "AngelFeather(Clone)" && refPlayerMovement.extraJumps != refPlayerMovement.extraJumpsMax)
 			{
 				refPlayerMovement.extraJumps++;
 				Destroy(other.gameObject);
@@ -254,7 +254,7 @@ public class PlayerCollision : MonoBehaviour
                         }
                     }
 
-                    if (tmp.name == "Roc's Feather")
+                    if (tmp.name == "Angel's Feather")
                     {
                         if (refPlayerMovement.extraJumps != refPlayerMovement.extraJumpsMax)
                         {
@@ -384,7 +384,7 @@ public class PlayerCollision : MonoBehaviour
             {
                case 0:
                {
-                  textTheft.text = "Roc's Feather stolen!";
+                  textTheft.text = "Angel's Feather stolen!";
                   if (refPlayerMovement.extraJumps != 1)
                   {
                      refPlayerMovement.extraJumps--;
@@ -472,11 +472,11 @@ public class PlayerCollision : MonoBehaviour
 		// roc's feather availability
 		if (refPlayerMovement.extraJumps >= refPlayerMovement.extraJumpsMax)
 		{
-			refShopInfo.SetAvailability(false, "Roc's Feather");
+			refShopInfo.SetAvailability(false, "Angel's Feather");
 		}
       else
       {
-         refShopInfo.SetAvailability(true, "Roc's Feather");
+         refShopInfo.SetAvailability(true, "Angel's Feather");
       }
    }
 
