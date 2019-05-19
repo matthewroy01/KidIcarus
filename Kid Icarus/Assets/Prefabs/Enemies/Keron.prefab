@@ -180,7 +180,7 @@ MonoBehaviour:
   spawnOnDeath: {fileID: 0}
   overrideWithShopItems: 0
   drops:
-  - {fileID: 1716224392259714, guid: 3afa8cf07586000408054aed253ab23d, type: 3}
+  - {fileID: 1370745428962280, guid: af23a75a027c65b4396f267705b2bfed, type: 3}
   shouldWrap: 1
 --- !u!114 &1724996668008045478
 MonoBehaviour:
@@ -197,8 +197,9 @@ MonoBehaviour:
   yOffset: -6
   xRange: 5
   spawnTint: {r: 0.13901745, g: 0.17303537, b: 0.41509432, a: 1}
+  destroyIfThisHigh: 16
   initialJumpMultiplier: 2
-  jumpVector: {x: 150, y: 400}
+  jumpVector: {x: 150, y: 350}
   jumpDelay: 1
   groundMask:
     serializedVersion: 2

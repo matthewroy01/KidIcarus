@@ -9,6 +9,9 @@ public class EnemyJumpAndLand : MonoBehaviour
     public float xRange;
     public Color spawnTint;
 
+    [Header("Despawning")]
+    public float destroyIfThisHigh;
+
     [Header("Jump")]
     public float initialJumpMultiplier;
     public Vector2 jumpVector;
@@ -56,6 +59,11 @@ public class EnemyJumpAndLand : MonoBehaviour
 
             rb.gravityScale = 0.0f;
             rb.velocity = Vector2.zero;
+        }
+
+        if (transform.position.y - refPlayer.transform.position.y > destroyIfThisHigh)
+        {
+            Destroy(gameObject);
         }
     }
 

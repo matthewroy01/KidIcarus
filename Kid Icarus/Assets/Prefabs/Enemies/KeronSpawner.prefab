@@ -80,9 +80,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatToSpawn: {fileID: 3310496972970809653, guid: 15c5d431427ff12448ba0d6417767e61,
     type: 3}
-  maxSpawns: 3
+  maxSpawns: 2
   spawnRate: 1
-  spawnCooldown: 0
+  spawnCooldown: 4
   minYDistanceToPlayer: 100
   wallLayer:
     serializedVersion: 2
