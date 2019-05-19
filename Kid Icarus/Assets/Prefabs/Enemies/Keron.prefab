@@ -194,12 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67e8d56d62fd944481ebf4d0d686486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yOffset: -6
+  yOffset: -8
   xRange: 5
   spawnTint: {r: 0.13901745, g: 0.17303537, b: 0.41509432, a: 1}
   destroyIfThisHigh: 16
   initialJumpMultiplier: 2
-  jumpVector: {x: 150, y: 350}
+  jumpVector: {x: 150, y: 400}
   jumpDelay: 1
   groundMask:
     serializedVersion: 2

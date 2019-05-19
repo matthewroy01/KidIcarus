@@ -5328,7 +5328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &368524917
 Transform:
   m_ObjectHideFlags: 0
@@ -6742,6 +6742,11 @@ MonoBehaviour:
     obj: {fileID: 1487862482214924, guid: 8947380d66b586e47ba9078df47ce479, type: 3}
     description: An icon of the Goddess of Light. May grant luck.
     cost: 50
+    isAvailable: 1
+  - name: Powerup Pack
+    obj: {fileID: 6470709872607923731, guid: b19149067a67cf841bbdf4d31d2abcd6, type: 3}
+    description: Grants +1 to Charge, Range, and Homing.
+    cost: 80
     isAvailable: 1
   emptyItem:
     name: Empty
@@ -18202,7 +18207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1475053167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18325,11 +18330,11 @@ MonoBehaviour:
     dontSpawnBefore: 600
   - obj: {fileID: 1649594314718266, guid: 421ffc9deb54f2b409917c7ccc80154d, type: 3}
     limitSpawns: 1
-    linkedTo: 9
+    linkedTo: -1
     dontSpawnBefore: 100
-  - obj: {fileID: 1519212177289982024, guid: 7ccdb5f51a4c350428f6a291c9f8f84c, type: 3}
+  - obj: {fileID: 3310496972970809653, guid: 15c5d431427ff12448ba0d6417767e61, type: 3}
     limitSpawns: 1
-    linkedTo: 8
+    linkedTo: -1
     dontSpawnBefore: 100
   spawnTreasureEveryMax: 2
   spawnTreasureEveryMin: 5

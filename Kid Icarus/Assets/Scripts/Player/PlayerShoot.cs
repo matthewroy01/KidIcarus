@@ -393,4 +393,11 @@ public class PlayerShoot : MonoBehaviour
             Instantiate(homingPlusOnePrefab, new Vector2(transform.position.x, transform.position.y + 0.5f), transform.rotation);
         }
     }
+
+    public void IncreaseAll()
+    {
+        Invoke("IncreaseCharge", 0.0f);
+        Invoke("IncreaseRange", 0.25f);
+        Invoke("IncreaseHoming", 0.5f);
+    }
 }

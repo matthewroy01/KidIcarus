@@ -212,6 +212,11 @@ public class PlayerCollision : MonoBehaviour
                 refPlayerShoot.IncreaseHoming();
                 Destroy(other.gameObject);
             }
+            else if (other.name == "PowerupPack(Clone)")
+            {
+                refPlayerShoot.IncreaseAll();
+                Destroy(other.gameObject);
+            }
             else
 			{
                 // shop items
@@ -317,6 +322,11 @@ public class PlayerCollision : MonoBehaviour
                     if (tmp.name == "Homing Booster")
                     {
                         refPlayerShoot.IncreaseHoming();
+                    }
+
+                    if (tmp.name == "Powerup Pack")
+                    {
+                        refPlayerShoot.IncreaseAll();
                     }
 
                     hearts -= tmp.cost / sale;
