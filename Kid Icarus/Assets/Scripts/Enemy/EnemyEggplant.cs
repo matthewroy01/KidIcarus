@@ -9,8 +9,9 @@ public class EnemyEggplant : MonoBehaviour
 	public Vector2 inFront;
 	public LayerMask groundMask;
 	public bool grounded;
+    public float maxFallDistance;
 
-	[Header("Movement")]
+    [Header("Movement")]
 	public bool facingRight;
 	public bool goingRight;
 	public float movSpeed;
@@ -112,8 +113,14 @@ public class EnemyEggplant : MonoBehaviour
 
 	private void Falling()
 	{
-		// if there's nothing below us, fall
-		if (Physics2D.OverlapCircle((Vector2)transform.position + below, 0.2f, groundMask) == false)
+        // don't fall too far
+        if (!Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - maxFallDistance), groundMask))
+        {
+            Destroy(gameObject);
+        }
+
+        // if there's nothing below us, fall
+        if (Physics2D.OverlapCircle((Vector2)transform.position + below, 0.2f, groundMask) == false)
 		{
 			rb.velocity = Vector2.down * 7.5f;
 		}

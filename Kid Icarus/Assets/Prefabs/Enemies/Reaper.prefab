@@ -183,6 +183,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   grounded: 0
+  maxFallDistance: 8
   facingRight: 0
   movSpeed: 0.75
   doRandomWait: 1

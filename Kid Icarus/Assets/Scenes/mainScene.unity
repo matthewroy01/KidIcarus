@@ -5361,11 +5361,15 @@ MonoBehaviour:
   waitToSpawnEnemies: 1
   enemiesToSpawn: 3
   enemies:
-  - obj: {fileID: 1519212177289982024, guid: 7ccdb5f51a4c350428f6a291c9f8f84c, type: 3}
+  - obj: {fileID: 1713951788145516, guid: f4f04282c2c676d42b28860c5c60abe2, type: 3}
     limitSpawns: 1
     linkedTo: -1
     dontSpawnBefore: 0
-  - obj: {fileID: 1519212177289982024, guid: 7ccdb5f51a4c350428f6a291c9f8f84c, type: 3}
+  - obj: {fileID: 1141117070903062, guid: 18019a28288d92c4bae661d0a6e0248d, type: 3}
+    limitSpawns: 1
+    linkedTo: -1
+    dontSpawnBefore: 0
+  - obj: {fileID: 1511023610978616, guid: 84aaa855e347969439fc5b70d7605d9e, type: 3}
     limitSpawns: 1
     linkedTo: -1
     dontSpawnBefore: 0
@@ -5982,7 +5986,7 @@ MonoBehaviour:
   crouchedCollider: {fileID: 690602505}
   partsFeathers: {fileID: 1301129770}
   gameStarted: 0
-  QAURL: https://docs.google.com/forms/d/e/1FAIpQLSfqMGbA6bOk6aoZuy6aHRQlHDcXZ1-kZawRmswqS7DIMEysxA/viewform
+  QAURL: https://docs.google.com/forms/d/e/1FAIpQLSelE2bXr0-mdrLuvJgH9PzJwAV2gtDwd-BZjn1ks2UP94tNvQ/viewform
 --- !u!70 &690602496
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -6146,6 +6150,7 @@ MonoBehaviour:
   meleeChargeCurrent: 0
   hasCenturion: 0
   centurionsStored: 0
+  currentCenturion: {fileID: 0}
   centurionPrefab: {fileID: 1313922069599002, guid: fb021aee81b488b44990ae684cf3cb3e,
     type: 3}
 --- !u!95 &690602501
@@ -18332,7 +18337,7 @@ MonoBehaviour:
     limitSpawns: 1
     linkedTo: -1
     dontSpawnBefore: 100
-  - obj: {fileID: 3310496972970809653, guid: 15c5d431427ff12448ba0d6417767e61, type: 3}
+  - obj: {fileID: 1519212177289982024, guid: 7ccdb5f51a4c350428f6a291c9f8f84c, type: 3}
     limitSpawns: 1
     linkedTo: -1
     dontSpawnBefore: 100

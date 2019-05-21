@@ -8,6 +8,7 @@ public class EnemyPounceAndSteal : MonoBehaviour
    public Vector2 below;
    public LayerMask groundMask;
    public bool grounded;
+    public float maxFallDistance;
 
    [Header("Detection")]
    public float detectionRange;
@@ -62,20 +63,26 @@ public class EnemyPounceAndSteal : MonoBehaviour
       }
 	}
 
-   private void Falling()
-   {
-      // if there's nothing below us, fall
-      if (Physics2D.OverlapCircle((Vector2)transform.position + below, 0.2f, groundMask) == false)
-      {
-         rb.velocity = Vector2.down * 7.5f;
-      }
-      else
-      {
-         // stop falling and set grounded to true
-         rb.velocity = new Vector2(rb.velocity.x, 0.0f);
-         grounded = true;
-      }
-   }
+    private void Falling()
+    {
+        // don't fall too far
+        if (!Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - maxFallDistance), groundMask))
+        {
+            Destroy(gameObject);
+        }
+
+        // if there's nothing below us, fall
+        if (Physics2D.OverlapCircle((Vector2)transform.position + below, 0.2f, groundMask) == false)
+        {
+            rb.velocity = Vector2.down * 7.5f;
+        }
+        else
+        {
+            // stop falling and set grounded to true
+            rb.velocity = new Vector2(rb.velocity.x, 0.0f);
+            grounded = true;
+        }
+    }
 
    private void CheckDirection()
    {

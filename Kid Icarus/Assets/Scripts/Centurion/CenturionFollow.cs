@@ -22,6 +22,7 @@ public class CenturionFollow : MonoBehaviour
 	public bool isDead;
 	private bool canGetHit = true;
 	public Sound death;
+    public bool hitboxActive;
 
 	private PlayerMovement refPlayerMovement;
    private PlayerShoot refPlayerShoot;
@@ -112,15 +113,20 @@ public class CenturionFollow : MonoBehaviour
 		}
 	}
 
-	private void OnTriggerStay2D(Collider2D other)
-	{
-		if (other.CompareTag("Enemy") && canGetHit == true)
-		{
-			currentHealth--;
-			canGetHit = false;
-			Invoke("StopInvincibility", invincibilityTime);
-		}
-	}
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (hitboxActive && other.CompareTag("Enemy") && canGetHit == true)
+        {
+            TakeDamage();
+        }
+    }
+
+    public void TakeDamage()
+    {
+        currentHealth--;
+        canGetHit = false;
+        Invoke("StopInvincibility", invincibilityTime);
+    }
 
 	private void StopInvincibility()
 	{

@@ -64,6 +64,8 @@ public class PlayerShoot : MonoBehaviour
     [Header("Centurions")]
     public bool hasCenturion = false;
     public int centurionsStored = 0;
+    [HideInInspector]
+    public CenturionFollow currentCenturion;
     public GameObject centurionPrefab;
 
     private PlayerMovement refPlayerMovement;
@@ -130,73 +132,72 @@ public class PlayerShoot : MonoBehaviour
 
 	void Shoot()
 	{
-		if (Input.GetButtonDown("Shoot"))
-		{
-			Vector2 shootDir;
-			float zRotation;
-         float tmpSpeed = arrowSpeedNormal;
-			GameObject tmp = null;
+        if (Input.GetButtonDown("Shoot"))
+        {
+	        Vector2 shootDir;
+	        float zRotation;
+            float tmpSpeed = arrowSpeedNormal;
+	        GameObject tmp = null;
 
-         // calculate velocity of the arrow here
-         {
+            // calculate velocity of the arrow here
+            {
             // use increased velocity if we're charged
             if (isCharged == true && arrowChargeLevel > 0)
             {
-               tmpSpeed = arrowSpeedCharged;
+                tmpSpeed = arrowSpeedCharged;
             }
 
             // if you're facing upwards
             if (lookingUp == true)
             {
-               shootDir = Vector2.up * tmpSpeed;
-               zRotation = 0;
+                shootDir = Vector2.up * tmpSpeed;
+                zRotation = 0;
             }
             // facing right
             else if (refPlayerMovement.facingRight)
             {
-               shootDir = Vector2.right * tmpSpeed;
-               zRotation = -90;
+                shootDir = Vector2.right * tmpSpeed;
+                zRotation = -90;
             }
             // facing left
             else
             {
-               shootDir = Vector2.right * tmpSpeed * -1;
-               zRotation = 90;
+                shootDir = Vector2.right * tmpSpeed * -1;
+                zRotation = 90;
             }
-         }
-
-			// shooting is not allowed while crouching
-			if (refPlayerMovement.isCrouching == false)
-			{
-            // instantiate the arrow
-            if (arrowChargeLevel > 0 && isCharged)
-            {
-               tmp = Instantiate(arrowPrefabCharged, transform.position, Quaternion.Euler(0, 0, zRotation));
-               isCharged = false;
-
-               // play the charged shoot sound
-               refPlayerAudio.PlayShoot(1.5f, 0.5f);
-            }
-            else
-            {
-               tmp = Instantiate(arrowPrefabNormal, transform.position, Quaternion.Euler(0, 0, zRotation));
-
-               // play the normal shoot sound
-               refPlayerAudio.PlayShoot(1.0f, 1.0f);
             }
 
-            // apply velocity to the arrow
-            tmp.GetComponent<Rigidbody2D>().velocity = shootDir;
+	        // shooting is not allowed while crouching
+	        if (refPlayerMovement.isCrouching == false)
+	        {
+                // instantiate the arrow
+                if (arrowChargeLevel > 0 && isCharged)
+                {
+                    tmp = Instantiate(arrowPrefabCharged, transform.position, Quaternion.Euler(0, 0, zRotation));
+                    isCharged = false;
 
-            // set the arrow's range
-            tmp.GetComponent<MiscDestroyProjectile>().destroyAfterTime = arrowRangeBase + (arrowRangeLevel * arrowRangeIncrement);
+                    // play the charged shoot sound
+                    refPlayerAudio.PlayShoot(1.5f, 0.5f);
+                }
+                else
+                {
+                    tmp = Instantiate(arrowPrefabNormal, transform.position, Quaternion.Euler(0, 0, zRotation));
 
-            // stop charging a charge shot
-            CancelInvoke("RechargeBow");
-            rechargeInvoked = false;
+                    // play the normal shoot sound
+                    refPlayerAudio.PlayShoot(1.0f, 1.0f);
+                }
 
-         }
-      }
+                // apply velocity to the arrow
+                tmp.GetComponent<Rigidbody2D>().velocity = shootDir;
+
+                // set the arrow's range
+                tmp.GetComponent<MiscDestroyProjectile>().destroyAfterTime = arrowRangeBase + (arrowRangeLevel * arrowRangeIncrement);
+
+                // stop charging a charge shot
+                CancelInvoke("RechargeBow");
+                rechargeInvoked = false;
+            }
+        }
 	}
 
 	void ShootEggplant()
@@ -263,49 +264,49 @@ public class PlayerShoot : MonoBehaviour
 
 	void SwingRight()
 	{
-		hammer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90f));
-		hammer.enabled = true;
+	    hammer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90f));
+	    hammer.enabled = true;
 
-      // sound
-		refPlayerAudio.PlayHammerHit();
+        // sound
+	    refPlayerAudio.PlayHammerHit();
 
-      // particles
-      partsHammer.Play();
+        // particles
+        partsHammer.Play();
 
-      // camera shake
-      refCameraFollow.shakeIntensity = Mathf.Lerp(refCameraFollow.shakeIntensity, 0.5f, 1.0f);
+        // camera shake
+        refCameraFollow.shakeIntensity = Mathf.Lerp(refCameraFollow.shakeIntensity, 0.5f, 1.0f);
 
-      Invoke("StopSwinging", meleeDuration);
+        Invoke("StopSwinging", meleeDuration);
 	}
 
 	void SwingLeft()
 	{
-		hammer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90f));
-		hammer.enabled = true;
+	    hammer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90f));
+	    hammer.enabled = true;
 
-      //sound
-		refPlayerAudio.PlayHammerHit();
+        //sound
+	    refPlayerAudio.PlayHammerHit();
 
-      // particles
-		partsHammer.Play();
+        // particles
+	    partsHammer.Play();
 
-      // camera shake
-      refCameraFollow.shakeIntensity = Mathf.Lerp(refCameraFollow.shakeIntensity, 0.5f, 1.0f);
+        // camera shake
+        refCameraFollow.shakeIntensity = Mathf.Lerp(refCameraFollow.shakeIntensity, 0.5f, 1.0f);
 
-      Invoke("StopSwinging", meleeDuration);
+        Invoke("StopSwinging", meleeDuration);
 	}
 
 	void StopSwinging()
 	{
-		hammer.enabled = false;
-		hammer.gameObject.SetActive(false);
+	    hammer.enabled = false;
+	    hammer.gameObject.SetActive(false);
 
-		isSwinging = false;
+	    isSwinging = false;
 
-      // stop camera shake
-      refCameraFollow.shakeIntensity = Mathf.Lerp(refCameraFollow.shakeIntensity, 0.0f, 1.0f);
+        // stop camera shake
+        refCameraFollow.shakeIntensity = Mathf.Lerp(refCameraFollow.shakeIntensity, 0.0f, 1.0f);
 
-      Invoke("RechargeHammer", meleeCooldown);
+        Invoke("RechargeHammer", meleeCooldown);
 	}
 
 	void RechargeHammer()
@@ -343,7 +344,7 @@ public class PlayerShoot : MonoBehaviour
          // if we have centurions stored and we don't already have a centurion equipped, spawn one
          if (centurionsStored > 0 && hasCenturion == false)
          {
-            Instantiate(centurionPrefab, transform.position, transform.rotation);
+            currentCenturion = Instantiate(centurionPrefab, transform.position, transform.rotation).GetComponent<CenturionFollow>();
             hasCenturion = true;
             centurionsStored--;
          }

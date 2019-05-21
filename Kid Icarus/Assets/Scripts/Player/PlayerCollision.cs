@@ -352,6 +352,12 @@ public class PlayerCollision : MonoBehaviour
             refPlayerUI.DoEffectHealth();
             Instantiate(hurtParts, transform.position, Quaternion.identity);
 
+            // have centurion take damage as well
+            if (refPlayerShoot.currentCenturion != null)
+            {
+                refPlayerShoot.currentCenturion.TakeDamage();
+            }
+
             Enemy tmp = other.GetComponent<Enemy>();
             if (tmp != null)
             {
