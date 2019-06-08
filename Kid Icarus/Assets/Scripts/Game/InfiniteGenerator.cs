@@ -117,7 +117,11 @@ public class InfiniteGenerator : MonoBehaviour
         CheckCandidates();
 
         // instantiate one of the levels that was chosen
-        int randomChoice = candidates[Random.Range(0, candidates.Count)];
+        int randomChoice = 0;
+        if (candidates.Count > 0)
+        {
+            randomChoice = candidates[Random.Range(0, candidates.Count)];
+        }
 
         GameObject tmp = Instantiate(levels[randomChoice].obj, new Vector2(defaultX, currentY), Quaternion.identity);
 

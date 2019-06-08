@@ -18313,7 +18313,7 @@ MonoBehaviour:
   - obj: {fileID: 1040655999123246, guid: 49bb6c8ddccecf74b9c07601a342c6d0, type: 3}
     limitSpawns: 1
     linkedTo: -1
-    dontSpawnBefore: 0
+    dontSpawnBefore: 8
   - obj: {fileID: 1275306939347786, guid: 2bffa755fb6048244aa265ac4a7dc9cb, type: 3}
     limitSpawns: 0
     linkedTo: -1
