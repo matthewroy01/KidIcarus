@@ -224,7 +224,7 @@ public class InfiniteGenerator : MonoBehaviour
 			    {
 				    tmp = Random.Range(0, enemies.Length);
 			    }
-			    while(CheckForRepeats(tmp, limitedSpawn) == true || enemies[tmp].dontSpawnBefore > refPlayerCollision.getCurrentMeters());
+			    while(!enemies[tmp].shouldSpawn || CheckForRepeats(tmp, limitedSpawn) == true || enemies[tmp].dontSpawnBefore > refPlayerCollision.getCurrentMeters());
 
                 // select random position
                 randX = Random.Range(defaultX, defaultX + width);
@@ -309,6 +309,7 @@ public class Level
 public class EnemyToSpawn
 {
     public GameObject obj;
+    public bool shouldSpawn = true;
     public bool limitSpawns;
     public int linkedTo = -1;
     public int dontSpawnBefore = 0;
