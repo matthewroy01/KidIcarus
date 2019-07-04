@@ -79,6 +79,11 @@ public class ShopCreator : MonoBehaviour
 				while(CheckIfAlreadyUsed(toSpawn));
 			}
 
+            if (possibleItems.Length == 1)
+            {
+                spawnCounter = 1;
+            }
+
 			// instantiate the item
 			GameObject tmp = Instantiate(possibleItems[toSpawn].obj, (Vector2)transform.position + spawnLocations[spawnCounter], transform.rotation);
 			spawnCounter++;

@@ -62,6 +62,15 @@ public class EnemyBuryAndShoot : MonoBehaviour
 
     private void CheckAbove()
     {
+        if (allSet)
+        {
+            // for the tutorial, if we're already all set, don't bother checking
+            finalPos = transform.position;
+            canShoot = true;
+
+            return;
+        }
+
         for (uint i = 0; i < checkDist; ++i)
         {
             Vector2 checkPos = new Vector2(transform.position.x, transform.position.y + i);

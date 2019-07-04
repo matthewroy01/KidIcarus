@@ -125,7 +125,7 @@ public class UtilityMusicManager : MonoBehaviour
     private void SelectMusic()
     {
         musicText.text = options[choice].description;
-        if (refPlayerMovement.gameStarted == false)
+        if (refPlayerMovement.gameStarted == false && options.Length > 1)
         {
             // scroll left
             if (Input.GetKeyDown(KeyCode.A))

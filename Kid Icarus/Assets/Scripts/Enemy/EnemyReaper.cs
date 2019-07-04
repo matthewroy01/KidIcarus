@@ -291,7 +291,7 @@ public class EnemyReaper : MonoBehaviour
 
 	private IEnumerator FireProjectiles()
 	{
-		while (isPanicked == false)
+		while (isPanicked == false && lineOfSightObj != null)
 		{
 			GameObject tmp = Instantiate(lineOfSightObj, projectilePos.position, projectilePos.rotation);
 			tmp.transform.parent = transform;

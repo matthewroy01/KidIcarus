@@ -329,6 +329,11 @@ public class PlayerCollision : MonoBehaviour
                         refPlayerShoot.IncreaseAll();
                     }
 
+                    if (tmp.name == "Exit Tutorial")
+                    {
+                        SceneManager.LoadScene("mainScene");
+                    }
+
                     hearts -= tmp.cost / sale;
                     sale = 1;
                     heartsSpent += tmp.cost;
@@ -453,22 +458,27 @@ public class PlayerCollision : MonoBehaviour
 
 		if (other.CompareTag("TextArea"))
 		{
-			textMessages.text = other.gameObject.GetComponent<TextArea>().text;
-		}
-		else
-		{
-			textMessages.text = "";
-		}
+            if (textMessages.text == "")
+            {
+                textMessages.GetComponent<UIEffect>().DoEffect();
+            }
+            textMessages.text = other.gameObject.GetComponent<TextArea>().text;
+        }
 	}
 
-	void OnTriggerExit2D(Collider2D other)
-	{
-		if (other.CompareTag("SafeZone"))
-		{
-			refMusicManager.SetMusicStatus(MusicStatus.mainTheme);
-			inSafeZone = false;
-		}
-	}
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("SafeZone"))
+        {
+            refMusicManager.SetMusicStatus(MusicStatus.mainTheme);
+            inSafeZone = false;
+        }
+
+        if (other.CompareTag("TextArea"))
+        {
+            textMessages.text = "";
+        }
+    }
 
     private void ResetTime()
     {

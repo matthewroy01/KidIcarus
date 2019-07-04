@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -86,7 +87,10 @@ public class PlayerShoot : MonoBehaviour
 		hammer.gameObject.SetActive(false);
 
 		// set hammer charge values
-		meleeUsesCurrent = meleeUsesTotal;
+        if (!refPlayerUI.isTutorial)
+        {
+            meleeUsesCurrent = meleeUsesTotal;
+        }
 	}
 
 	void Update ()

@@ -37,6 +37,9 @@ public class PlayerUI : MonoBehaviour
     [Header("Start Screen display")]
     public GameObject startScreen;
 
+    [Header("Tutorial")]
+    public bool isTutorial = false;
+
 	private PlayerMovement refMovement;
 	private PlayerCollision refCollision;
 	private PlayerShoot refShoot;
@@ -46,6 +49,12 @@ public class PlayerUI : MonoBehaviour
 		refMovement = GetComponent<PlayerMovement>();
 		refCollision = GetComponent<PlayerCollision>();
 		refShoot = GetComponent<PlayerShoot>();
+
+        // if we're playing the tutorial, start the game immediately
+        if (isTutorial)
+        {
+            refMovement.gameStarted = true;
+        }
 
 		// set feathers to inactive at first
 		for (int i = 1; i < feathers.Length; ++i)
@@ -157,17 +166,24 @@ public class PlayerUI : MonoBehaviour
 		textMeters.text = (refCollision.getCurrentMeters() + startingMeterOffset).ToString() + "m";
 	}
 
-   private void DisplayHighScore()
-   {
-      int tmpScore = refCollision.getCurrentMeters() + startingMeterOffset;
+    private void DisplayHighScore()
+    {
+        if (!isTutorial)
+        {
+            int tmpScore = refCollision.getCurrentMeters() + startingMeterOffset;
 
-      if (PlayerPrefs.GetInt("HighScore") < tmpScore)
-      {
-         PlayerPrefs.SetInt("HighScore", tmpScore);
-      }
+            if (PlayerPrefs.GetInt("HighScore") < tmpScore)
+            {
+                PlayerPrefs.SetInt("HighScore", tmpScore);
+            }
 
-      textHighScore.text = "HIGH SCORE\n" + PlayerPrefs.GetInt("HighScore").ToString() + "m";
-   }
+            textHighScore.text = "HIGH SCORE\n" + PlayerPrefs.GetInt("HighScore").ToString() + "m";
+        }
+        else
+        {
+            textHighScore.text = "TUTORIAL";
+        }
+    }
 
     private void DisplayStartScreen()
     {

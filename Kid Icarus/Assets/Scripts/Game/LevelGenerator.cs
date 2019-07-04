@@ -52,7 +52,7 @@ public class LevelGenerator : MonoBehaviour
 			GenerateLevel(num, maps, false);
 
 			// move the level that was just created over a bit
-			currentParent.position = new Vector2(offsetXDebug, -50);
+			currentParent.position = new Vector2(offsetXDebug, -100);
 			offsetXDebug += maps[num].main.width + 1;
 
 			// add the current parent to the infinite generator's list of potential levels
@@ -71,7 +71,7 @@ public class LevelGenerator : MonoBehaviour
 			GenerateLevel(num, shopMaps, true);
 
 			// move the level that was just created over a bit
-			currentParent.position = new Vector2(offsetXDebug, -50);
+			currentParent.position = new Vector2(offsetXDebug, -100);
 			offsetXDebug += shopMaps[num].main.width + 1;
 
 			// add the current parent to the infinite generator's list of potential levels
