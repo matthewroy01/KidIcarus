@@ -10629,6 +10629,10 @@ MonoBehaviour:
     description: 'Uprising
 
       That Burning Town'
+  - clip: {fileID: 8300000, guid: 77a5fca11a6a8654aac4b114632bf675, type: 3}
+    description: 'Uprising
+
+      Aurum Island'
   - clip: {fileID: 8300000, guid: ecafc7e0b542ae14d8d38ec97dcb8b89, type: 3}
     description: 'Uprising
 
@@ -10639,6 +10643,16 @@ MonoBehaviour:
     description: 'Metroid
 
       Brinstar'
+  - clip: {fileID: 8300000, guid: 7815d08d3b232214b94ad99f8791436c, type: 3}
+    description: 'Kaero no Tame ni
+
+      Kane wa Naru
+
+      (Frog for Whom
+
+      the Bell Tolls)
+
+      Overworld'
   - clip: {fileID: 8300000, guid: 7778d61bb5294d24fa69a49817551779, type: 3}
     description: 'Super Smash Bros Brawl
 
@@ -16830,11 +16844,6 @@ PrefabInstance:
       propertyPath: partsHammer
       value: 
       objectReference: {fileID: 866030636}
-    - target: {fileID: 3132774681563404713, guid: 4e3c1f09ba5377840a0ee3f2d9da98e0,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 992454158}
     - target: {fileID: 3132774682536684938, guid: 4e3c1f09ba5377840a0ee3f2d9da98e0,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -16850,6 +16859,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3132774681563404713, guid: 4e3c1f09ba5377840a0ee3f2d9da98e0,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 992454158}
     - target: {fileID: 3132774682461571373, guid: 4e3c1f09ba5377840a0ee3f2d9da98e0,
         type: 3}
       propertyPath: m_Camera
