@@ -4827,11 +4827,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hammer
       objectReference: {fileID: 0}
-    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
-        type: 3}
-      propertyPath: text
-      value: Right Click to use hammer
-      objectReference: {fileID: 0}
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.52
@@ -4884,6 +4879,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 4.0554795
       objectReference: {fileID: 0}
+    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
+        type: 3}
+      propertyPath: text
+      value: Right Click to use hammer
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
 --- !u!4 &76941073 stripped
@@ -4902,11 +4902,6 @@ PrefabInstance:
     - target: {fileID: 1034097799141066, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_Name
       value: Shoot to Recharge Hammer
-      objectReference: {fileID: 0}
-    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
-        type: 3}
-      propertyPath: text
-      value: Shoot enemies to recharge the hammer
       objectReference: {fileID: 0}
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4959,6 +4954,11 @@ PrefabInstance:
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalScale.y
       value: 4.0554795
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
+        type: 3}
+      propertyPath: text
+      value: Shoot enemies to recharge the hammer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
@@ -5370,11 +5370,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crouch
       objectReference: {fileID: 0}
-    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
-        type: 3}
-      propertyPath: text
-      value: Hold S to crouch
-      objectReference: {fileID: 0}
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.42
@@ -5426,6 +5421,11 @@ PrefabInstance:
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalScale.y
       value: 6.239199
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
+        type: 3}
+      propertyPath: text
+      value: Hold S to crouch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
@@ -5509,11 +5509,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Move
       objectReference: {fileID: 0}
-    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
-        type: 3}
-      propertyPath: text
-      value: A and D to move
-      objectReference: {fileID: 0}
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -5565,6 +5560,11 @@ PrefabInstance:
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalScale.y
       value: 4.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
+        type: 3}
+      propertyPath: text
+      value: A and D to move
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
@@ -11550,11 +11550,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crouch 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
-        type: 3}
-      propertyPath: text
-      value: Hold S to crouch
-      objectReference: {fileID: 0}
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.63
@@ -11607,6 +11602,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 4.5234194
       objectReference: {fileID: 0}
+    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
+        type: 3}
+      propertyPath: text
+      value: Hold S to crouch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
 --- !u!1001 &1203878673
@@ -11619,11 +11619,6 @@ PrefabInstance:
     - target: {fileID: 1034097799141066, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_Name
       value: Centurions
-      objectReference: {fileID: 0}
-    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
-        type: 3}
-      propertyPath: text
-      value: Summon a Centurion with E
       objectReference: {fileID: 0}
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11676,6 +11671,11 @@ PrefabInstance:
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalScale.y
       value: 11.150035
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
+        type: 3}
+      propertyPath: text
+      value: Summon a Centurion with E
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
@@ -12022,11 +12022,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shoot
       objectReference: {fileID: 0}
-    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
-        type: 3}
-      propertyPath: text
-      value: Left Click to shoot
-      objectReference: {fileID: 0}
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.81
@@ -12079,6 +12074,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 4.0554795
       objectReference: {fileID: 0}
+    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
+        type: 3}
+      propertyPath: text
+      value: Left Click to shoot
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
 --- !u!1001 &1484152371
@@ -12091,11 +12091,6 @@ PrefabInstance:
     - target: {fileID: 1034097799141066, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_Name
       value: Jump
-      objectReference: {fileID: 0}
-    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
-        type: 3}
-      propertyPath: text
-      value: Spacebar to jump
       objectReference: {fileID: 0}
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12148,6 +12143,11 @@ PrefabInstance:
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalScale.y
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
+        type: 3}
+      propertyPath: text
+      value: Spacebar to jump
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
@@ -12216,11 +12216,6 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 50374536299495926, guid: 6496c7852ade5c541a2c9a7e97e7187a,
-        type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114917790221865988, guid: 6496c7852ade5c541a2c9a7e97e7187a,
         type: 3}
       propertyPath: walkSpeed
@@ -12234,6 +12229,11 @@ PrefabInstance:
     - target: {fileID: 114917790221865988, guid: 6496c7852ade5c541a2c9a7e97e7187a,
         type: 3}
       propertyPath: facingRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50374536299495926, guid: 6496c7852ade5c541a2c9a7e97e7187a,
+        type: 3}
+      propertyPath: m_BodyType
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -17342,11 +17342,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Double Jump
       objectReference: {fileID: 0}
-    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
-        type: 3}
-      propertyPath: text
-      value: Press Spacebar again to double jump
-      objectReference: {fileID: 0}
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.92
@@ -17398,6 +17393,11 @@ PrefabInstance:
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalScale.y
       value: 8.81875
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
+        type: 3}
+      propertyPath: text
+      value: Press Spacebar again to double jump
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
@@ -17893,11 +17893,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Look Up
       objectReference: {fileID: 0}
-    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
-        type: 3}
-      propertyPath: text
-      value: Hold W to look up
-      objectReference: {fileID: 0}
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.63
@@ -17949,6 +17944,11 @@ PrefabInstance:
     - target: {fileID: 4049325780319652, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}
       propertyPath: m_LocalScale.y
       value: 4.0554795
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867983875826806, guid: e760c5209e0e9f240817d1774d188ce5,
+        type: 3}
+      propertyPath: text
+      value: Hold W to look up
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e760c5209e0e9f240817d1774d188ce5, type: 3}

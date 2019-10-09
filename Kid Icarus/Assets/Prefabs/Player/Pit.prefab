@@ -7706,6 +7706,9 @@ MonoBehaviour:
   textTheft: {fileID: 3132774683207706612}
   moneyParts: {fileID: 198419277191109448, guid: 41eea18aab923364c93ba2bca365095c,
     type: 3}
+  textAreaMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &3132774682878481602
 MonoBehaviour:
   m_ObjectHideFlags: 0

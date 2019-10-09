@@ -47,6 +47,8 @@ public class PlayerCollision : MonoBehaviour
     public Text textTheft;
     public ParticleSystem moneyParts;
     private int currentMeters = 0;
+    public LayerMask textAreaMask;
+    private string previousMessage = "";
 
     private PlayerAudio refPlayerAudio;
 	private PlayerMovement refPlayerMovement;
@@ -80,6 +82,7 @@ public class PlayerCollision : MonoBehaviour
 	{
 		UpdateMeters();
 		CommunicateWithShop();
+        CheckForTextAreas();
 
 		// death
 		if (currentHealth <= 0)
@@ -455,15 +458,6 @@ public class PlayerCollision : MonoBehaviour
 			refMusicManager.SetMusicStatus(MusicStatus.shopTheme);
 			inSafeZone = true;
 		}
-
-		if (other.CompareTag("TextArea"))
-		{
-            if (textMessages.text == "")
-            {
-                textMessages.GetComponent<UIEffect>().DoEffect();
-            }
-            textMessages.text = other.gameObject.GetComponent<TextArea>().text;
-        }
 	}
 
     void OnTriggerExit2D(Collider2D other)
@@ -472,11 +466,6 @@ public class PlayerCollision : MonoBehaviour
         {
             refMusicManager.SetMusicStatus(MusicStatus.mainTheme);
             inSafeZone = false;
-        }
-
-        if (other.CompareTag("TextArea"))
-        {
-            textMessages.text = "";
         }
     }
 
@@ -539,6 +528,28 @@ public class PlayerCollision : MonoBehaviour
 			Invoke("DisplayFinalResults", 3.5f);
 		}
 	}
+
+    private void CheckForTextAreas()
+    {
+        Collider2D other = Physics2D.OverlapCircle(transform.position, 0.2f, textAreaMask);
+
+        if (other != null && other.CompareTag("TextArea"))
+        {
+            TextArea textArea = other.gameObject.GetComponent<TextArea>();
+            if (previousMessage != textArea.text)
+            {
+                textMessages.GetComponent<UIEffect>().DoEffect();
+            }
+
+            textMessages.text = textArea.text;
+            previousMessage = textMessages.text;
+        }
+        else
+        {
+            textMessages.text = "";
+            previousMessage = textMessages.text;
+        }
+    }
 
    private void DisplayFinalResults()
    {
